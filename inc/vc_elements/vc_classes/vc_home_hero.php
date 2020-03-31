@@ -39,6 +39,16 @@ class vglHomeHero extends WPBakeryShortCode
 		    			'group'					=> 'VGL'
 	    			),
 	    			array(
+	    				'type'					=> 'autocomplete',
+	    				'heading'				=> 'Category',
+	    				'param_name'			=> 'category',
+	    				'settings'				=> array(
+	    					'values'			=> $this->post_categories(),
+	    					'multiple'			=> true
+	    				),
+	    				'group'					=> 'VGL'
+	    			),
+	    			array(
 	    				'type'					=> 'textfield',
 	    				'heading'				=> 'Number of blogs to show',
 	    				'param_name'			=> 'blog_count',
@@ -70,6 +80,19 @@ class vglHomeHero extends WPBakeryShortCode
 	    				'group'					=> 'VGL'
 	    			),
 	    			array(
+	    				'type'					=> 'textfield',
+	    				'heading'				=> 'Bottom Border Width',
+	    				'param_name'			=> 'border_width',
+	    				'value'					=> '10px',
+	    				'group'					=> 'VGL'
+	    			),
+	    			array(
+	    				'type'					=> 'colorpicker',
+	    				'heading'				=> 'Bottom color',
+	    				'param_name'			=> 'bottom_color',
+	    				'group'					=> 'VGL'
+	    			),
+	    			array(
 	    				'type'					=> 'css_editor',
 	    				'heading'				=> 'CSS',
 	    				'param_name'			=> 'custom_css',
@@ -87,9 +110,12 @@ class vglHomeHero extends WPBakeryShortCode
 			shortcode_atts(
 				array(
 					'layout' 								=> '',
+					'category'								=> '',
 					'blog_count'							=> '',
 					'order'									=> '',
 					'order_by'								=> '',
+					'border_width'							=> '10px',
+					'bottom_color'							=> '',
 					'custom_css'							=> ''
 				),
 				$atts
@@ -99,6 +125,8 @@ class vglHomeHero extends WPBakeryShortCode
 		ob_start();
 
 		$css_class = apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, vc_shortcode_custom_css_class( $custom_css, ' ' ), $this->settings['base'], $atts );
+
+		$category = explode(',', $category);
 		?>
 
 		<?php
@@ -108,7 +136,8 @@ class vglHomeHero extends WPBakeryShortCode
 				'post_status'				=> 'publish',
 				'posts_per_page'			=> $blog_count,
 				'order'						=> $order,
-				'order_by'					=> $order_by
+				'order_by'					=> $order_by,
+				'category__in'				=> $category
 			);
 
 			$query = new WP_Query($args);
@@ -129,10 +158,17 @@ class vglHomeHero extends WPBakeryShortCode
 
 				$authorName = get_the_author_meta( 'user_nicename', $authorID );
 
+				$category = get_the_category()[0]->name;
+
+				$permalink = get_the_permalink();
+
 				$data[] = array(
+					'id'			=> $post->ID,
 					'featured_url'	=> $featured_url,
 					'title'			=> $title,
-					'authorName'	=> $authorName
+					'authorName'	=> $authorName,
+					'category'		=> $category,
+					'permalink'		=> $permalink
 				);
 
 			}
@@ -144,7 +180,7 @@ class vglHomeHero extends WPBakeryShortCode
 		<?php if ( $layout == 'grid' ): ?>
 
 		<?php elseif ( $layout == 'slider' ): ?>
-			<hero-banner-slider posts="[{title: 'Test title'}, {title: 'Test title 2'}]"></hero-banner-slider>
+			<hero-banner-slider :posts='<?php echo json_encode($data); ?>' border-color="<?php echo $bottom_color; ?>" border-width="<?php echo $border_width; ?>"></hero-banner-slider>
 		<?php endif; ?>
 
 		<?php
@@ -153,6 +189,29 @@ class vglHomeHero extends WPBakeryShortCode
 		ob_get_clean();
 
 		return $html;
+	}
+
+	public function post_categories( $tax_term  = 'category' ) {
+		$args = array(
+			'taxonomy'			=> $tax_term,
+			'orderby'			=> 'name',
+			'order'				=> 'ASC'
+		);
+
+		$cats = get_categories($args);
+
+		$results = array();
+
+		foreach ($cats as $cat) {
+			
+			$results[] = array(
+				'value'		=> $cat->term_id,
+				'label'		=> $cat->name
+			);
+
+		}
+
+		return $results;
 	}
 }
 

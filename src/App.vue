@@ -1,12 +1,14 @@
 <script>
 import HelloWorld from './components/HelloWorld.vue';
 import HeroBannerSlider from './components/HeroBannerSlider.vue';
+import VueSlider from './components/VueSlider.vue';
 
 export default {
   name: 'App',
   components: {
     HelloWorld,
-    HeroBannerSlider
+    HeroBannerSlider,
+    VueSlider
   },
   mounted() {
     this.initialize();
@@ -25,7 +27,5 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>

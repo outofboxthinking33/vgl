@@ -1,16 +1,12 @@
 <?php
 
-require get_template_directory() . '/vendor/autoload.php';
-
-require get_template_directory() . '/inc/dotenv.php';
-
 function front_enqueue_scripts() {
 
 	// enqueue style.css
 	wp_enqueue_style( 'style', get_stylesheet_uri() );
 
-	// enqueue vue app.css
 	wp_enqueue_style('app', get_template_directory_uri() . '/dist/css/app.css');
+	wp_enqueue_style('chunk-vendors', get_template_directory_uri() . '/dist/css/chunk-vendors.css');
 
 	wp_enqueue_script('chunk-vendors', get_template_directory_uri() . '/dist/js/chunk-vendors.js', [], false, true);
 	wp_enqueue_script('app', get_template_directory_uri() . '/dist/js/app.js', ['chunk-vendors'], false, true);
