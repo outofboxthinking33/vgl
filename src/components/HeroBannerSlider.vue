@@ -1,5 +1,5 @@
 <template>
-	<div class="vgl-home-hero-slider">
+	<div class="vgl-home-hero-slider vgl-container">
 		<VueSlickCarousel :slidesToShow="1" :slidesToScroll="1" :speed="500" :infinite="true" :dots="true" :style="{ '--bordder-color': borderColor, '--border-width': borderWidth }">
 			{{ borderColor }}
 			<div v-for="post in posts" :key="post.id">
@@ -38,7 +38,7 @@
 			}
 		},
 		mounted: function() {
-			console.log(this.posts);
+			
 		},
 		computed: function() {
 			return {

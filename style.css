@@ -158,6 +158,7 @@ sup {
 
 img {
   border-style: none;
+  width: 100%;
 }
 
 /* Forms
@@ -484,4 +485,65 @@ p, span, a, input, textarea, ul, li, select, table, td, tr, th, div, body {
 
 :focus {
     outline: none;
+}
+
+main.main-content {
+  max-width: 1200px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.vgl-container {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.vgl-container:before,
+.vgl-container:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.col-full {
+  width: calc(100%);
+  padding-left: 15px;
+  padding-right: 15px;
+  float: left;
+}
+
+.col-half {
+  width: calc(100% / 2);
+  padding-left: 15px;
+  padding-right: 15px;
+  float: left;
+}
+
+.col-one-third {
+  width: calc(100% / 3);
+  padding-left: 15px;
+  padding-right: 15px;
+  float: left;
+}
+
+.col-one-fourth {
+  width: calc(100% / 4);
+  padding-left: 15px;
+  padding-right: 15px;
+  float: left;
+}
+
+.col-one-fifth {
+  width: calc(100% / 5);
+  padding-left: 15px;
+  padding-right: 15px;
+  float: left;
+}
+
+.col-half:nth-of-type(2n + 1),
+.col-one-third:nth-of-type(3n + 1),
+.col-one-fourth:nth-of-type(4n + 1),
+.col-one-fifth:nth-of-type(5n + 1) {
+  clear: both;
 }
