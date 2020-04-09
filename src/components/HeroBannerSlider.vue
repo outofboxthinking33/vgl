@@ -12,6 +12,7 @@
 				</div>
 			</div>
 		</VueSlickCarousel>
+		<HelloWorld></HelloWorld>
 	</div>
 </template>
 

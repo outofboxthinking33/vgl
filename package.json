@@ -20,6 +20,7 @@
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.1.2",
     "vue": "^2.6.11",
+    "vue-masonry-css": "^1.0.3",
     "vue-server-renderer": "^2.6.11",
     "vue-template-compiler": "^2.6.11"
   },

@@ -3,7 +3,7 @@
 /**
  * Hot POSTS
  */
-class VglHotPosts extends WPBakeryShortCode
+class vglHotPosts extends WPBakeryShortCode
 {
 	
 	function __construct()
@@ -48,6 +48,12 @@ class VglHotPosts extends WPBakeryShortCode
 	    				),
 	    				'admin_label'	=> true,
 	    				'group'			=> 'VGL'
+	    			),
+	    			array(
+	    				'type'			=> 'css_editor',
+	    				'heading'		=> 'CSS',
+	    				'param_name'	=> 'custom_css',
+	    				'group'			=> 'Design options'
 	    			)
 	    		)
 	    	)	
@@ -61,11 +67,14 @@ class VglHotPosts extends WPBakeryShortCode
 			shortcode_atts(
 				array(
 					'columns'				=> '1',
-					'hot_posts' 			=> ''
+					'hot_posts' 			=> '',
+					'custom_css'			=> ''
 				),
 				$atts
 			)
 		);
+
+		$css_class = apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, vc_shortcode_custom_css_class( $custom_css, ' ' ), $this->settings['base'], $atts );
 
 		$hot_posts = explode(',', $hot_posts);
 
@@ -94,7 +103,7 @@ class VglHotPosts extends WPBakeryShortCode
 
 		?>
 
-		<hot-posts :posts='<?php echo json_encode($data); ?>' col-count='<?php echo $columns; ?>'></hot-posts>
+		<hot-posts :posts='<?php echo json_encode($data); ?>' col-count='<?php echo $columns; ?>' class="<?php echo $css_class; ?>"></hot-posts>
 
 		<?php
 
@@ -136,4 +145,4 @@ class VglHotPosts extends WPBakeryShortCode
 	}
 }
 
-new VglHotPosts();
+new vglHotPosts();
