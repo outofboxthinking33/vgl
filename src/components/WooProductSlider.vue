@@ -54,11 +54,15 @@
 							}
 						}
 					]
-				}
+				},
+				dotCount: 0
 			}
 		},
 		mounted: function() {
-			
+			const dots = this.$el.querySelectorAll('.slick-dots li');
+			this.dotCount = dots.length;
+			// this.$el.querySelectorAll('.slick-dots li').setAttribute("width", "calc(100% / " + this.dotCount + ");")
+			dots.forEach( element => { element.style.width = "calc(100% / " + this.dotCount + ")"; } )
 		},
 		computed: function() {
 			return {
@@ -106,6 +110,24 @@
 
 		.slick-slider .slick-list {
 			overflow: visible;
+		}
+
+		.slick-dots li {
+			height: 7px;
+			background-color: #a8abc9;
+			margin: 0;
+			padding: 0;
+			float: left;
+			transition: all ease-in-out .2s;
+			-webkit-transition: all ease-in-out .2s;
+
+			button {
+				display: none;
+			}
+		}
+
+		.slick-dots li.slick-active {
+			background-color: #424242;
 		}
 	}
 </style>

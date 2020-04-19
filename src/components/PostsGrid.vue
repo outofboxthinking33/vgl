@@ -41,8 +41,8 @@
 			}
 		},
 		mounted: function() {
-			console.log(this.posts);
-			console.log(this.displayCount);
+			// console.log(this.posts);
+			// console.log(this.displayCount);
 		}
 	};
 </script>

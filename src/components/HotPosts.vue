@@ -24,8 +24,8 @@
 			}
 		},
 		mounted: function() {
-			console.log(this.posts);
-			console.log(this.colCount);
+			// console.log(this.posts);
+			// console.log(this.colCount);
 		}
 	};
 </script>
