@@ -89,9 +89,10 @@
 			color: #000000;
 			position: absolute;
 			z-index: 100;
-			transform: rotate(-90deg) translateY(-50%);
+			transform: rotate(-90deg) translate(-100%, -50%);
 			transform-origin: top left;
-			bottom: 50%;
+			top: 0;
+			left: 0;
 		}		
 
 		.vgl-posts-slider-item {

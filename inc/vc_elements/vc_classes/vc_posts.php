@@ -70,10 +70,6 @@ class VglPosts extends WPBakeryShortCode
 	    				'heading'		=> 'Heading',
 	    				'param_name'	=> 'heading',
 	    				'admin_label'	=> false,
-	    				'dependency'	=> array(
-    						'element'	=> 'type',
-    						'value'		=> 'slider'
-	    				),
 	    				'group' 		=> 'VGL'
 	    			),
 	    			array(
@@ -236,7 +232,7 @@ class VglPosts extends WPBakeryShortCode
 
 		<?php if ( $type == 'grid' ): ?>
 
-		<posts-grid :posts='<?php echo json_encode($data); ?>' :count='<?php echo $item_count; ?>' :col-count='<?php echo $columns ?>' class="<?php echo $style; ?>"></posts-grid>
+		<posts-grid :posts='<?php echo json_encode($data); ?>' :count='<?php echo $item_count; ?>' :col-count='<?php echo $columns ?>' grid-style="<?php echo $style; ?>" class="<?php echo $style; ?>" heading="<?php echo $heading; ?>"></posts-grid>
 
 		<?php elseif (  $type == 'slider'): ?>
 
