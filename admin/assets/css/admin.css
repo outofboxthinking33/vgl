@@ -32,10 +32,6 @@
 }
 
 .vgl-media-image {
-	display: none;
-}
-
-.vgl-media-image.active {
 	margin-bottom: 15px;
 	max-width: 100px;
 	padding: 4px;

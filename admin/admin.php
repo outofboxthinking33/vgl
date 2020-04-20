@@ -100,7 +100,9 @@ if ( !class_exists( 'vglThemeOptions' ) ) {
 									<input type="hidden" name="theme_options[logo_id]" value="<?php echo $logo_id ?>">
 								</div>
 								<div class="vgl-meta-fields">
-									<img src="<?php echo wp_get_attachment_image_src( $logo_id, 'full' )[0]; ?>" class="vgl-media-image <?php if ( wp_get_attachment_image_src( $logo_id, 'full' ) != false ) echo 'active'; ?>">
+									<img src="<?php echo wp_get_attachment_image_src( $logo_id, 'full' )[0]; ?>" class="vgl-media-image <?php if ( !empty(wp_get_attachment_image_src( $logo_id, 'full' ))){
+										echo 'active';	
+									} ?>">
 								</div>
 								<a class="vgl-media-upload-btn">Upload</a>
 								<a class="vgl-media-remove-btn">Remove</a>
