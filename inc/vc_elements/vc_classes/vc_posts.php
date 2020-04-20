@@ -41,13 +41,14 @@ class VglPosts extends WPBakeryShortCode
 	    				'heading'		=> 'Style',
 	    				'param_name'	=> 'style',
 	    				'value'			=> array(
-	    					'Style1'	=> 'style1',
-	    					'Style2'	=> 'style2'
+	    					'Masonry'	=> 'masonry',
+	    					'List'		=> 'list'
 	    				),
 	    				'dependency'	=> array(
     						'element'	=> 'type',
     						'value'		=> 'grid'
 	    				),
+	    				'save_always'	=> true,
 	    				'admin_label'	=> true,
 	    				'group'			=> 'VGL'
 	    			),
@@ -63,6 +64,41 @@ class VglPosts extends WPBakeryShortCode
 	    					'Five Columns'	=> '5'
 	    				),
 	    				'group'			=> 'VGL'
+	    			),
+	    			array(
+	    				'type'			=> 'textfield',
+	    				'heading'		=> 'Heading',
+	    				'param_name'	=> 'heading',
+	    				'admin_label'	=> false,
+	    				'dependency'	=> array(
+    						'element'	=> 'type',
+    						'value'		=> 'slider'
+	    				),
+	    				'group' 		=> 'VGL'
+	    			),
+	    			array(
+	    				'type'			=> 'textfield',
+	    				'heading'		=> 'Desktop Slider Show',
+	    				'param_name'	=> 'desktop_slider_show',
+	    				'admin_label'	=> false,
+	    				'dependency'	=> array(
+    						'element'	=> 'type',
+    						'value'		=> 'slider'
+	    				),
+	    				'value'			=> '4',
+	    				'group' 		=> 'VGL'
+	    			),
+	    			array(
+	    				'type'			=> 'textfield',
+	    				'heading'		=> 'Mobile Slider Show',
+	    				'param_name'	=> 'mobile_slider_show',
+	    				'admin_label'	=> false,
+	    				'dependency'	=> array(
+    						'element'	=> 'type',
+    						'value'		=> 'slider'
+	    				),
+	    				'value'			=> '1',
+	    				'group' 		=> 'VGL'
 	    			),
 	    			array(
 	    				'type'			=> 'textfield',
@@ -119,14 +155,17 @@ class VglPosts extends WPBakeryShortCode
 		extract(
 			shortcode_atts(
 				array(
-					'type'				=> '1',
-					'style' 			=> '',
-					'columns'			=> 1,
-					'start_index'		=> 0,
-					'item_count'		=> 10,
-					'order'				=> 'DES',
-					'order_by'			=> 'date',
-					'custom_css'		=> ''
+					'type'					=> 'slider',
+					'style' 				=> '',
+					'columns'				=> 1,
+					'heading'				=> '',
+					'desktop_slider_show' 	=> '4',
+					'mobile_slider_show' 	=> '1', 
+					'start_index'			=> 0,
+					'item_count'			=> 10,
+					'order'					=> 'DES',
+					'order_by'				=> 'date',
+					'custom_css'			=> ''
 				),
 				$atts
 			)
@@ -195,8 +234,15 @@ class VglPosts extends WPBakeryShortCode
 
 		?>
 
+		<?php if ( $type == 'grid' ): ?>
+
 		<posts-grid :posts='<?php echo json_encode($data); ?>' :count='<?php echo $item_count; ?>' :col-count='<?php echo $columns ?>' class="<?php echo $style; ?>"></posts-grid>
 
+		<?php elseif (  $type == 'slider'): ?>
+
+		<posts-slider :posts='<?php echo json_encode($data); ?>' :count='<?php echo $item_count; ?>' heading='<?php echo $heading; ?>' desktop-slider-show='<?php echo $desktop_slider_show; ?>' mobile-slider-show='<?php echo $mobile_slider_show; ?>' class="<?php echo $type . " " . $css_class; ?>"></posts-slider>
+
+		<?php endif; ?>
 		<?php
 
 		$html = ob_get_contents();

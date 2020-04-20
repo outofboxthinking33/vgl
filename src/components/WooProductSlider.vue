@@ -1,7 +1,7 @@
 <template>
 	<div class="vgl-woo-product-slider vgl-container">
 		<VueSlickCarousel v-bind="settings">
-			<div class="vgl-woo-product-slider-item" v-for="product in products" :key="product.id">
+			<div v-for="product in products" :key="product.id" class="vgl-woo-product-slider-item">
 				<div class="slider-image" :style="{ 'background-image': 'url(' + product.featured_url + ')'  }"></div>
 				<div class="slider-content">
 					<p class="title">{{ product.product_name }}</p>

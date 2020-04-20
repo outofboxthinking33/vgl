@@ -157,7 +157,7 @@ class vglWooProductSlider extends WPBakeryShortCode
 
 		?>
 
-		<woo-product-slider :products='<?php echo json_encode($data); ?>' :product-count='<?php echo $product_count ?>' desktop-slide-count='<?php echo $desktop_slide_count ?>' mobile-slide-count='<?php echo $mobile_slide_count ?>'></woo-product-slider>
+		<woo-product-slider :products='<?php echo json_encode($data); ?>' :product-count='<?php echo $product_count ?>' desktop-slide-count='<?php echo $desktop_slide_count ?>' mobile-slide-count='<?php echo $mobile_slide_count ?>' class="<?php echo $css_class; ?>"></woo-product-slider>
 
 		<?php
 

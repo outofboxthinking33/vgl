@@ -47,58 +47,60 @@
 	};
 </script>
 
-<style>
+<style lang="scss">
+	
+	.vgl-posts.masonry {
+		.vgl-post {
+			margin-bottom: 30px;
 
-	.vgl-posts::before,
-	.vgl-posts::after {
-		content: none;
-		display: none;
-	}
+			&::before,
+			&::after {
+				content: none;
+				display: none;
+			}
 
-	.vgl-post .vgl-post-info {
-		margin-top: 20px;
-	}
+			.vgl-post-info {
+				margin-top: 20px;
 
-	.vgl-post {
-		margin-bottom: 30px;
-	}
+				.title {
+					font-family: SportingGrotesque;
+					font-size: 30px;
+					font-weight: bold;
+					font-stretch: normal;
+					font-style: normal;
+					line-height: 1.37;
+					letter-spacing: normal;
+					color: #000000;
+				}
 
-	.vgl-post .vgl-post-info .title {
-		font-family: SportingGrotesque;
-		font-size: 30px;
-		font-weight: bold;
-		font-stretch: normal;
-		font-style: normal;
-		line-height: 1.37;
-		letter-spacing: normal;
-		color: #000000;
-	}
+				> span {
+					font-family: Lato;
+					font-size: 14px;
+					font-weight: 300;
+					font-stretch: normal;
+					font-style: normal;
+					line-height: normal;
+					letter-spacing: normal;
+					color: #424242;
+					display: block;
+					font-weight: bold;
+				}
 
-	.vgl-post .vgl-post-info > span {
-		font-family: Lato;
-		font-size: 14px;
-		font-weight: 300;
-		font-stretch: normal;
-		font-style: normal;
-		line-height: normal;
-		letter-spacing: normal;
-		color: #424242;
-		display: block;
-		font-weight: bold;
-	}
-
-	.vgl-post .vgl-post-info > a {
-		font-family: Lato;
-		font-size: 14px;
-		font-weight: 300;
-		font-stretch: normal;
-		font-style: normal;
-		line-height: normal;
-		letter-spacing: normal;
-		color: #424242;
-		display: inline-block;
-		margin-top: 13px;
-		text-decoration: underline;
+				> a {
+					font-family: Lato;
+					font-size: 14px;
+					font-weight: 300;
+					font-stretch: normal;
+					font-style: normal;
+					line-height: normal;
+					letter-spacing: normal;
+					color: #424242;
+					display: inline-block;
+					margin-top: 13px;
+					text-decoration: underline;
+				}
+			}
+		}
 	}
 
 </style>

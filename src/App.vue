@@ -4,7 +4,8 @@ import HeroBannerSlider from './components/HeroBannerSlider.vue';
 import VueSlider from './components/VueSlider.vue';
 import HotPosts from './components/HotPosts.vue';
 import PostsGrid from './components/PostsGrid.vue';
-import WooProductSlider from './components/WooProductSlider';
+import WooProductSlider from './components/WooProductSlider.vue';
+import PostsSlider from './components/PostsSlider.vue';
 
 export default {
   name: 'App',
@@ -14,7 +15,8 @@ export default {
     VueSlider,
     HotPosts,
     PostsGrid,
-    WooProductSlider
+    WooProductSlider,
+    PostsSlider
   },
   mounted() {
     this.initialize();
