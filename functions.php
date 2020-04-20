@@ -17,6 +17,9 @@ add_action('wp_enqueue_scripts', 'front_enqueue_scripts', 1000);
 /* include Custom VC Elements */
 require_once(get_theme_file_path('/inc/vc_elements/vc_elements.php'));
 
+/* include Admin Options */
+require_once(get_theme_file_path('/admin/admin.php'));
+
 
 // Remove WP Version From Styles	
 add_filter( 'style_loader_src', 'sdt_remove_ver_css_js', 9999 );
