@@ -129,5 +129,11 @@
 		.slick-dots li.slick-active {
 			background-color: #424242;
 		}
+
+		.slick-dots {
+			position: relative;
+			bottom: 0;
+			margin-top: 50px;
+		}
 	}
 </style>
