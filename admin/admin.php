@@ -91,23 +91,34 @@ if ( !class_exists( 'vglThemeOptions' ) ) {
 				<?php settings_fields( 'theme_options' ); ?>
 
 				<table class="form-table vgl-theme-options-table">
-
 					<tr valign="top">
-							<th scope="row"><?php esc_html_e( 'Logo Image', 'vgl' ); ?></th>
-							<td>
-								<?php $logo_id = vglThemeOptions::get_theme_option( 'logo_id' ); ?>
-								<div class="vgl-meta-fields">
-									<input type="hidden" name="theme_options[logo_id]" value="<?php echo $logo_id ?>">
-								</div>
-								<div class="vgl-meta-fields">
-									<img src="<?php echo wp_get_attachment_image_src( $logo_id, 'full' )[0]; ?>" class="vgl-media-image <?php if ( !empty(wp_get_attachment_image_src( $logo_id, 'full' ))){
-										echo 'active';	
-									} ?>">
-								</div>
-								<a class="vgl-media-upload-btn">Upload</a>
-								<a class="vgl-media-remove-btn">Remove</a>
-							</td>
-						</tr>
+						<th scope="row"><?php esc_html_e( 'Logo Image', 'vgl' ); ?></th>
+						<td>
+							<?php $logo_id = vglThemeOptions::get_theme_option( 'logo_id' ); ?>
+							<div class="vgl-meta-fields">
+								<input type="hidden" name="theme_options[logo_id]" value="<?php echo $logo_id ?>">
+							</div>
+							<div class="vgl-meta-fields">
+								<img src="<?php echo wp_get_attachment_image_src( $logo_id, 'full' )[0]; ?>" class="vgl-media-image <?php if ( !empty(wp_get_attachment_image_src( $logo_id, 'full' ))){
+									echo 'active';	
+								} ?>">
+							</div>
+							<a class="vgl-media-upload-btn">Upload</a>
+							<a class="vgl-media-remove-btn">Remove</a>
+						</td>
+					</tr>
+					<tr valign="top">
+						<th scope="row"><?php esc_html_e( 'Menu Style', 'vgl' ); ?></th>
+						<td>
+							<?php $menu_style = vglThemeOptions::get_theme_option( 'menu_style' ); ?>
+							<div class="vgl-meta-fields">
+								<select name="theme_options[menu_style]">
+									<option value="rectangle_menu" <?php if ( $menu_style == 'rectangle_menu' ){ echo 'selected'; } ?>>Rectangle Menu</option>
+									<option value="inline_menu" <?php if ( $menu_style == 'inline_menu' ){ echo 'selected'; } ?>>Inline Menu</option>
+								</select>
+							</div>
+						</td>
+					</tr>
 				</table>
 
 				<?php submit_button(); ?>

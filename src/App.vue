@@ -1,4 +1,5 @@
 <script>
+import RectangleMenu from './components/Header/RectangleMenu.vue';
 import HelloWorld from './components/HelloWorld.vue';
 import HeroBannerSlider from './components/HeroBannerSlider.vue';
 import VueSlider from './components/VueSlider.vue';
@@ -10,6 +11,7 @@ import PostsSlider from './components/PostsSlider.vue';
 export default {
   name: 'App',
   components: {
+    RectangleMenu,
     HelloWorld,
     HeroBannerSlider,
     VueSlider,
