@@ -11,6 +11,8 @@ function front_enqueue_scripts() {
 	wp_enqueue_script('chunk-vendors', get_template_directory_uri() . '/dist/js/chunk-vendors.js', ['wpb_composer_front_js'], false, true);
 	wp_enqueue_script('app', get_template_directory_uri() . '/dist/js/app.js', ['chunk-vendors'], false, true);
 
+	wp_enqueue_script('custom-js', get_template_directory_uri() . '/assets/js/custom.js');
+
 }
 add_action('wp_enqueue_scripts', 'front_enqueue_scripts', 1000);
 

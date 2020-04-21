@@ -11,9 +11,22 @@
 <body <?php body_class(); ?>>
 	<div id="app">
 		<header class="header">
+			<div class="search-bar">
+				<?php get_search_form(array( 'echo' => true )) ?>
+			</div>
+			<div class="logo">
+				<?php 
+					$logo_id = vgl_get_theme_option('logo_id');
+				?>
+				<img src="<?php echo wp_get_attachment_image_src( $logo_id, 'full' )[0]; ?>">
+			</div>
+			<?php if ( vgl_get_theme_option('menu_style') == 'rectangle_menu' ): ?>
 			<rectangle-menu menu-style="<?php echo vgl_get_theme_option('menu_style') ?>">
 				<template v-slot:menu>
 					<?php echo wp_nav_menu( array( 'menu' => 'primary', 'menu_class' => '', 'container' => 'ul', 'depth' => 2 ) ); ?>
 				</template>
 			</rectangle-menu>
+			<?php else: ?> 
+
+			<?php endif; ?>
 		</header>
