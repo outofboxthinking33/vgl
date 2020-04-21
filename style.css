@@ -631,3 +631,122 @@ header .search-bar form#searchform input[type="text"] {
 header .search-bar form#searchform input#searchsubmit {
   display: none;
 }
+
+/* 
+ *  Footer Style
+ */
+footer#footer {
+  background-color: #000;
+  position: relative;
+}
+
+footer#footer:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 50%;
+  transform: translateY(-100%);
+  border-bottom: solid 65px #000;
+  border-right: solid calc(50vw) transparent;
+}
+
+footer#footer:after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  left: 50%;
+  transform: translateY(-100%);
+  border-bottom: solid 65px #000;
+  border-left: solid calc(50vw) transparent;
+}
+
+footer .footer-container {
+  max-width: 90%;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -moz-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+  -moz-justify-content: space-between;
+  -ms-justify-content: space-between;
+  align-items: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+}
+
+.footer-container .footer-left {
+  width: 25%;
+}
+
+.footer-container .footer-right {
+  width: calc(100% / 3);
+}
+
+footer#footer .subscription-form .input-email input {
+  font-size: 14px;
+  padding: 5px 10px;
+  color: #fff;
+  background: transparent;
+  border: none;
+  border-bottom: solid 1px #fff;
+}
+
+footer#footer .subscription-form .input-submit {
+  clear: both;
+  margin-top: 10px;
+  width: initial;
+}
+
+footer#footer .subscription-form .input-submit input {
+  cursor: pointer;
+    font-size: 24px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #ffffff;
+    background: transparent;
+    border: none;
+}
+
+.footer-container .footer-right .footer-widget {
+  width: 50%;
+  float: left;
+}
+
+.footer-container .footer-right .footer-widget .widgettitle{
+font-size: 14px;
+font-weight: 800;
+font-stretch: normal;
+font-style: normal;
+line-height: normal;
+letter-spacing: normal;
+color: #ffffff;
+font-family: Lato;
+text-transform: uppercase;
+margin-bottom: 30px;
+}
+
+.footer-container .footer-right .footer-widget .menu > li a{
+  font-family: Lato;
+  font-size: 15px;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.8;
+  letter-spacing: 0.63px;
+  color: #ffffff;
+  text-decoration: none;
+}
