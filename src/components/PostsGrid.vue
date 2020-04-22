@@ -2,7 +2,7 @@
 	<div class="vgl-posts vgl-container">
 		<h2 class="posts-heading" v-if="heading != ' '">{{ heading }}</h2>
 		<masonry :cols="colCount" :gutter="30" v-if="gridStyle == 'masonry'">
-			<div v-for="post in posts" :key="post.id" class="vgl-post">
+			<div v-for="post in updatedPosts" :key="post.id" class="vgl-post">
 				<img :src="post.featured_url">
 				<div class="vgl-post-info">
 					<h3 class="title">{{ post.title }}</h3>
@@ -12,7 +12,7 @@
 			</div>
 		</masonry>
 		<div v-else-if="gridStyle == 'list'">
-			<div v-for="post in posts" :key="post.id" class="vgl-post">
+			<div v-for="post in updatedPosts" :key="post.id" class="vgl-post">
 				<div class="featured-image">
 					<div :style="{ 'background-image': 'url(' + post.featured_url + ')' }"></div>
 				</div>
@@ -24,6 +24,7 @@
 				</div>
 			</div>
 		</div>
+		<a class="vgl-loadmorebtn" v-if="showLoadMore" @click="loadMoreClicked()" :class="[{'active': isActive}]">{{ loadMoreText }}</a>
 	</div>
 </template>
 	
@@ -38,6 +39,10 @@
 		props: {
 			posts: {
 				type: Array,
+				required: true
+			},
+			startIndex: {
+				type: Number,
 				required: true
 			},
 			count: {
@@ -55,15 +60,67 @@
 			heading: {
 				type: String,
 				required: true
+			},
+			showLoadMore: {
+				type: Boolean,
+				required: false
+			},
+			loadMoreText: {
+				type: String,
+				required: false
+			},
+			order: {
+				type: String,
+				required: false
+			},
+			orderBy: {
+				type: String,
+				required: false
 			}
 		},
 		data: function() {
 			return {
-				displayCount: this.count
+				index: this.startIndex + this.count,
+				updatedPosts: this.posts,
+				isActive: false
 			}
 		},
+		methods: {
+			loadMoreClicked: function() {
+				this.isActive = true;
+
+				this.$http.post( 
+					window.ajaxurl,
+					{
+						"action": 'vgl_loadmore_posts',
+						"data": {
+							order: this.order,
+							orderBy: this.orderBy,
+							index: this.index
+						}
+					},
+					{
+						headers: {
+							'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+							'Accept': 'text/html, */*; q=0.01'
+						}
+					}
+				).then( response => { console.log(response); } );
+
+				console.log(this.$http)
+			}
+		},
+		computed: {
+
+		},
 		mounted: function() {
-			console.log(this.heading);
+
+			if ( this.showLoadMore ) {
+				console.log(this.loadMoreText);
+				console.log(this.startIndex);
+				console.log(this.count);
+				console.log(this.index);
+			}
 		}
 	};
 </script>
@@ -205,6 +262,34 @@
 					letter-spacing: normal;
 					color: #000000;
 				}
+			}
+		}
+	}
+
+	.vgl-posts {
+		.vgl-loadmorebtn {
+			font-family: SportingGrotesque;
+			font-size: 24px;
+			font-weight: normal;
+			font-stretch: normal;
+			font-style: normal;
+			line-height: 24px;
+			letter-spacing: normal;
+			text-align: center;
+			color: #000000;
+			border: solid 1px #000000;
+			background-color: #fff1d6;
+			display: block;
+			padding: 20px 30px 15px 30px;
+			margin-left: auto;
+			margin-right: auto;
+			cursor: pointer;
+			max-width: 400px;
+			box-shadow: 5px 5px 0px #000;
+			transition: all ease-in-out .2s;
+
+			&.active {
+				background-color: #fff;
 			}
 		}
 	}

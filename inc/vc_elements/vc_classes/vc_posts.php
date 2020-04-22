@@ -10,6 +10,8 @@ class VglPosts extends WPBakeryShortCode
 	{
 		add_action( 'init', array($this, 'vc_map_fuc') );
 		add_shortcode( 'vgl_posts', array($this, 'vc_html_func') );
+		add_action( 'wp_ajax_vgl_loadmore_posts', array($this, 'vgl_loadmore_posts') );
+		add_action( 'wp_ajax_nopriv_vgl_loadmore_posts', array($this, 'vgl_loadmore_posts') );
 	}
 
 	public function vc_map_fuc() {
@@ -136,6 +138,24 @@ class VglPosts extends WPBakeryShortCode
 	    				'group'					=> 'VGL'
 	    			),
 	    			array(
+	    				'type'					=> 'checkbox',
+	    				'heading'				=> 'Show LoadMore button',
+	    				'param_name'			=> 'show_loadmore',
+	    				'value' 				=> array( __( 'Yes', 'js_composer' ) => 'yes' ),
+	    				'group'					=> 'VGL'
+	    			),
+	    			array(
+	    				'type'					=> 'textfield',
+	    				'heading'				=> 'LoadMore button text',
+	    				'param_name'			=> 'loadmore_text',
+	    				'dependency'			=> array(
+    						'element'			=> 'type',
+    						'value'				=> 'grid'
+	    				),
+	    				'default'				=> 'Load More',
+	    				'group'					=> 'VGL'
+	    			),
+	    			array(
 	    				'type'					=> 'css_editor',
 	    				'heading'				=> 'CSS',
 	    				'param_name'			=> 'custom_css',
@@ -161,6 +181,8 @@ class VglPosts extends WPBakeryShortCode
 					'item_count'			=> 10,
 					'order'					=> 'DES',
 					'order_by'				=> 'date',
+					'show_loadmore'			=> '',
+					'loadmore_text'			=> '',
 					'custom_css'			=> ''
 				),
 				$atts
@@ -232,7 +254,7 @@ class VglPosts extends WPBakeryShortCode
 
 		<?php if ( $type == 'grid' ): ?>
 
-		<posts-grid :posts='<?php echo json_encode($data); ?>' :count='<?php echo $item_count; ?>' :col-count='<?php echo $columns ?>' grid-style="<?php echo $style; ?>" class="<?php echo $style; ?>" heading="<?php echo $heading; ?>"></posts-grid>
+		<posts-grid :posts='<?php echo json_encode($data); ?>' :start-index='<?php echo $start_index; ?>' :count='<?php echo $item_count; ?>' :col-count='<?php echo $columns ?>' grid-style="<?php echo $style; ?>" class="<?php echo $style; ?>" heading="<?php echo $heading; ?>" <?php if ( $show_loadmore ): ?> :show-load-more="true" load-more-text="<?php echo $loadmore_text ?>" order="<?php echo $order ?>" order-by="<?php echo $order_by ?>" <?php endif; ?>> </posts-grid>
 
 		<?php elseif (  $type == 'slider'): ?>
 
@@ -245,6 +267,11 @@ class VglPosts extends WPBakeryShortCode
 		ob_get_clean();
 
 		return $html;
+	}
+
+	public function vgl_loadmore_posts() {
+		echo 'success';
+		wp_die();
 	}
 }
 

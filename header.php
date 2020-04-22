@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=yes">
     <link rel="profile" href="http://gmpg.org/xfn/11">
 
+    <script type="text/javascript">
+	    var ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
+	</script>
+
     <?php wp_head(); ?>
 </head>
 
