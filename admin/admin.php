@@ -119,6 +119,28 @@ if ( !class_exists( 'vglThemeOptions' ) ) {
 							</div>
 						</td>
 					</tr>
+					<tr valign="top">
+						<th scope="row"><?php esc_html_e( 'Footer Bottom', 'vgl' ); ?></th>
+						<td>
+							<?php 
+								$footer_bottom_text = vglThemeOptions::get_theme_option( 'footer_bottom_text' ); 
+								$footer_facebook_link = vglThemeOptions::get_theme_option( 'footer_facebook_link' );
+								$footer_instagram_link = vglThemeOptions::get_theme_option( 'footer_instagram_link' );
+							?>
+							<div class="vgl-meta-fields">
+								<label for="footer_bottom_text">Footer Bottom Text</label>
+								<input type="text" name="theme_options[footer_bottom_text]" value="<?php echo $footer_bottom_text; ?>" id="footer_bottom_text">
+							</div>
+							<div class="vgl-meta-fields">
+								<label for="footer_facebook_link">Footer Facebook Link</label>
+								<input type="text" name="theme_options[footer_facebook_link]" value="<?php echo $footer_facebook_link; ?>" id="footer_facebook_link">
+							</div>
+							<div class="vgl-meta-fields">
+								<label for="footer_instagram_link">Footer Instagram Link</label>
+								<input type="text" name="theme_options[footer_instagram_link]" value="<?php echo $footer_instagram_link; ?>" id="footer_instagram_link">
+							</div>
+						</td>
+					</tr>
 				</table>
 
 				<?php submit_button(); ?>

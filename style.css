@@ -638,6 +638,7 @@ header .search-bar form#searchform input#searchsubmit {
 footer#footer {
   background-color: #000;
   position: relative;
+  padding: 50px 0;
 }
 
 footer#footer:before {
@@ -749,4 +750,40 @@ margin-bottom: 30px;
   letter-spacing: 0.63px;
   color: #ffffff;
   text-decoration: none;
+}
+
+.footer-bottom {
+  border-top: solid 1px #404040;
+  border-bottom: solid 1px #404040;
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  align-items: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+  -moz-justify-content: space-between;
+  -ms-justify-content: space-between;
+}
+
+.footer-bottom .footer-bottom-text {
+  font-family: Lato;
+  font-size: 10px;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.83px;
+  color: #fff;
+}
+
+.footer-bottom .footer-bottom-link a {
+  color: #fff;
+  display: inline-block;
+  padding: 0 15px;
 }
