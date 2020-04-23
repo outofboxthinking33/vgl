@@ -5,7 +5,7 @@
 			<div v-for="post in updatedPosts" :key="post.id" class="vgl-post">
 				<img :src="post.featured_url">
 				<div class="vgl-post-info">
-					<h3 class="title">{{ post.title }}</h3>
+					<h3 class="title" v-html="post.title"></h3>
 					<span><b>by</b> {{ post.authorName }} | {{ post.category }}</span>
 					<a :href="post.permalink">READ MORE</a>
 				</div>
@@ -17,7 +17,7 @@
 					<div :style="{ 'background-image': 'url(' + post.featured_url + ')' }"></div>
 				</div>
 				<div class="post-info">
-					<p class="title">{{ post.title }}</p>
+					<p class="title" v-html="post.title"></p>
 					<p class="excerpt"></p>
 					<span class="name_category"><b>by</b> {{ post.authorName }} | {{ post.category }}</span>
 					<a :href="post.permalink">READ MORE</a>
@@ -82,21 +82,23 @@
 			return {
 				index: this.startIndex + this.count,
 				updatedPosts: this.posts,
-				isActive: false
+				isActive: false,
+				loadMorePostCount: 12
 			}
 		},
 		methods: {
 			loadMoreClicked: function() {
 				this.isActive = true;
 
-				this.$http.post( 
+				window.jQuery.post( 
 					window.ajaxurl,
 					{
-						"action": 'vgl_loadmore_posts',
-						"data": {
+						action: 'vgl_loadmore_posts',
+						data: {
+							startIndex: this.index,
 							order: this.order,
 							orderBy: this.orderBy,
-							index: this.index
+							count: this.loadMorePostCount
 						}
 					},
 					{
@@ -105,9 +107,8 @@
 							'Accept': 'text/html, */*; q=0.01'
 						}
 					}
-				).then( response => { console.log(response); } );
-
-				console.log(this.$http)
+				)
+				.success( response => { JSON.parse(response).forEach( ele => this.updatedPosts.push(ele) ); this.index = this.index + this.loadMorePostCount; });
 			}
 		},
 		computed: {

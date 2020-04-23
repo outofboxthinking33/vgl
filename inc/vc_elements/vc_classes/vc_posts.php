@@ -211,9 +211,9 @@ class VglPosts extends WPBakeryShortCode
 
 		while( $query->have_posts() ) {
 
-			if ( $start_index <= $index && $index < $start_index + $item_count ) {
+			$query->the_post();
 
-				$query->the_post();
+			if ( $start_index <= $index && $index < $start_index + $item_count ) {
 
 				global $post;
 
@@ -270,7 +270,65 @@ class VglPosts extends WPBakeryShortCode
 	}
 
 	public function vgl_loadmore_posts() {
-		echo 'success';
+		$order = $_POST['data']['order'];
+		$order_by = $_POST['data']['orderBy'];
+		$count = $_POST['data']['count'];
+		$start_index = $_POST['data']['startIndex'];
+
+		$args = array(
+			'post_type'					=> 'post',
+			'post_status'				=> 'publish',
+			'posts_per_page'			=> -1,
+			'order'						=> $order,
+			'order_by'					=> $order_by,
+		);
+
+		$query = new WP_Query($args);
+
+		$data = [];
+
+		$index = 0;
+
+		while( $query->have_posts() ) {
+
+			$index++;
+
+			$query->the_post();
+
+			if ($start_index <= $index && $index < $start_index + $count) {
+
+				global $post;
+
+				$featured_url = get_the_post_thumbnail_url( $post, 'full' );
+
+				$title = get_the_title( $post );
+
+				$authorID = get_post_field( 'post_author', $post->ID );
+
+				$authorName = get_the_author_meta( 'user_nicename', $authorID );
+
+				$category = get_the_category()[0]->name;
+
+				$permalink = get_the_permalink();
+
+				$data[] = array(
+					'id'			=> $post->ID,
+					'featured_url'	=> $featured_url,
+					'title'			=> $title,
+					'authorName'	=> $authorName,
+					'category'		=> $category,
+					'permalink'		=> $permalink
+				);
+			} elseif ( $index >= $start_index + $count ) {
+
+				break;
+
+			}
+
+		}
+
+		// print_r(json_encode(array( 'order' => $order, 'order_by' => $order_by, 'start_index' => $start_index, 'count' => $count )));
+		print_r(json_encode($data));
 		wp_die();
 	}
 }
