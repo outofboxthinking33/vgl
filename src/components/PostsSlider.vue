@@ -98,13 +98,13 @@
 		.vgl-posts-slider-item {
 			padding-left: 30px;
 			padding-right: 30px;
-			border: solid 2px #fff;
 
 			.featured_image {
 				padding-top: 125%;
 				background-size: cover;
-				bacgkround-position: center;
+				background-position: center;
 				background-repeat: no-repeat;
+				border: solid 2px #fff;
 			}
 
 			.post-info {

@@ -20,11 +20,40 @@ if ( !class_exists('vcElements') ) {
 			require_once(get_theme_file_path('/inc/vc_elements/vc_classes/vc_hot_posts.php'));
 			require_once(get_theme_file_path('/inc/vc_elements/vc_classes/vc_posts.php'));
 			require_once(get_theme_file_path('/inc/vc_elements/vc_classes/vc_woo_product_slider.php'));
+
+			$this->vc_addons();
+		}
+
+		public function vc_addons() {
+
+			if( function_exists('vc_set_shortcodes_templates_dir') ){
+				vc_set_shortcodes_templates_dir( get_theme_file_path('/inc/vc_elements/vc_templates'));
+			}
+
+			$attrs = array(
+				array(
+					'type'			=> 'colorpicker',
+					'heading'		=> 'Background Gradient Start Color',
+					'param_name'	=> 'gradient_start_color',
+					'group'			=> 'Additional Settings'
+				),
+				array(
+					'type'			=> 'colorpicker',
+					'heading'		=> 'Background Gradient End Color',
+					'param_name'	=> 'gradient_end_color',
+					'group'			=> 'Additional Settings'
+				)
+			);
+
+			foreach ($attrs as $attr) {
+				vc_add_param('vc_row', $attr);	
+			}
 		}
 
 		public function wp_enqueue_scripts_func() {
 
 		}
+
 	}
 
 	new vcElements();

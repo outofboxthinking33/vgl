@@ -487,11 +487,23 @@ p, span, a, input, textarea, ul, li, select, table, td, tr, th, div, body {
     outline: none;
 }
 
+html,
+body {
+  overflow-x: hidden;
+  position: relative;
+  left: 0;
+  width: 100%; 
+}
+
 main.main-content {
   max-width: 1200px;
   width: 100%;
   margin-left: auto;
   margin-right: auto;
+}
+
+.vc_row {
+  position: relative;
 }
 
 .vgl-container {
