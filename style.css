@@ -158,7 +158,7 @@ sup {
 
 img {
   border-style: none;
-  width: 100%;
+  max-width: 100%;
 }
 
 /* Forms
@@ -602,6 +602,102 @@ main.main-content {
 
 .subscription-form .input-submit input {
   cursor: pointer;
+}
+
+/*
+ * Single Blog Template
+ */
+
+ .single-post-header .post-info {
+  display: flex;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  align-items: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-top: -25px;
+  margin-bottom: 20px;
+ }
+
+ .single-post-header .post-info .authorAvatar {
+  border-radius: 50%;
+  overflow: hidden;
+  border: solid 10px #fff;
+ }
+
+.single-post-header .post-info .authorName {
+  font-family: Lato;
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #c2c2c2;
+  display: block;
+}
+
+.single-post-header .post-info .postDate {
+  font-family: Lato;
+  font-size: 10px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #c2c2c2;
+  display: block;
+}
+
+.single-blog-container {
+  padding-top: 200px;
+}
+
+.single-blog-container .entry-content {
+  padding-bottom: 100px;
+  overflow-x: hidden;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.single-blog-container .entry-header h1.entry-title {
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.54;
+  letter-spacing: normal;
+  text-align: center;
+  color: #000000;
+  margin-bottom: 30px;
+}
+
+.single-blog-container .entry-content p, 
+.single-blog-container .entry-content a{
+  object-fit: contain;
+  font-family: Lato;
+  font-size: 18px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: normal;
+  color: #424242;
+}
+
+.single-blog-container .entry-content {
+  max-width: 100% !important;
+  overflow-x: hidden;
+}
+
+.single-blog-container .entry-content img {
+  max-width: 100%;
+  height: auto;
 }
 
 /* 
