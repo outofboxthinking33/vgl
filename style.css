@@ -699,7 +699,7 @@ main.main-content {
   max-width: 100% !important;
 }
 
-.single-blog-container .entry-content > *:first-child:first-letter {
+.single-blog-container .entry-content > *:not(img):first-of-type:first-letter {
   font-size: 80px;
   float: left;
   /*margin-top: .15em;*/
