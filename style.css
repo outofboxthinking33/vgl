@@ -695,6 +695,17 @@ main.main-content {
   overflow-x: hidden;
 }
 
+.single-blog-container .entry-content * {
+  max-width: 100% !important;
+}
+
+.single-blog-container .entry-content > *:first-child:first-letter {
+  font-size: 80px;
+  float: left;
+  /*margin-top: .15em;*/
+  line-height: 70px;
+}
+
 .single-blog-container .entry-content img {
   max-width: 100%;
   height: auto;
