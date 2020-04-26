@@ -87,7 +87,7 @@
 				width: initial;
 				height: initial;
 				right: initial;
-				top: -60px;
+				top: -80px;
 			}
 
 			.slick-next:before, .slick-prev:before {
