@@ -1,7 +1,7 @@
 <template>
 	<div class="vgl-hot-posts vgl-container">
 		<div class="vgl-content-wrapper">
-			<h2 class="vgl-hot-post-title">{{ title }} <img src="/wp-content/themes/very-good-light/src/assets/fire.png"></h2>
+			<h2 class="vgl-hot-post-title">{{ title }} <img src="/wp-content/themes/vgl/src/assets/fire.png"></h2>
 			<div v-for="post in posts" :key="post.id" :class="[{ 'col-full': colCount == 1, 'col-half': colCount == 2, 'col-one-third': colCount == 3, 'col-one-fourth': colCount == 4, 'col-one-fifth': colCount == 5 }, 'vgl-hot-post']">
 				<img :src="post.featured_url">
 				<div>
