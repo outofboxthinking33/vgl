@@ -56,7 +56,8 @@
 						{
 							breakpoint: 768,
 							settings: {
-								slidesToShow: this.mobileSlidershow
+								slidesToShow: this.mobileSlidershow,
+								arrows: true
 							}
 						}
 					]
@@ -79,6 +80,33 @@
 	.vgl-posts.slider {
 		position: relative;
 
+		@media screen and (max-width: 768px) {
+			.slick-next, .slick-prev {
+				z-index: 100;
+				left: initial;
+				width: initial;
+				height: initial;
+				right: initial;
+				top: -60px;
+			}
+
+			.slick-next:before, .slick-prev:before {
+				font-family: initial;
+				color: #000;
+				font-size: 50px;
+			}
+
+			.slick-next {
+				left: 50%;
+				transform: translateX(50%);
+			}
+
+			.slick-prev {
+				right: 50%;
+				transform: translatex(-50%);
+			}
+		}
+
 		.posts-heading {
 			font-size: 30px;
 			font-weight: bold;
@@ -93,6 +121,19 @@
 			transform-origin: top left;
 			top: 0;
 			left: 0;
+
+			@media screen and (max-width: 768px) {
+				position: relative;
+				transform: none;
+				left: initial;
+				top: initial;
+				text-align: center;
+				margin-bottom: 90px;
+				font-size: 42px;
+				max-width: 360px;
+				margin-left: auto;
+				margin-right: auto;
+			}
 		}		
 
 		.vgl-posts-slider-item {
