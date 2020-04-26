@@ -26,6 +26,12 @@ class vglHotPosts extends WPBakeryShortCode
 	    		'category'				=> 'VGL',
 	    		'params'				=> array(
 	    			array(
+	    				'type'			=> 'textarea',
+	    				'heading'		=> 'Title',
+	    				'param_name'	=> 'vgl_title',
+	    				'group'			=> 'VGL'
+	    			),
+	    			array(
 	    				'type'			=> 'dropdown',
 	    				'heading'		=> 'Columns',
 	    				'param_name'	=> 'columns',
@@ -54,6 +60,23 @@ class vglHotPosts extends WPBakeryShortCode
 	    				'heading'		=> 'CSS',
 	    				'param_name'	=> 'custom_css',
 	    				'group'			=> 'Design options'
+	    			),
+	    			array(
+	    				'type'			=> 'checkbox',
+	    				'heading'		=> 'Use Custom Images for posts',
+	    				'param_name'	=> 'is_custom_image',
+	    				'value' 		=> array( __( 'Yes', 'js_composer' ) => 'yes' ),
+	    				'group'			=> 'VGL'
+	    			),
+	    			array(
+	    				'type'			=> 'attach_images',
+	    				'heading'		=> 'Attach Images',
+	    				'dependency'			=> array(
+    						'element'			=> 'is_custom_image',
+    						'value'				=> 'yes'
+	    				),
+	    				'param_name'	=> 'post_images',
+	    				'group'			=> 'VGL'
 	    			)
 	    		)
 	    	)	
@@ -66,9 +89,12 @@ class vglHotPosts extends WPBakeryShortCode
 		extract(
 			shortcode_atts(
 				array(
+					'vgl_title'					=> '',
 					'columns'				=> '1',
 					'hot_posts' 			=> '',
-					'custom_css'			=> ''
+					'custom_css'			=> '',
+					'is_custom_image'		=> '',
+					'post_images'			=> ''
 				),
 				$atts
 			)
@@ -78,13 +104,27 @@ class vglHotPosts extends WPBakeryShortCode
 
 		$hot_posts = explode(',', $hot_posts);
 
+		$post_images = explode(',', $post_images);
+
 		ob_start();
 
 		$data = array();
 
+		$index = 0;
+
 		foreach ($hot_posts as $hot_post) {
 			
-			$featured_url = get_the_post_thumbnail_url( $hot_post, 'full' );
+			if ( $is_custom_image && count($post_images) > $index ) {
+
+				$featured_url = wp_get_attachment_image_src($post_images[$index], 'full', true)[0];
+
+			} else {
+
+				$featured_url = get_the_post_thumbnail_url( $hot_post, 'full' );
+
+			}
+
+			$index++;
 
 			$title = get_the_title( $hot_post );
 
@@ -92,18 +132,23 @@ class vglHotPosts extends WPBakeryShortCode
 
 			$permalink = get_the_permalink( $host_post );
 
+			$authorID = get_post_field( 'post_author', $host_post );
+
+			$authorName = get_the_author_meta( 'user_nicename', $authorID );
+
 			$data[] = array(
 				'id'			=> $hot_post,
 				'featured_url'	=> $featured_url,
 				'title'			=> $title,
 				'category'		=> $category,
-				'permalink'		=> $permalink
+				'permalink'		=> $permalink,
+				'authorName'	=> $authorName
 			);
 		}
 
 		?>
 
-		<hot-posts :posts='<?php echo json_encode($data); ?>' col-count='<?php echo $columns; ?>' class="<?php echo $css_class; ?>"></hot-posts>
+		<hot-posts :posts='<?php echo json_encode($data); ?>' col-count='<?php echo $columns; ?>' title="<?php echo $vgl_title ?>" class="<?php echo $css_class; ?>"></hot-posts>
 
 		<?php
 

@@ -518,6 +518,10 @@ main.main-content {
   clear: both;
 }
 
+.vgl-content-wrapper {
+  position: relative;
+}
+
 .col-full {
   width: calc(100%);
   padding-left: 15px;
@@ -933,4 +937,12 @@ margin-bottom: 30px;
   color: #fff;
   display: inline-block;
   padding: 0 15px;
+}
+
+/* Mobile */
+@media screen and (max-width: 1023px) {
+  .vgl-container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 }
