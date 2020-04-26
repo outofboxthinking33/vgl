@@ -633,6 +633,10 @@ main.main-content {
     /*box-shadow: 5px 5px 0 #000;*/
   }
 
+  .subscription-form .input-email input {
+    text-align: center;
+  }
+
   .subscription-form .input-email:after {
     content: '';
     position: absolute;
