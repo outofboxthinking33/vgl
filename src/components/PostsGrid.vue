@@ -150,7 +150,9 @@
 				}
 
 				&.index1 {
-					padding-top: 100px;
+					@media screen and (min-width: 1024px) {
+						padding-top: 100px;
+					}
 
 					> div {
 						padding-top: 100%;
