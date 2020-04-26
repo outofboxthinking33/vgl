@@ -15,22 +15,32 @@
 <body <?php body_class(); ?>>
 	<div id="app">
 		<header class="header">
-			<div class="search-bar">
-				<?php get_search_form(array( 'echo' => true )) ?>
-			</div>
-			<div class="logo">
-				<?php 
-					$logo_id = vgl_get_theme_option('logo_id');
-				?>
-				<img src="<?php echo wp_get_attachment_image_src( $logo_id, 'full' )[0]; ?>">
-			</div>
-			<?php if ( vgl_get_theme_option('menu_style') == 'rectangle_menu' ): ?>
-			<rectangle-menu menu-style="<?php echo vgl_get_theme_option('menu_style') ?>">
-				<template v-slot:menu>
-					<?php echo wp_nav_menu( array( 'menu' => '3', 'menu_class' => '', 'container' => 'ul', 'depth' => 2 ) ); ?>
-				</template>
-			</rectangle-menu>
-			<?php else: ?> 
+			<div class="main-header">
+				<div class="search-bar">
+					<?php get_search_form(array( 'echo' => true )) ?>
+				</div>
+				<div class="logo">
+					<?php 
+						$logo_id = vgl_get_theme_option('logo_id');
+					?>
+					<a href="<?php echo get_home_url(); ?>"><img src="<?php echo wp_get_attachment_image_src( $logo_id, 'full' )[0]; ?>"></a>
+				</div>
+				<?php if ( vgl_get_theme_option('menu_style') == 'rectangle_menu' ): ?>
+				<rectangle-menu menu-style="<?php echo vgl_get_theme_option('menu_style') ?>">
+					<template v-slot:menu>
+						<?php echo wp_nav_menu( array( 'menu' => '3', 'menu_class' => '', 'container' => 'ul', 'depth' => 2 ) ); ?>
+					</template>
+				</rectangle-menu>
+				<?php else: ?> 
 
-			<?php endif; ?>
+				<?php endif; ?>
+				<mobile-burger></mobile-burger>
+			</div>
+			<div class="mobile-menu-wrapper">
+				<mobile-menu>
+					<template v-slot:mobile-menu>
+						<?php echo wp_nav_menu( array( 'menu' => '3', 'menu_class' => '', 'container' => 'ul', 'depth' => 2 ) ); ?>
+					</template>
+				</mobile-menu>
+			</div>
 		</header>

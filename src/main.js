@@ -4,6 +4,8 @@ import App from './App.vue';
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
+Vue.prototype.$eventBus = new Vue();
+
 Vue.config.productionTip = false;
 
 Vue.use(VueMasonry);

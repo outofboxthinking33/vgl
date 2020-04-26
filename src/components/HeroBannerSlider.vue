@@ -1,6 +1,7 @@
 <template>
-	<div class="vgl-home-hero-slider vgl-container">
-		<VueSlickCarousel :slidesToShow="1" :slidesToScroll="1" :speed="500" :infinite="true" :dots="true" :style="{ '--bordder-color': borderColor, '--border-width': borderWidth }">
+	<div class="vgl-home-hero-slider vgl-container" :style="{ '--bordder-color': borderColor, '--border-width': borderWidth }">
+		<div class="vgl-slider-item-border-bottom"></div>
+		<VueSlickCarousel :slidesToShow="1" :slidesToScroll="1" :speed="500" :infinite="true" :dots="true">
 			{{ borderColor }}
 			<div v-for="post in posts" :key="post.id">
 				<div class="vgl-slider-item" v-bind:style="{ 'background-image': 'url(' + post.featured_url + ')' }">
@@ -8,7 +9,6 @@
 						<h2 class="vgl-slider-title"><a :href="post.permalink">{{ post.title }}</a></h2>
 						<span>by {{ post.authorName }} | {{ post.category }}</span>
 					</div>
-					<div class="vgl-slider-item-border-bottom"></div>
 				</div>
 			</div>
 		</VueSlickCarousel>
@@ -49,27 +49,32 @@
 	};
 </script>
 
-<style>
+<style lang="scss">
 	@import '../../node_modules/vue-slick-carousel/dist/vue-slick-carousel.css';
 	@import '../../node_modules/vue-slick-carousel/dist/vue-slick-carousel-theme.css';
 	
-	.vgl-slider-item {
-		position: relative;
-		height: 600px;
-		max-height: 90vh;
-		background-size: cover;
-		background-position: center;
+	.vgl-home-hero-slider {
 		clip-path: polygon(0 0, 100% 0, 100% 95%, 50% 100%, 0 95%);
 		-webkit-clip-path: polygon(0 0, 100% 0, 100% 95%, 50% 100%, 0 95%);
 	}
 
+	.vgl-slider-item {
+		position: relative;
+		min-height: 80vh;
+		max-height: 90vh;
+		background-size: cover;
+		background-position: center;
+	}
+
 	.vgl-slider-item-border-bottom {
 		position: absolute;
+		left: 0;
 		bottom: 0;
 		height: calc(5% + var(--border-width));
 		width: 100%;
 		background: var(--bordder-color);
 		clip-path: polygon(0 0, 50% calc(100% - var(--border-width)), 100% 0, 100% 100%, 0 100%);
+		z-index: 10;
 	}
 
 	.vgl-slider-info {
@@ -78,6 +83,11 @@
 		padding-left: 70px;
 		position: absolute;
 		bottom: 100px;
+
+		@media screen and (max-width: 768px) {
+			width: 100%;
+		}
+
 	}
 
 	.vgl-slider-title a{

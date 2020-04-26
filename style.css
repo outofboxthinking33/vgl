@@ -716,12 +716,33 @@ main.main-content {
  */
 
 header.header {
-  padding-top: 35px;
-  padding-bottom: 35px;
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 100;
+  transition: all ease-in-out .3s;
+}
+
+header.header.active {
+  background-image: linear-gradient(#fff 0%, #ffe6b7 100%);
+  height: 100vh;
+}
+
+header.header .main-header{
+  padding-top: 35px;
+  padding-bottom: 35px;
+  position: relative;
+}
+
+header .logo {
+  position: relative;
+}
+
+header .logo a {
+  display: inline-block;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 header .logo img {
@@ -740,7 +761,8 @@ header .search-bar {
 
 header .search-bar form#searchform input[type="text"] {
   background-color: transparent;
-  width: 286px;
+  max-width: 286px;
+  width: 100%;
   height: 41px;
   border-radius: 11px;
   border: solid 1px rgba(0, 0, 0, 0.14);
@@ -749,6 +771,12 @@ header .search-bar form#searchform input[type="text"] {
 
 header .search-bar form#searchform input#searchsubmit {
   display: none;
+}
+
+@media screen and (max-width: 1023px) {
+  header .search-bar {
+    max-width: 50px;
+  }
 }
 
 /* 

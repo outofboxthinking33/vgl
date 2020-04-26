@@ -1,5 +1,7 @@
 <script>
 import RectangleMenu from './components/Header/RectangleMenu.vue';
+import MobileBurger from './components/Header/MobileBurger.vue';
+import MobileMenu from './components/Header/MobileMenu.vue';
 import HelloWorld from './components/HelloWorld.vue';
 import HeroBannerSlider from './components/HeroBannerSlider.vue';
 import VueSlider from './components/VueSlider.vue';
@@ -12,6 +14,8 @@ export default {
   name: 'App',
   components: {
     RectangleMenu,
+    MobileBurger,
+    MobileMenu,
     HelloWorld,
     HeroBannerSlider,
     VueSlider,

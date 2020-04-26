@@ -30,7 +30,7 @@
 	};
 </script>
 
-<style>
+<style lang="scss">
 	.vgl-hot-posts .vgl-hot-post {
 		margin-top: 30px;
 		margin-bottom: 30px;
@@ -67,5 +67,11 @@
 		line-height: normal;
 		letter-spacing: 1px;
 		color: #454545;
+	}
+
+	@media screen and (max-width: 1023px) {
+		.vgl-hot-posts .vgl-hot-post {
+			width: 100%;
+		}
 	}
 </style>
