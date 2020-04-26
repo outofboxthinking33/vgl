@@ -247,6 +247,17 @@
 			transform-origin: top left;
 			top: 0;
 			left: 0;
+
+			@media screen and (max-width: 768px) {
+				position: relative;
+				max-width: 350px;
+				margin-left: auto;
+				margin-right: auto;
+				font-size: 42px;
+				transform: none;
+				text-align: center;
+				margin-bottom: 50px;
+			}
 		}
 		
 		.vgl-post{
@@ -270,12 +281,25 @@
 					background-repeat: no-repeat;
 					background-position: center;
 				}
+
+				@media screen and (max-width: 768px) {
+					width: 100%;
+					float: none;
+					padding-right: 0;
+				}
 			}
 
 			.post-info {
 				width: 50%;
 				float: left;
 				padding-left: 15px;
+
+				@media screen and (max-width: 768px) {
+					width: 100%;
+					float: none;
+					padding-left: 0;
+					padding-top: 30px;
+				}
 
 				.title {
 					font-size: 28px;
