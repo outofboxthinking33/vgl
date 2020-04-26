@@ -1,7 +1,7 @@
 <template>
 	<div class="vgl-posts vgl-container">
 		<h2 class="posts-heading" v-if="heading != ' '">{{ heading }}</h2>
-		<masonry :cols="{default: colCount, 1023: 1}" :gutter="50" v-if="gridStyle == 'masonry'">
+		<masonry :cols="{default: colCount, 1023: 1}" :gutter="100" v-if="gridStyle == 'masonry'">
 			<div v-for="(post, index) in updatedPosts" :key="post.id" :class="['vgl-post']">
 				<div :class="['featured-image', 'index'+ index]">
 					<div :style="{ 'background-image': 'url(' + post.featured_url + ')' }"></div>
