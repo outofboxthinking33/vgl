@@ -1,12 +1,12 @@
 <template>
 	<div class="vgl-posts vgl-container">
 		<h2 class="posts-heading" v-if="heading != ' '">{{ heading }}</h2>
-		<masonry :cols="{default: colCount, 1023: 1}" :gutter="30" v-if="gridStyle == 'masonry'">
+		<masonry :cols="{default: colCount, 1023: 1}" :gutter="50" v-if="gridStyle == 'masonry'">
 			<div v-for="(post, index) in updatedPosts" :key="post.id" :class="['vgl-post']">
 				<div :class="['featured-image', 'index'+ index]">
 					<div :style="{ 'background-image': 'url(' + post.featured_url + ')' }"></div>
 				</div>
-				<div class="vgl-post-info">
+				<div :class="['vgl-post-info', 'index' + index]">
 					<h3 class="title" v-html="post.title"></h3>
 					<span><b>by</b> {{ post.authorName }} | {{ post.category }}</span>
 					<a :href="post.permalink">READ MORE</a>
@@ -133,7 +133,7 @@
 	
 	.vgl-posts.masonry {
 		.vgl-post {
-			margin-bottom: 30px;
+			margin-bottom: 100px;
 
 			.featured-image {
 				width: 100%;
@@ -149,8 +149,12 @@
 					padding-top: 150%;
 				}
 
-				&.index1 > div {
-					padding-top: 100%;
+				&.index1 {
+					padding-top: 100px;
+
+					> div {
+						padding-top: 100%;
+					}
 				}
 
 				&.index2 > div {
@@ -186,10 +190,18 @@
 					color: #000000;
 				}
 
+				&.index0 {
+					.title {
+						@media screen and (min-width: 1024px) {
+							font-size: 52px;
+						}
+					}
+				}
+
 				> span {
 					font-family: Lato;
 					font-size: 14px;
-					font-weight: 300;
+					font-weight: 500;
 					font-stretch: normal;
 					font-style: normal;
 					line-height: normal;
