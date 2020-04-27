@@ -40,3 +40,86 @@ function sdt_remove_ver_css_js( $src ) {
 		$src = remove_query_arg( 'ver', $src );
 	return $src;
 }
+
+// Function Load More Blog Ajax 
+add_action( 'wp_ajax_vgl_loadmore_blogs', 'vgl_loadmore_blogs' );
+add_action( 'wp_ajax_nopriv_vgl_loadmore_blogs', 'vgl_loadmore_blogs' );
+
+function vgl_loadmore_blogs() {
+	global $post; 
+	$id = $_POST['data']['theID'];
+
+	$post = get_post( $id, OBJECT );
+	setup_postdata( $post );
+
+	$post = get_next_post();
+
+	// wp_reset_postdata();
+
+	setup_postdata($post);
+
+	ob_start();
+
+	?>
+
+	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+		<header class="entry-header">
+			<?php 
+
+				the_title( '<h1 class="entry-title">', '</h1>' );
+
+				?>
+
+				<div class="single-post-header">
+					<div class="featured-image"><img src="<?php echo get_the_post_thumbnail_url( $post, 'full' ); ?>"></div>
+					<div class="post-info">
+						<?php 
+							global $post;
+
+							$authorID = get_post_field( 'post_author', $post->ID );
+
+							$authorName = get_the_author_meta( 'user_nicename', $authorID );
+
+							$authorAvatarUrl = get_avatar_url( $authorID, ['size' => 60] );
+
+							$category = get_the_category()[0]->name;
+						?>
+						<div class="authorAvatar"><img src="<?php echo $authorAvatarUrl; ?>"></div>
+						<div class="authorInfo">
+							<span class="authorName">by <?php echo $authorName; ?></span>
+							<span class="postDate"><?php echo get_the_date(); ?></span>
+						</div>
+					</div>
+				</div>
+
+				<?php
+
+			?>
+		</header>
+
+		<div class="entry-content">
+			<?php
+				the_content( sprintf(
+					/* translators: %s: Name of current post. */
+					wp_kses( __( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'bluemedora' ), array( 'span' => array( 'class' => array() ) ) ),
+					the_title( '<span class="screen-reader-text">"', '"</span>', false )
+				) );
+
+				wp_link_pages( array(
+					'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'bluemedora' ),
+					'after'  => '</div>',
+				) );
+			?>
+		</div>
+	</article>
+
+	<?php
+
+	$html = ob_get_contents();
+	ob_get_clean();
+	
+	wp_reset_postdata();
+
+	print_r($html);
+	wp_die();
+}
