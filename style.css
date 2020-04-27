@@ -752,15 +752,27 @@ main.main-content {
   max-width: 100% !important;
 }
 
-.single-blog-container .entry-content > *:not(img):first-of-type:first-letter {
+.single-blog-container .entry-content .vgl-container {
+  margin-left: -30px;
+  margin-right: -30px;
+}
+
+.single-blog-container .entry-content .vgl-container .col-half {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.single-blog-container .entry-content > .drop-cap:first-letter {
   font-size: 80px;
   float: left;
   /*margin-top: .15em;*/
-  line-height: 70px;
+  /*line-height: 80px;*/
 }
 
 .single-blog-container .entry-content img {
   max-width: 100%;
+  display: block;
+  margin: auto;
   height: auto;
 }
 
