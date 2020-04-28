@@ -35,7 +35,17 @@ jQuery(document).ready(function($){
 								}
 							}
 						)
-						.success( response => { var res = JSON.parse(response); $('.main-content').append(res.article); $('.lightening-loading').hide(); $('.blog-post-sidebar').empty().append(res.sidebar); window.load_more_poastAajx = true; });
+						.success( response => { 
+							var res = JSON.parse(response); 
+
+							if (res.status == 'ok') {
+								$('.main-content').append(res.article); 
+								$('.lightening-loading').hide(); 
+								$('.blog-post-sidebar').empty().append(res.sidebar); 
+							}
+
+							window.load_more_poastAajx = true; 
+						});
 	        		 }, 500);
 	        	}
 	        } 
@@ -142,7 +152,15 @@ jQuery(document).ready(function($){
 						}
 					}
 				)
-				.success( response => { var res = JSON.parse(response); $('.main-content').append(res.article); $('.lightening-loading').hide(); $('.blog-post-sidebar').empty().append(res.sidebar); window.load_more_poastAajx = true; $([document.documentElement, document.body]).animate({scrollTop: $("article[data-id=" + id + "]").offset().top - 100}, 1000);});
+				.success( response => { 
+					var res = JSON.parse(response); 
+
+					if (res.status == 'ok') {
+						$('.main-content').append(res.article); 
+						$('.lightening-loading').hide(); $('.blog-post-sidebar').empty().append(res.sidebar); window.load_more_poastAajx = true; $([document.documentElement, document.body]).animate({scrollTop: $("article[data-id=" + id + "]").offset().top - 100}, 1000);
+					}
+
+				});
 			 }, 500);
 		}
 	});

@@ -57,6 +57,10 @@ function vgl_loadmore_blogs() {
 
 		$post = get_next_post();
 
+		if ($post == Null ) {
+			print_r(json_encode(array( 'article' => '', 'sidebar' => '', 'status' => 'fail' )));
+		}
+
 		setup_postdata($post);
 	}
 
@@ -160,6 +164,6 @@ function vgl_loadmore_blogs() {
 		$sidebar .= '</div>';
 	}
 
-	print_r(json_encode(array( 'article' => $html, 'sidebar' => $sidebar )));
+	print_r(json_encode(array( 'article' => $html, 'sidebar' => $sidebar, 'status' => 'ok' )));
 	wp_die();
 }
