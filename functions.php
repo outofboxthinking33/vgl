@@ -48,21 +48,23 @@ add_action( 'wp_ajax_nopriv_vgl_loadmore_blogs', 'vgl_loadmore_blogs' );
 function vgl_loadmore_blogs() {
 	global $post; 
 	$id = $_POST['data']['theID'];
+	$isNext = $_POST['data']['isNext'];
 
 	$post = get_post( $id, OBJECT );
 	setup_postdata( $post );
 
-	$post = get_next_post();
+	if ( $isNext == 'true' ) {
 
-	// wp_reset_postdata();
+		$post = get_next_post();
 
-	setup_postdata($post);
+		setup_postdata($post);
+	}
 
 	ob_start();
 
 	?>
 
-	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> data-id="<?php the_ID(); ?>">
 		<header class="entry-header">
 			<?php 
 
@@ -117,9 +119,47 @@ function vgl_loadmore_blogs() {
 
 	$html = ob_get_contents();
 	ob_get_clean();
+
+	global $post;
+
+	$data = array();
+
+	$data[] = array(
+		'id'			=> get_the_ID(),
+		'featured_url'	=> get_the_post_thumbnail_url( $post, 'thumbnail' ),
+		'title'			=> get_the_title( $post )
+	);
+
+
+	for ($i=0; $i < 3; $i++) { 
+
+		$post = get_next_post();
+
+		setup_postdata($post);
+
+		$data[] = array(
+			'id'			=> get_the_ID(),
+			'featured_url'	=> get_the_post_thumbnail_url( $post, 'thumbnail' ),
+			'title'			=> get_the_title( $post )
+		);
+
+	}
 	
 	wp_reset_postdata();
 
-	print_r($html);
+	$sidebar = '';
+	foreach ($data as $key => $value) {
+		$active = $key == 0 ? 'active' : 'last';
+
+		$sidebar .= '<div data-id="' . $value['id'] . '" class="blog-post-individual ' . $active . '">';
+
+		$sidebar .= '<div class="blog-post-individual-featuredimg" style="background-image:url(' . $value['featured_url'] . ')"></div>';
+
+		$sidebar .= '<div class="blog-post-individual-title">' . $value['title'] . '</div>'; 
+
+		$sidebar .= '</div>';
+	}
+
+	print_r(json_encode(array( 'article' => $html, 'sidebar' => $sidebar )));
 	wp_die();
 }

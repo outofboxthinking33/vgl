@@ -44,6 +44,15 @@ get_header();
 
 		endif; ?>
 	</main><!-- #main -->
+	<?php if ( is_single() ) : ?>
+		<div class="lightening-loading" style="display: none;">
+			<img src="<?php echo get_template_directory_uri() . '/assets/img/Lightning Loading.gif'; ?>">
+		</div>
+
+		<?php 
+			get_template_part( 'template-parts/blog', 'sidebar' ); 
+		?>
+	<?php endif; ?>
 </div><!-- #primary -->
 
 <?php
