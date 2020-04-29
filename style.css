@@ -835,6 +835,49 @@ main.main-content {
   color: #000000;
 }
 
+@media screen and (max-width: 1023px) {
+  .blog-post-sidebar {
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    position: relative;
+    top: initial;
+    left: initial;
+    right: initial;
+    bottom: initial;
+    width: 100%;
+    z-index: 1000;
+    flex-flow: column;
+    -webkit-flex-flow: column;
+    -moz-flex-flow: column;
+    -ms-flex-flow: column;
+  }
+
+  .blog-post-individual .blog-post-individual-featuredimg {
+    width: 40%;
+    padding-top: 30%;
+  }
+
+  .blog-post-individual .blog-post-individual-title {
+    width: 60%;
+    padding: 20px;
+  }
+
+  .blog-post-sidebar .blog-post-individual {
+    display: flex;
+    padding: 0;
+  }
+
+  .blog-post-sidebar .blog-post-individual:last-child {
+    flex-flow: row-reverse;
+    -webkit-flex-flow: row-reverse;
+    -moz-flex-flow: row-reverse;
+    -ms-flex-flow: row-reverse;
+    background-color: #ffe5bc;
+  }
+}
+
 /* 
  *  Header Style
  */

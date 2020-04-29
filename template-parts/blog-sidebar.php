@@ -30,6 +30,15 @@
 			<div class="blog-post-individual-title"><?php echo $title; ?></div>
 		</div>
 
+		<script type="text/javascript">
+			jQuery(document).ready(function($) {
+				if ($(window).width() < 1024) {
+					$('.blog-post-individual.last').eq(1).remove();
+					$('.blog-post-individual.last').eq(2).remove();
+				}
+			});
+		</script>
+
 	<?php
 	} 
 

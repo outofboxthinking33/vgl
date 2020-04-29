@@ -4,7 +4,7 @@ jQuery(document).ready(function($){
 
 	/* autoload next post */
 	$(window).on('scroll', function(e) {
-		if ( $('.single-blog-container').length > 0 ) {
+		if ( $('.single-blog-container').length > 0 && $(window).width() >= 1024) {
 			if ($(window).scrollTop() >= $('.single-blog-container').offset().top + $('.single-blog-container').outerHeight() - window.innerHeight) {
 	        	var id = $('body').find('article').last().attr('id');
 
@@ -19,13 +19,20 @@ jQuery(document).ready(function($){
 	        		 $('.lightening-loading').show();
 
 	        		 setTimeout(function() {
+	        		 	if ($(window).width() >= 1024) {
+						 	isMobile = 'desktop';
+						 } else {
+						 	isMobile = 'mobile';
+						 }
+
 	        		 	window.jQuery.post( 
 							window.ajaxurl,
 							{
 								action: 'vgl_loadmore_blogs',
 								data: {
 									theID: id,
-									isNext: 'true'
+									isNext: 'true',
+									isMobile: isMobile
 								}
 							},
 							{
@@ -67,9 +74,17 @@ jQuery(document).ready(function($){
 
 				var _this = $(value);
 
+				var showSidebarItemCount = 4;
+
 				data.push({ 'id': $(_this).data('id'), 'featured_image': $(_this).find('.single-post-header .featured-image img').attr('src'), 'title': $(_this).find('.entry-title').text() });
 
-				for (var i = 0; i < 3; i++) {
+				if ( $(window).width() >= 1024 ) {
+					showSidebarItemCount = 4;
+				} else {
+					showSidebarItemCount = 2;
+				}
+
+				for (var i = 0; i < showSidebarItemCount - 1; i++) {
 					if ( _this.next().length > 0 ) {
 
 						_this = _this.next();
@@ -103,7 +118,7 @@ jQuery(document).ready(function($){
 
 					}
 
-					for (var i = data.length; i < 4; i++) {
+					for (var i = data.length; i < showSidebarItemCount; i++) {
 
 						$('body').find('.blog-post-individual.last').eq( i - data.length).show();
 
@@ -135,6 +150,14 @@ jQuery(document).ready(function($){
 
 			 $('.lightening-loading').show();
 
+			 var isMobile = '';
+
+			 if ($(window).width() >= 1024) {
+			 	isMobile = 'desktop';
+			 } else {
+			 	isMobile = 'mobile';
+			 }
+
 			 setTimeout(function() {
 			 	window.jQuery.post( 
 					window.ajaxurl,
@@ -142,7 +165,9 @@ jQuery(document).ready(function($){
 						action: 'vgl_loadmore_blogs',
 						data: {
 							theID: id,
-							isNext: 'false'
+							isNext: 'false',
+							isMobile: isMobile
+
 						}
 					},
 					{

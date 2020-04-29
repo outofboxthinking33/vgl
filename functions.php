@@ -49,6 +49,13 @@ function vgl_loadmore_blogs() {
 	global $post; 
 	$id = $_POST['data']['theID'];
 	$isNext = $_POST['data']['isNext'];
+	$isMobile = $_POST['data']['isMobile'];
+
+	if ($isMobile == 'desktop') {
+		$sidebarItemCount = 4;
+	} else {
+		$sidebarItemCount = 2;
+	}
 
 	$post = get_post( $id, OBJECT );
 	setup_postdata( $post );
@@ -135,7 +142,7 @@ function vgl_loadmore_blogs() {
 	);
 
 
-	for ($i=0; $i < 3; $i++) { 
+	for ($i=0; $i < $sidebarItemCount - 1; $i++) { 
 
 		$post = get_next_post();
 
