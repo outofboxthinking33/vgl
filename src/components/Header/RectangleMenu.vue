@@ -2,9 +2,11 @@
 	<div class="vgl-menu" :class="[{'active': hover}, menuStyle]" @mouseleave="hover = false">
 		<div class="menu-container">
 			<slot name="menu"></slot>
-			<ul class="vgl-sub-menus" :class="[{ 'active': hover }]">
-				<li v-for="submenu in subMenus" :key="submenu.id" v-html="submenu.item"></li>
-			</ul>
+			<transition name="fade">
+				<ul class="vgl-sub-menus" v-show="hover">
+					<li v-for="submenu in subMenus" :key="submenu.id" v-html="submenu.item"></li>
+				</ul>
+			</transition>
 		</div>
 	</div>
 </template>
@@ -66,7 +68,14 @@
 				right: 50px;
 
 				ul.vgl-sub-menus {
-					display: none;
+					// display: none;
+					background-color: transparent;
+					opacity: 0;
+					min-height: 50px;
+					padding: 0 40px 40px 40px;
+					position: absolute;
+					top: calc(100% - 0px);
+					width: 100%;
 				}
 
 				ul#menu-primary-menu{
@@ -81,6 +90,7 @@
 					-webkit-align-items: center;
 					-moz-algin-items: center;
 					-ms-aligin-items: center;
+					transition: background-color ease-in-out .3s;
 
 					&:before,
 					&:after {
@@ -151,7 +161,7 @@
 				}
 
 				ul.active {
-					display: block;
+					// display: block;
 				}
 
 				.vgl-sub-menus li {
@@ -176,20 +186,16 @@
 
 				ul#menu-primary-menu {
 					background-color: #fffcf2;
-					border-bottom: 3px solid #fbc6bb;
 					border-right: 3px solid #fbc6bb;
 				}
 
 				.vgl-sub-menus {
 					display: block;
 					width: 100%;
-					min-height: 50px;
-					padding: 0 40px 40px 40px;
-					position: absolute;
-					top: calc(100% - 50px);
 					background-color: #fffcf2;
 					border-bottom: 3px solid #fbc6bb;
 					border-right: 3px solid #fbc6bb;
+					opacity: 1;
 
 
 					&:before {
@@ -218,5 +224,20 @@
 				display: none;
 			}
 		}
+	}
+
+	.fade-enter,
+	.fade-leave-to {
+		opacity: 0;
+		background-color: transparent !important;
+	}
+
+	.fade-enter-active,
+	.fade-leave-active {
+		transition: all ease-in-out .3s;
+	}
+
+	.fade-leave-active {
+
 	}
 </style>
