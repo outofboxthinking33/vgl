@@ -153,7 +153,7 @@ $css_class = preg_replace( '/\s+/', ' ', apply_filters( VC_SHORTCODE_CUSTOM_CSS_
 $wrapper_attributes[] = 'class="' . esc_attr( trim( $css_class ) ) . '"';
 
 $output .= '<div ' . implode( ' ', $wrapper_attributes ) . '>';
-$output .= '<div style=" background-image: linear-gradient(180deg,' . $gradient_start_color . " 0%," . $gradient_end_color . " 100%" . '); position: absolute; top: 0; left: 0; right: 0; bottom: 0; top: 0"></div>';
+$output .= '<div class="gradient-background" style=" background-image: linear-gradient(180deg,' . $gradient_start_color . " 0%," . $gradient_end_color . " 100%" . '); position: absolute; top: 0; left: 0; right: 0; bottom: 0; top: 0"></div>';
 $output .= wpb_js_remove_wpautop( $content );
 $output .= '</div>';
 $output .= $after_output;
