@@ -143,12 +143,15 @@ class vglWooProductSlider extends WPBakeryShortCode
 
 			$featured_url = get_the_post_thumbnail_url( $post, 'full' );
 
+			$shop_now_url = get_field('custom_add_to_cart', $post->ID);
+
 			$data[] = array(
 				'id'			=> $post->ID,
 				'price'			=> $price['sale_price'],
 				'currency'		=> get_woocommerce_currency_symbol(),
 				'product_name'	=> htmlentities($product_name, ENT_QUOTES),
-				'featured_url'	=> $featured_url
+				'featured_url'	=> $featured_url,
+				'shopnow_url'	=> $shop_now_url
 			);
 
 		}

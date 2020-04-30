@@ -7,6 +7,7 @@
 					<p class="title">{{ product.product_name }}</p>
 					<p class="price">{{ product.currency }}{{ product.price }}</p>
 				</div>
+				<a class="add_to_cart" :href="product.shopnow_url">Shop now</a>
 			</div>
 		</VueSlickCarousel>
 	</div>
@@ -78,6 +79,22 @@
 			padding-left: 30px;
 			padding-right: 30px;
 
+			.add_to_cart {
+				font-family: Lato;
+				font-size: 20px;
+				font-weight: bold;
+				background-color: #D4D6EA;
+				padding: 15px 30px;
+				display: block;
+				text-align: center;
+				width: 180px;
+				margin: 0 auto;
+				border: solid 2px #000;
+				box-shadow: 2px 5px 0px #000;
+				text-decoration: none;
+				color: #000;
+			}
+
 			.slider-image {
 				padding-bottom: 100%;
 				background-position: 50%;
@@ -88,6 +105,9 @@
 			}
 
 			.slider-content {
+				height: 95px;
+				overflow-y: hidden;
+				
 				.title {
 					font-size: 20px;
 					font-weight: 900;
@@ -95,6 +115,8 @@
 					margin-top: 10px;
 					margin-bottom: 0;
 					line-height: normal;
+					max-height: 50px;
+					overflow-y: hidden;
 				}
 
 				.price {
