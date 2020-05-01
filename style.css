@@ -975,9 +975,23 @@ header .search-bar form#searchform input#searchsubmit {
   display: none;
 }
 
+.search-bar .search-mobile {
+  display: none;
+}
+
 @media screen and (max-width: 1023px) {
   header .search-bar {
     max-width: 50px;
+    left: 25px;
+  }
+
+  .search-bar .search-mobile {
+    display: block;
+    font-size: 25px;
+  }
+
+  .search-bar #searchform {
+    display: none;
   }
 }
 

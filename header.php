@@ -18,6 +18,7 @@
 			<div class="main-header">
 				<div class="search-bar">
 					<?php get_search_form(array( 'echo' => true )) ?>
+					<div class="search-mobile"><i class="fa fa-search" aria-hidden="true"></i></div>
 				</div>
 				<div class="logo">
 					<?php 

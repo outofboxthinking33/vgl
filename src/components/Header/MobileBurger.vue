@@ -44,7 +44,7 @@
 			position: absolute;
 			left: 0;
 			right: 0;
-			margin: 0 50px;
+			margin: 0 25px;
 			top: 50%;
 			transform: translateY(-50%);
 
