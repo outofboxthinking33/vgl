@@ -1224,3 +1224,16 @@ margin-bottom: 30px;
   text-align: center;
   margin-bottom: 20px;
 }
+
+/* 
+ *  Easy Video Background
+ */
+
+.fp-header,
+.fp-controls {
+  display: none !important;
+}
+
+.flowplayer.fp-ui-shown .fp-ui, .flowplayer.is-paused .fp-ui, .flowplayer.is-mouseover .fp-ui, .flowplayer.is-loading .fp-ui {
+  background-image: none;
+}
