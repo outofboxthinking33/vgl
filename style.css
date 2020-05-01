@@ -1237,3 +1237,34 @@ margin-bottom: 30px;
 .flowplayer.fp-ui-shown .fp-ui, .flowplayer.is-paused .fp-ui, .flowplayer.is-mouseover .fp-ui, .flowplayer.is-loading .fp-ui {
   background-image: none;
 }
+
+/* 
+ * Subscribe Form 2 - Sidebar form style
+ */
+
+.subscribe2-form {
+  padding: 30px 20px;
+  background-color: #fdd3c2;
+}
+
+.subscribe2-form {
+  margin-top: 5px;
+}
+
+.subscribe2-form input[type=email] {
+  border: solid 1px #000000;
+  background: transparent;
+  padding: 10px;
+  width: 100%;
+}
+
+.subscribe2-form input[type=submit] {
+  border: none;
+  background-color: #000;
+  width: 100%;
+  font-family: Lato;
+  font-size: 14px;
+  color: #fdd3c2;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
