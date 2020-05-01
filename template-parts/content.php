@@ -3,6 +3,9 @@
 		<?php 
 		
 		if ( is_single() ) :
+
+			echo do_shortcode('[rt_reading_time label="LOOK" postfix="MINUTE READ" postfix_singular="MINUTE READ"]');
+
 			the_title( '<h1 class="entry-title">', '</h1>' );
 
 			?>

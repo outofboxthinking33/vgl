@@ -1202,3 +1202,25 @@ margin-bottom: 30px;
     padding-bottom: 50px;
   }
 }
+
+
+/* 
+  POST-time Reading
+*/
+
+.span-reading-time.rt-reading-time span.rt-prefix {
+  color: #000;
+}
+
+.span-reading-time.rt-reading-time span {
+  font-family: Lato;
+  font-size: 9px;
+  color: #a4a4a4;
+}
+
+.span-reading-time.rt-reading-time {
+  margin: auto;
+  display: block;
+  text-align: center;
+  margin-bottom: 20px;
+}
