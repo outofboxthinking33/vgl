@@ -4,25 +4,25 @@
 		<masonry :cols="{default: colCount, 1023: 1}" :gutter="100" v-if="gridStyle == 'masonry'">
 			<div v-for="(post, index) in updatedPosts" :key="post.id" :class="['vgl-post']">
 				<div :class="['featured-image', 'index'+ index]">
-					<div :style="{ 'background-image': 'url(' + post.featured_url + ')' }"></div>
+					<div :style="{ 'background-image': 'url(' + post.featured_url + ')' }"><a :href="post.permalink"></a></div>
 				</div>
 				<div :class="['vgl-post-info', 'index' + index]">
-					<h3 class="title" v-html="post.title"></h3>
+					<a :href="post.permalink"><h3 class="title" v-html="post.title"></h3></a>
 					<span><b>by</b> {{ post.authorName }} | {{ post.category }}</span>
-					<a :href="post.permalink">READ MORE</a>
+					<a class="read_more" :href="post.permalink">READ MORE</a>
 				</div>
 			</div>
 		</masonry>
 		<div v-else-if="gridStyle == 'list'">
 			<div v-for="post in updatedPosts" :key="post.id" class="vgl-post">
 				<div class="featured-image">
-					<div :style="{ 'background-image': 'url(' + post.featured_url + ')' }"></div>
+					<div :style="{ 'background-image': 'url(' + post.featured_url + ')' }"><a :href="post.permalink"></a></div>
 				</div>
 				<div class="post-info">
-					<p class="title" v-html="post.title"></p>
+					<a :href="post.permalink"><p class="title" v-html="post.title"></p></a>
 					<p class="excerpt"></p>
 					<span class="name_category"><b>by</b> {{ post.authorName }} | {{ post.category }}</span>
-					<a :href="post.permalink">READ MORE</a>
+					<a class="read_more" :href="post.permalink">READ MORE</a>
 				</div>
 			</div>
 		</div>
@@ -131,7 +131,14 @@
 
 <style lang="scss">
 	
+	.vgl-posts {
+		a {
+			text-decoration: none;
+		}
+	}
+
 	.vgl-posts.masonry {
+
 		.vgl-post {
 			margin-bottom: 100px;
 
@@ -143,6 +150,14 @@
 					background-size: cover;
 					background-repeat: no-repeat;
 					background-position: center;
+
+					a {
+						position: absolute;
+						top: 0;
+						left: 0;
+						right: 0;
+						bottom: 0;
+					}
 				}
 
 				&.index0 > div {
@@ -213,7 +228,7 @@
 					font-weight: bold;
 				}
 
-				> a {
+				> a.read_more {
 					font-family: Lato;
 					font-size: 14px;
 					font-weight: 300;
@@ -274,12 +289,21 @@
 				width: 50%;
 				float: left;
 				padding-right: 15px;
+				position: relative;
 
 				> div {
 					padding-top: calc(100% / 16 * 8);
 					background-size: cover;
 					background-repeat: no-repeat;
 					background-position: center;
+
+					a {
+						position: absolute;
+						top: 0;
+						left: 0;
+						right: 0;
+						bottom: 0;
+					}
 				}
 
 				@media screen and (max-width: 768px) {
