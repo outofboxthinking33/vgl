@@ -3,9 +3,9 @@
 		<h2 class="posts-heading">{{ heading }}</h2>
 		<VueSlickCarousel v-bind="settings">
 			<div v-for="post in posts" :key="post.id" class="vgl-posts-slider-item">
-				<div class="featured_image" :style="{ 'background-image': 'url(' + post.featured_url + ')' }"></div>
+				<a :href="post.permalink"><div class="featured_image" :style="{ 'background-image': 'url(' + post.featured_url + ')' }"></div></a>
 				<div class="post-info">
-					<p class="title">{{ post.title }}</p>
+					<a :href="post.permalink"><p class="title">{{ post.title }}</p></a>
 					<p class="name_category"><span>by </span>{{ post.authorName }} | {{ post.category }}</p>
 					<a class="read_more btn" :href="post.permalink">Read More</a>
 				</div>
@@ -151,6 +151,10 @@
 			.post-info {
 				margin-top: 15px;
 
+				a {
+					text-decoration: none;
+				}
+
 				.title {
 					font-size: 29px;
 					font-weight: 800;
@@ -182,6 +186,7 @@
 					letter-spacing: normal;
 					color: #000000;
 					text-transform: uppercase;
+					text-decoration: underline;
 				}
 
 			}
