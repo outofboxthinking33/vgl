@@ -214,6 +214,10 @@
 			position: relative;
 			bottom: 0;
 			margin-top: 50px;
+
+			@media screen and (max-width: 768px) {
+				display: none !important;
+			}
 		}
 	}
 </style>

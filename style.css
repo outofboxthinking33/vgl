@@ -948,7 +948,7 @@ header .logo a {
 }
 
 header .logo img {
-  max-width: 100px;
+  max-height: 63px;
   margin-left: auto;
   display: block;
   margin-right: auto;

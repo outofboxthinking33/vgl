@@ -86,11 +86,23 @@
 
 		@media screen and (max-width: 768px) {
 			width: 100%;
+			padding-left: 10px;
+			padding-right: 10px;
+			bottom: 60px;
+
+			> .vgl-slider-title a {
+				font-size: 24px;
+			}
+
+			> span {
+				font-size: 10px;
+			}
 		}
 
 	}
 
 	.vgl-slider-title a{
+		font-family: SportingGrotesque;
 		font-size: 42px;
 		font-weight: bold;
 		font-stretch: normal;
@@ -118,6 +130,10 @@
 		right: 70px;
 		display: inline-block !important;
 		width: initial;
+
+		@media screen and (max-width: 768px) {
+			bottom: 60px;
+		}
 	}
 
 	.vgl-home-hero-slider .slick-dots li button:before {
