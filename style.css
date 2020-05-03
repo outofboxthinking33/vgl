@@ -835,7 +835,48 @@ main.main-content {
   color: #000000;
 }
 
+.single-blog-container header.entry-header {
+  position: relative;
+}
+
+.social_share {
+  position: absolute;
+  bottom: 55px;
+  right: -40px;
+  background: #fff;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 5px;
+}
+
+.social_share .social_share_heading {
+  font-family: Lato;
+  font-size: 8px;
+  font-weight: 800;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #000000;
+  text-transform: uppercase;
+  margin-bottom: 0;
+}
+
+.social_share .social_share_icon {
+  display: block;
+  color: #000;
+  font-size: 20px;
+  padding-top: 15px;
+  text-align: center;
+}
+
 @media screen and (max-width: 1023px) {
+  .social_share {
+    bottom: 15px;
+    right: 0;
+  }
+
   .blog-post-sidebar {
     display: flex;
     display: -webkit-flex;

@@ -120,6 +120,28 @@ if ( !class_exists( 'vglThemeOptions' ) ) {
 						</td>
 					</tr>
 					<tr valign="top">
+						<th scope="row"><?php esc_html_e( 'Social Share Links', 'vgl' ) ?></th>
+						<?php 
+							$social_share_facebook = vglThemeOptions::get_theme_option('social_share_facebook');
+							$social_share_twitter = vglThemeOptions::get_theme_option('social_share_twitter');
+							$social_share_pinterest = vglThemeOptions::get_theme_option('social_share_pinterest');
+						?>
+						<td>
+							<div class="vgl-meta-fields">
+								<label for="social_share_label">Social Share Facebook</label>
+								<input type="text" name="theme_options[social_share_facebook]" value="<?php echo $social_share_facebook; ?>" id="social_share_facebook">
+							</div>
+							<div class="vgl-meta-fields">
+								<label for="social_share_label">Social Share Twitter</label>
+								<input type="text" name="theme_options[social_share_twitter]" value="<?php echo $social_share_twitter; ?>" id="social_share_twitter">
+							</div>
+							<div class="vgl-meta-fields">
+								<label for="social_share_label">Social Share Pinterest</label>
+								<input type="text" name="theme_options[social_share_pinterest]" value="<?php echo $social_share_pinterest; ?>" id="social_share_pinterest">
+							</div>
+						</td>
+					</tr>
+					<tr valign="top">
 						<th scope="row"><?php esc_html_e( 'Footer Bottom', 'vgl' ); ?></th>
 						<td>
 							<?php 

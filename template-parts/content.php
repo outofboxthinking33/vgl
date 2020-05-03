@@ -39,6 +39,12 @@
 		endif;
 
 		?>
+		<div class="social_share">
+			<p class="social_share_heading">Share</p>
+			<a class="social_share_icon" href=""><i class="fa fa-facebook" aria-hidden="true"></i></a>
+			<a class="social_share_icon" href=""><i class="fa fa-twitter" aria-hidden="true"></i></a>
+			<a class="social_share_icon" href=""><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+		</div>
 	</header>
 
 	<div class="entry-content">
