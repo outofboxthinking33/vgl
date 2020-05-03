@@ -839,6 +839,10 @@ main.main-content {
   position: relative;
 }
 
+.single-post-header .featured-image img {
+  width: 100%;
+}
+
 .social_share {
   position: absolute;
   bottom: 55px;
