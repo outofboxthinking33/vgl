@@ -41,9 +41,9 @@
 		?>
 		<div class="social_share">
 			<p class="social_share_heading">Share</p>
-			<a class="social_share_icon" href=""><i class="fa fa-facebook" aria-hidden="true"></i></a>
-			<a class="social_share_icon" href=""><i class="fa fa-twitter" aria-hidden="true"></i></a>
-			<a class="social_share_icon" href=""><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+			<a class="social_share_icon" href="<?php echo vgl_get_theme_option('social_share_facebook'); ?>"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+			<a class="social_share_icon" href="<?php echo vgl_get_theme_option('social_share_twitter'); ?>"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+			<a class="social_share_icon" href="<?php echo vgl_get_theme_option('social_share_pinterest'); ?>"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
 		</div>
 	</header>
 
