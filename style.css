@@ -931,6 +931,12 @@ main.main-content {
     padding-left: 15px;
     padding-right: 15px;
   }
+
+  .single-post-header .featured-image img {
+    width: 100%;
+    height: calc(100vw - 30px);
+    object-fit: cover;
+  }
 }
 
 /*
