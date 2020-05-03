@@ -876,6 +876,16 @@ main.main-content {
     -ms-flex-flow: row-reverse;
     background-color: #ffe5bc;
   }
+
+  .single-blog-container .entry-content {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .single-blog-container header.entry-header {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 }
 
 /*
