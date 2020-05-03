@@ -86,8 +86,8 @@
 
 		@media screen and (max-width: 768px) {
 			width: 100%;
-			padding-left: 10px;
-			padding-right: 10px;
+			padding-left: 25px;
+			padding-right: 25px;
 			bottom: 60px;
 
 			> .vgl-slider-title a {
@@ -132,7 +132,8 @@
 		width: initial;
 
 		@media screen and (max-width: 768px) {
-			bottom: 60px;
+			bottom: 55px;
+			right: 25px;
 		}
 	}
 
