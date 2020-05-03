@@ -146,6 +146,7 @@
 				width: 100%;
 
 				> div {
+					position: relative;
 					padding-top: calc(100% / 16 * 10);
 					background-size: cover;
 					background-repeat: no-repeat;

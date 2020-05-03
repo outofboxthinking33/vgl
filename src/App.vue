@@ -4,6 +4,7 @@ import MobileBurger from './components/Header/MobileBurger.vue';
 import MobileMenu from './components/Header/MobileMenu.vue';
 import HelloWorld from './components/HelloWorld.vue';
 import HeroBannerSlider from './components/HeroBannerSlider.vue';
+import HeroBannerGrid from './components/HeroBannerGrid.vue';
 import VueSlider from './components/VueSlider.vue';
 import HotPosts from './components/HotPosts.vue';
 import PostsGrid from './components/PostsGrid.vue';
@@ -18,6 +19,7 @@ export default {
     MobileMenu,
     HelloWorld,
     HeroBannerSlider,
+    HeroBannerGrid,
     VueSlider,
     HotPosts,
     PostsGrid,

@@ -530,6 +530,8 @@ main.main-content {
 
 .vgl-content-wrapper {
   position: relative;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .col-full {

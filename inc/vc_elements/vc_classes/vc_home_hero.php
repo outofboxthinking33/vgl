@@ -53,6 +53,10 @@ class vglHomeHero extends WPBakeryShortCode
 	    				'heading'				=> 'Number of blogs to show',
 	    				'param_name'			=> 'blog_count',
 	    				'description'			=> 'Input a Number',
+	    				'dependency'			=> array(
+							'element'			=> 'layout',
+							'value'				=> 'slider'
+	    				),
 	    				'admin_label'			=> false,
 	    				'group'					=> 'VGL'
 	    			),
@@ -131,6 +135,14 @@ class vglHomeHero extends WPBakeryShortCode
 
 		<?php
 
+			if ( $layout == 'grid' ) {
+
+				// We limit the count of post for Homebanner grid
+
+				$blog_count = 4;
+
+			}
+
 			$args = array(
 				'post_type'					=> 'post',
 				'post_status'				=> 'publish',
@@ -179,8 +191,12 @@ class vglHomeHero extends WPBakeryShortCode
 
 		<?php if ( $layout == 'grid' ): ?>
 
+			<hero-banner-grid :posts='<?php echo json_encode($data); ?>' border-color="<?php echo $bottom_color; ?>" border-width="<?php echo $border_width; ?>"></hero-banner-grid>
+
 		<?php elseif ( $layout == 'slider' ): ?>
+
 			<hero-banner-slider :posts='<?php echo json_encode($data); ?>' border-color="<?php echo $bottom_color; ?>" border-width="<?php echo $border_width; ?>"></hero-banner-slider>
+
 		<?php endif; ?>
 
 		<?php
