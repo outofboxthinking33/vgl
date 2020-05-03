@@ -51,7 +51,9 @@
 						{
 							breakpoint: 768,
 							settings: {
-								slidesToShow: this.mobileSlideCount
+								slidesToShow: this.mobileSlideCount,
+								arrows: true,
+								dots: false
 							}
 						}
 					]
@@ -75,6 +77,34 @@
 
 <style lang="scss">
 	.vgl-woo-product-slider {
+		
+		@media screen and (max-width: 768px) {
+			.slick-next, .slick-prev {
+				z-index: 100;
+				left: initial;
+				width: initial;
+				height: initial;
+				right: initial;
+				top: -80px;
+			}
+
+			.slick-next:before, .slick-prev:before {
+				font-family: initial;
+				color: #000;
+				font-size: 50px;
+			}
+
+			.slick-next {
+				left: 50%;
+				transform: translateX(50%);
+			}
+
+			.slick-prev {
+				right: 50%;
+				transform: translatex(-50%);
+			}
+		}
+
 		.vgl-woo-product-slider-item {
 			padding-left: 30px;
 			padding-right: 30px;
@@ -107,7 +137,7 @@
 			.slider-content {
 				height: 95px;
 				overflow-y: hidden;
-				
+
 				.title {
 					font-size: 20px;
 					font-weight: 900;

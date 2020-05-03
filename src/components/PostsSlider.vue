@@ -57,7 +57,8 @@
 							breakpoint: 768,
 							settings: {
 								slidesToShow: this.mobileSlidershow,
-								arrows: true
+								arrows: true,
+								dots: false
 							}
 						}
 					]
