@@ -119,8 +119,8 @@
 							background-color: #fbc6bbff;
 						}
 
-						&:before,
-						&:focus {
+						&.active:before,
+						&.active:focus {
 							content: '';
 							position: absolute;
 							top: 50%;
