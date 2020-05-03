@@ -1127,6 +1127,11 @@ footer#footer .subscription-form .input-email input {
   border-bottom: solid 1px #fff;
 }
 
+footer#footer .subscription-form .input-email input::placeholder {
+  color: #fff;
+  font-size: 14px;
+}
+
 footer#footer .subscription-form .input-submit {
   clear: both;
   margin-top: 10px;
@@ -1217,6 +1222,14 @@ margin-bottom: 30px;
   .vgl-container {
     padding-left: 15px;
     padding-right: 15px;
+  }
+
+  footer#footer {
+    padding-bottom: 10px;
+  }
+
+  .footer-bottom-link {
+    display: none;
   }
 
   .footer-container .footer-left,
