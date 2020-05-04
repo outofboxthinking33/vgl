@@ -42,6 +42,22 @@
 					<template v-slot:mobile-menu>
 						<?php echo wp_nav_menu( array( 'menu' => '3', 'menu_class' => '', 'container' => 'ul', 'depth' => 2 ) ); ?>
 					</template>
+					<template v-slot:mobile-social>
+						<a class="mobile-social-icon" href="<?php vgl_get_theme_option('mobile_social_facebook'); ?>"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+						<a class="mobile-social-icon" href="<?php vgl_get_theme_option('mobile_social_instagram'); ?>"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+						<a class="mobile-social-icon" href="<?php vgl_get_theme_option('mobile_social_youtube'); ?>"><i class="fa fa-youtube-play" aria-hidden="true"></i></a>
+						<a class="mobile-social-icon" href="<?php vgl_get_theme_option('mobile_social_twitter'); ?>"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+					</template>
+					<?php if ( is_active_sidebar( 'mobile-widget-1' ) ): ?>
+						<template v-slot:mobile-middle>
+							<?php dynamic_sidebar( 'mobile-widget-1' ); ?>
+						</template>
+					<?php endif; ?>
+					<?php if ( is_active_sidebar( 'mobile-widget-2' ) ): ?>
+						<template v-slot:mobile-bottom-menu>
+							<?php dynamic_sidebar( 'mobile-widget-2' ); ?>
+						</template>
+					<?php endif; ?>
 				</mobile-menu>
 			</div>
 		</header>

@@ -3,14 +3,28 @@
 		<div class="mobile-menu">
 			<slot name="mobile-menu"></slot>
 		</div>
+		<div class="mobile-darkmode-container">
+			<div>
+				Dark Mode
+			</div>
+			<ButtonRadio></ButtonRadio>
+		</div>
+		<div class="mobile-social">
+			<slot name="mobile-social"></slot>
+		</div>
 		<slot name="mobile-middle"></slot>
 		<slot name="mobile-bottom-menu"></slot>
 	</div>
 </template>
 
 <script>
+	import ButtonRadio from '../Minor/ButtonRadio.vue';
+
 	export default {
 		name: 'MobileMenu',
+		components: {
+			ButtonRadio
+		},
 		props: {
 
 		},
@@ -45,7 +59,12 @@
 				window.jQuery('header').toggleClass('active');
 			}.bind(this));
 
-			this.$el.querySelectorAll('.mobile-menu > ul > li').forEach( ele => ele.addEventListener('click', this.clickMenuItem) );
+			this.$eventBus.$on('radio-button-status', function(val) {
+				console.log(val);
+				console.log('radio-button-status');
+			}.bind(this));
+
+			this.$el.querySelectorAll('.mobile-menu > ul > li.menu-item-has-children').forEach( ele => ele.addEventListener('click', this.clickMenuItem) );
 		}
 	};
 </script>
@@ -58,11 +77,10 @@
 	@media screen and (max-width: 1023px) {
 		.vgl-mobile-menu.active {
 			display: block;
+			padding-left: 50px;
+			padding-right: 50px;
 
 			.mobile-menu {
-
-				padding-left: 50px;
-				padding-right: 50px;
 
 				> ul {
 
@@ -131,6 +149,43 @@
 					}
 				}
 
+			}
+
+			.mobile-social {
+				padding-top: 10px;
+				padding-bottom: 10px;
+				border-bottom: 1px solid rgba(248,177,149,.47);
+				display: flex;
+				display: -webkit-flex;
+				display: -moz-lex;
+				display: -moz-flex;
+				justify-content: space-between;
+				-webkit-justify-content: space-between;
+				-moz-justify-content: space-between;
+				-ms-justify-content: space-between;
+
+				.mobile-social-icon {
+					font-size: 25px;
+					color: #000;
+				}
+			}
+
+			.mobile-darkmode-container {
+				display: flex;
+				display: -webkit-flex;
+				display: -moz-flex;
+				display: -ms-flex;
+				align-items: center;
+				-webkit-align-items: center;
+				-moz-align-items: center;
+				-ms-align-items: center;
+				justify-content: space-between;
+				-webkit-justify-content: space-between;
+				-moz-justify-content: space-between;
+				-ms-justify-content: space-between;
+				padding-top: 10px;
+				padding-bottom: 10px;
+				border-bottom: 1px solid rgba(248,177,149,.47);
 			}
 		}
 	}

@@ -42,7 +42,7 @@
 			}
 		},
 		mounted: function() {
-			this.$el.querySelectorAll('ul#menu-primary-menu > .menu-item > a').forEach( ele => ele.addEventListener('mouseover', this.mouseOver) );
+			this.$el.querySelectorAll('ul#menu-primary-menu > .menu-item.menu-item-has-children > a').forEach( ele => ele.addEventListener('mouseover', this.mouseOver) );
 
 			const firstMenuItem = this.$el.querySelector('ul#menu-primary-menu > .menu-item');
 			const allMenuItems = this.$el.querySelectorAll('ul#menu-primary-menu > .menu-item');

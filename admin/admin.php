@@ -120,7 +120,34 @@ if ( !class_exists( 'vglThemeOptions' ) ) {
 						</td>
 					</tr>
 					<tr valign="top">
-						<th scope="row"><?php esc_html_e( 'Social Share Links', 'vgl' ) ?></th>
+						<th scope="row"><?php esc_html_e( 'Mobile Menu Social Links', 'vgl' ); ?></th>
+						<?php 
+							$mobile_social_facebook = vglThemeOptions::get_theme_option( 'mobile_social_facebook' );
+							$mobile_social_instagram = vglThemeOptions::get_theme_option( 'mobile_social_instagram' );
+							$mobile_social_youtube = vglThemeOptions::get_theme_option( 'mobile_social_youtube' );
+							$mobile_social_twitter = vglThemeOptions::get_theme_option( 'mobile_social_twitter' );
+						?>
+						<td>
+							<div class="vgl-meta-fields">
+								<label for="social_share_label">Facebook</label>
+								<input type="text" name="theme_options[mobile_social_facebook]" value="<?php echo $mobile_social_facebook; ?>" id="mobile_social_facebook">
+							</div>
+							<div class="vgl-meta-fields">
+								<label for="social_share_label">Instagram</label>
+								<input type="text" name="theme_options[mobile_social_instagram]" value="<?php echo $mobile_social_instagram; ?>" id="mobile_social_instagram">
+							</div>
+							<div class="vgl-meta-fields">
+								<label for="social_share_label">Youtube</label>
+								<input type="text" name="theme_options[mobile_social_youtube]" value="<?php echo $mobile_social_youtube; ?>" id="mobile_social_youtube">
+							</div>
+							<div class="vgl-meta-fields">
+								<label for="social_share_label">Twitter</label>
+								<input type="text" name="theme_options[mobile_social_twitter]" value="<?php echo $mobile_social_twitter; ?>" id="mobile_social_twitter">
+							</div>
+						</td>
+					</tr>
+					<tr valign="top">
+						<th scope="row"><?php esc_html_e( 'Blog Social Share Links', 'vgl' ) ?></th>
 						<?php 
 							$social_share_facebook = vglThemeOptions::get_theme_option('social_share_facebook');
 							$social_share_twitter = vglThemeOptions::get_theme_option('social_share_twitter');

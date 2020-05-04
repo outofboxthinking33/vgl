@@ -1,4 +1,5 @@
 <script>
+import ButtonRadio from './components/Minor/ButtonRadio.vue';
 import RectangleMenu from './components/Header/RectangleMenu.vue';
 import MobileBurger from './components/Header/MobileBurger.vue';
 import MobileMenu from './components/Header/MobileMenu.vue';
@@ -14,6 +15,7 @@ import PostsSlider from './components/PostsSlider.vue';
 export default {
   name: 'App',
   components: {
+    ButtonRadio,
     RectangleMenu,
     MobileBurger,
     MobileMenu,

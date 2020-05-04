@@ -25,8 +25,9 @@ require_once(get_theme_file_path('/inc/vc_elements/vc_elements.php'));
 /* include Admin Options */
 require_once(get_theme_file_path('/admin/admin.php'));
 
-/* include Footer Widget Areas */
+/* include Widget Areas */
 require_once(get_theme_file_path('/inc/widgets/footer_widgets.php'));
+require_once(get_theme_file_path('/inc/widgets/mobile_menu_widget.php'));
 
 
 // Remove WP Version From Styles	
