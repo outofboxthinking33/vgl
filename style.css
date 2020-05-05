@@ -1296,6 +1296,10 @@ margin-bottom: 30px;
 
 /* Mobile */
 @media screen and (max-width: 1023px) {
+  .footer-logo {
+    display: none;
+  }
+  
   .vgl-container {
     padding-left: 15px;
     padding-right: 15px;
