@@ -1140,6 +1140,9 @@ footer#footer {
   background-color: #000;
   position: relative;
   padding: 50px 0;
+  background-repeat: no-repeat;
+  background-size: 10vw;
+  background-position: center;
 }
 
 footer#footer:before {
@@ -1299,7 +1302,12 @@ margin-bottom: 30px;
   .footer-logo {
     display: none;
   }
-  
+
+  footer#footer:before,
+  footer#footer:after {
+    display: none;
+  }
+
   .vgl-container {
     padding-left: 15px;
     padding-right: 15px;
@@ -1307,6 +1315,8 @@ margin-bottom: 30px;
 
   footer#footer {
     padding-bottom: 10px;
+    background-size: 30vw;
+    background-position: calc(70vw + 50px) -56px;
   }
 
   .footer-bottom-link {

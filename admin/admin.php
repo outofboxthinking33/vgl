@@ -217,6 +217,22 @@ if ( !class_exists( 'vglThemeOptions' ) ) {
 						</td>
 					</tr>
 					<tr valign="top">
+						<th scope="row"><?php esc_html_e( 'Footer Background Image' ); ?></th>
+						<td>
+							<?php $footer_background_image = vglThemeOptions::get_theme_option( 'footer_background_image' ); ?>
+							<div class="vgl-meta-fields">
+								<input type="hidden" name="theme_options[footer_background_image]" value="<?php echo $footer_background_image ?>">
+							</div>
+							<div class="vgl-meta-fields">
+								<img src="<?php echo wp_get_attachment_image_src( $footer_background_image, 'full' )[0]; ?>" class="vgl-media-image <?php if ( !empty(wp_get_attachment_image_src( $footer_background_image, 'full' ))){
+									echo 'active';	
+								} ?>">
+							</div>
+							<a class="vgl-media-upload-btn">Upload</a>
+							<a class="vgl-media-remove-btn">Remove</a>
+						</td>
+					</tr>
+					<tr valign="top">
 						<th scope="row"><?php esc_html_e( 'Footer Bottom', 'vgl' ); ?></th>
 						<td>
 							<?php 

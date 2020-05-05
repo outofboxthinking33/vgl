@@ -1,4 +1,4 @@
-<footer id="footer">
+<footer id="footer" style="background-image: url(<?php echo wp_get_attachment_image_src( vgl_get_theme_option('footer_background_image'), 'full' )[0]; ?>);">
 	<div class="footer-container">
 		<div class="footer-left">
 			<?php if ( is_active_sidebar( 'footer-widget-1' ) ): ?>
