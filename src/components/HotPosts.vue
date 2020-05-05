@@ -3,10 +3,10 @@
 		<div class="vgl-content-wrapper">
 			<h2 class="vgl-hot-post-title">{{ title }} <img src="/wp-content/themes/vgl/src/assets/fire.png"></h2>
 			<div v-for="post in posts" :key="post.id" :class="[{ 'col-full': colCount == 1, 'col-half': colCount == 2, 'col-one-third': colCount == 3, 'col-one-fourth': colCount == 4, 'col-one-fifth': colCount == 5 }, 'vgl-hot-post']">
-				<img :src="post.featured_url">
+				<a :href="post.permalink"><img :src="post.featured_url"></a>
 				<div>
 					<span><b>by</b> {{ post.authorName }} | {{ post.category }}</span>
-					<p>{{ post.title }}</p>
+					<a :href="post.permalink"><p>{{ post.title }}</p></a>
 				</div>
 			</div>
 		</div>
@@ -38,6 +38,10 @@
 </script>
 
 <style lang="scss">
+	.vgl-hot-posts .vgl-hot-post a {
+		text-decoration: none;
+	}
+
 	.vgl-hot-posts .vgl-hot-post {
 		margin-top: 30px;
 		margin-bottom: 30px;
@@ -60,7 +64,7 @@
 		}
 	}
 
-	.vgl-hot-posts .vgl-hot-post > div > p {
+	.vgl-hot-posts .vgl-hot-post > div p {
 		font-size: 18px;
 		font-weight: 900;
 		font-stretch: normal;

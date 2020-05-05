@@ -130,9 +130,9 @@ class vglHotPosts extends WPBakeryShortCode
 
 			$category = get_the_category( $hot_post )[0]->name;
 
-			$permalink = get_the_permalink( $host_post );
+			$permalink = get_the_permalink( $hot_post );
 
-			$authorID = get_post_field( 'post_author', $host_post );
+			$authorID = get_post_field( 'post_author', $hot_post );
 
 			$authorName = get_the_author_meta( 'user_nicename', $authorID );
 
