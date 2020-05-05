@@ -151,6 +151,7 @@
 							text-align: center;
 							text-transform: uppercase;
 							text-decoration: none;
+							color: #000;
 						}
 					}
 				}

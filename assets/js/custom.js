@@ -190,5 +190,42 @@ jQuery(document).ready(function($){
 		}
 	});
 
+	// Background Gradient Animation
+	$(window).on('scroll', function(e) { 
+		var bgStart = '';
+		var bgEnd = '';
+		var index = 0;
+
+		jQuery.each( jQuery.find('.gradient-background') , (key, value) => {
+			if ( ($(value).offset().top >= $(window).scrollTop() && $(value).offset().top < $(window).scrollTop() + $(window).height()) || ($(value).offset().top + $(value).outerHeight() >= $(window).scrollTop() && $(value).offset().top + $(value).outerHeight() < $(window).scrollTop() + $(window).height()) ) {
+				bgStart = $(value).data('gradient-start');
+				bgEnd = $(value).data('gradient-end');
+				jQuery(jQuery.find('.gradient-background')).removeClass('active');
+				$(value).addClass('active');
+				// console.log($(value));
+				return 0;
+			}
+		});
+
+		if (jQuery.find('.gradient-background.active').length > 0) {
+			jQuery.each( jQuery.find('.gradient-background'), (key, value) => {
+				console.log(bgStart);
+				console.log(bgEnd);
+
+				if( !$(value).hasClass('active') ) {
+					if ($(value).offset().top < jQuery(jQuery.find('.gradient-background.active')).offset().top) {
+						var css = 'linear-gradient(' + bgStart + ' 0%, ' + bgStart + ' 100%)';
+						$(value).css({'background-image': css});
+					} else {
+						$(value).css('background-image', 'linear-gradient(' + bgEnd + ' 0%, ' + bgEnd + ' 100%)');
+					}
+				} else {
+					$(value).css('background-image', 'linear-gradient(' + bgStart + ' 0%, ' + bgEnd + ' 100%)');
+				}
+			});
+		}
+
+	});
+
 	jQuery('.mode-dark').parents('body').addClass('mode-dark');
 });

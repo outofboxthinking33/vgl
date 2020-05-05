@@ -576,6 +576,10 @@ main.main-content {
   clear: both;
 }
 
+.gradient-background {
+  transition: all ease-in-out .5s;
+}
+
 .subscription-form {
   max-width: 700px;
   margin: 0 auto;
@@ -1421,19 +1425,19 @@ margin-bottom: 30px;
  */
 
 .logo-darkmode {
-  display: none;
+  display: none !important;
 }
 
 .logo-default {
-  display: block;
+  display: block !important;
 }
 
 body.mode-dark .logo-darkmode {
-  display: block;
+  display: block !important;
 }
 
 body.mode-dark .logo-default {
-  display: none;
+  display: none !important;
 }
 
 body.mode-dark .blog-post-sidebar,
