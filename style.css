@@ -691,25 +691,25 @@ header .subscription-form .input-submit input {
  * Single Blog Template
  */
 
-.single-blog-container.mode-dark,
-.single-blog-container.mode-dark .social_share {
+body.mode-dark .single-blog-container,
+body.mode-dark .single-blog-container .social_share {
   background-color: black;
 }
 
-.single-blog-container.mode-dark .span-reading-time.rt-reading-time span,
-.single-blog-container.mode-dark .entry-header h1.entry-title,
-.single-blog-container.mode-dark .social_share .social_share_heading,
-.single-blog-container.mode-dark .social_share .social_share_icon,
-.single-blog-container.mode-dark .single-post-header .post-info .authorAvatar,
-.single-blog-container.mode-dark .entry-content p, 
-.single-blog-container.mode-dark .entry-content a,
-.single-blog-container.mode-dark .entry-content span,
-.single-blog-container.mode-dark .entry-content h1,
-.single-blog-container.mode-dark .entry-content h2,
-.single-blog-container.mode-dark .entry-content h3,
-.single-blog-container.mode-dark .entry-content h4,
-.single-blog-container.mode-dark .entry-content h5,
-.single-blog-container.mode-dark .entry-content h6 {
+body.mode-dark .single-blog-container .span-reading-time.rt-reading-time span,
+body.mode-dark .single-blog-container .entry-header h1.entry-title,
+body.mode-dark .single-blog-container .social_share .social_share_heading,
+body.mode-dark .single-blog-container .social_share .social_share_icon,
+body.mode-dark .single-blog-container .single-post-header .post-info .authorAvatar,
+body.mode-dark .single-blog-container .entry-content p, 
+body.mode-dark .single-blog-container .entry-content a,
+body.mode-dark .single-blog-container .entry-content span,
+body.mode-dark .single-blog-container .entry-content h1,
+body.mode-dark .single-blog-container .entry-content h2,
+body.mode-dark .single-blog-container .entry-content h3,
+body.mode-dark .single-blog-container .entry-content h4,
+body.mode-dark .single-blog-container .entry-content h5,
+body.mode-dark .single-blog-container .entry-content h6 {
   border-color: black;
   color: #fff;
 }

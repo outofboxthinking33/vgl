@@ -4,8 +4,9 @@
 			<slot name="mobile-menu"></slot>
 		</div>
 		<div class="mobile-darkmode-container">
-			<div>
-				Dark Mode
+			<div class="mobile-darkmode-status">
+				<img :src="isDarkMode == true ? darkModeActiveIcon : darkModeDeactiveIcon">
+				<span>Dark Mode</span>
 			</div>
 			<ButtonRadio></ButtonRadio>
 		</div>
@@ -26,11 +27,19 @@
 			ButtonRadio
 		},
 		props: {
-
+			darkModeActiveIcon: {
+				type: String,
+				required: false
+			},
+			darkModeDeactiveIcon: {
+				type: String,
+				required: false	
+			}
 		},
 		data: function() {
 			return {
-				showMobile: false
+				showMobile: false,
+				isDarkMode: false
 			};
 		},
 		methods: {
@@ -55,14 +64,34 @@
 		mounted: function() {
 			this.$eventBus.$on('mobile-hamburger-clicked', function(val) {
 				this.showMobile = val;
-				console.log(this.showMobile);
 				window.jQuery('header').toggleClass('active');
+				console.log(this.isDarkMode);
 			}.bind(this));
 
 			this.$eventBus.$on('radio-button-status', function(val) {
-				console.log(val);
-				console.log('radio-button-status');
+				// this.isDarkMode = !this.isDarkMode;
+				this.isDarkMode = val;
+
+				this.$cookies.set('darkMode', this.isDarkMode);
+
+				if (this.isDarkMode) {
+					document.querySelector('body').classList.add('mode-dark');
+				} else {
+					document.querySelector('body').classList.remove('mode-dark');
+				}
+
 			}.bind(this));
+
+			if(this.$cookies.isKey('darkMode')) {
+
+				if (this.$cookies.get('darkMode') == 'true') {
+					this.isDarkMode = true;
+					document.querySelector('body').classList.add('mode-dark');
+				} else {
+					this.isDarkMode = false;
+					document.querySelector('body').classList.remove('mode-dark');
+				}
+			}
 
 			this.$el.querySelectorAll('.mobile-menu > ul > li.menu-item-has-children').forEach( ele => ele.addEventListener('click', this.clickMenuItem) );
 		}
@@ -186,6 +215,22 @@
 				padding-top: 10px;
 				padding-bottom: 10px;
 				border-bottom: 1px solid rgba(248,177,149,.47);
+
+				.mobile-darkmode-status {
+					display: flex;
+					display: -webkit-flex;
+					display: -moz-flex;
+					display: -ms-flex;
+					align-items: center;
+					-webkit-align-items: center;
+					-moz-align-items: center;
+					-ms-align-items: center;
+
+					> img {
+						max-width: 25px;
+						margin-right: 10px;
+					}
+				}
 			}
 		}
 	}

@@ -40,7 +40,11 @@
 				<mobile-burger></mobile-burger>
 			</div>
 			<div class="mobile-menu-wrapper">
-				<mobile-menu>
+				<?php 
+					$darkModeActiveIcon = vgl_get_theme_option('mobile_darkmode_icon_active');
+					$darkModeDeactiveIcon = vgl_get_theme_option('mobile_darkmode_icon_deactive');
+				?>
+				<mobile-menu dark-mode-active-icon="<?php echo wp_get_attachment_image_src( $darkModeActiveIcon, 'full' )[0]; ?>" dark-mode-deactive-icon="<?php echo wp_get_attachment_image_src( $darkModeDeactiveIcon, 'full' )[0]; ?>">
 					<template v-slot:mobile-menu>
 						<?php echo wp_nav_menu( array( 'menu' => '3', 'menu_class' => '', 'container' => 'ul', 'depth' => 2 ) ); ?>
 					</template>

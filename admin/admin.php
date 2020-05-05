@@ -136,6 +136,38 @@ if ( !class_exists( 'vglThemeOptions' ) ) {
 						</td>
 					</tr>
 					<tr valign="top">
+						<th scope="row"><?php esc_html_e( 'Mobile Dark Mode Icons(Active)' ); ?></th>
+						<td>
+							<?php $mobile_darkmode_icon_active = vglThemeOptions::get_theme_option( 'mobile_darkmode_icon_active' ); ?>
+							<div class="vgl-meta-fields">
+								<input type="hidden" name="theme_options[mobile_darkmode_icon_active]" value="<?php echo $mobile_darkmode_icon_active ?>">
+							</div>
+							<div class="vgl-meta-fields">
+								<img src="<?php echo wp_get_attachment_image_src( $mobile_darkmode_icon_active, 'full' )[0]; ?>" class="vgl-media-image <?php if ( !empty(wp_get_attachment_image_src( $mobile_darkmode_icon_active, 'full' ))){
+									echo 'active';	
+								} ?>">
+							</div>
+							<a class="vgl-media-upload-btn">Upload</a>
+							<a class="vgl-media-remove-btn">Remove</a>
+						</td>
+					</tr>
+					<tr valign="top">
+						<th scope="row"><?php esc_html_e( 'Mobile Dark Mode Icons(Deactive)' ); ?></th>
+						<td>
+							<?php $mobile_darkmode_icon_deactive = vglThemeOptions::get_theme_option( 'mobile_darkmode_icon_deactive' ); ?>
+							<div class="vgl-meta-fields">
+								<input type="hidden" name="theme_options[mobile_darkmode_icon_deactive]" value="<?php echo $mobile_darkmode_icon_deactive ?>">
+							</div>
+							<div class="vgl-meta-fields">
+								<img src="<?php echo wp_get_attachment_image_src( $mobile_darkmode_icon_deactive, 'full' )[0]; ?>" class="vgl-media-image <?php if ( !empty(wp_get_attachment_image_src( $mobile_darkmode_icon_deactive, 'full' ))){
+									echo 'active';	
+								} ?>">
+							</div>
+							<a class="vgl-media-upload-btn">Upload</a>
+							<a class="vgl-media-remove-btn">Remove</a>
+						</td>
+					</tr>
+					<tr valign="top">
 						<th scope="row"><?php esc_html_e( 'Mobile Menu Social Links', 'vgl' ); ?></th>
 						<?php 
 							$mobile_social_facebook = vglThemeOptions::get_theme_option( 'mobile_social_facebook' );

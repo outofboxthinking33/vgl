@@ -118,13 +118,7 @@
 
 		},
 		mounted: function() {
-
-			if ( this.showLoadMore ) {
-				console.log(this.loadMoreText);
-				console.log(this.startIndex);
-				console.log(this.count);
-				console.log(this.index);
-			}
+			
 		}
 	};
 </script>

@@ -1,6 +1,6 @@
 <template>
 	<div class="jp-button-radio" @click="changeStatus">
-		<span class="button-radio-button" :class="[{'active': radioStatus}]"></span>
+		<span class="button-radio-button" :class="[{'active': radioStatus == true}]"></span>
 	</div>
 </template>
 
@@ -16,6 +16,15 @@
 			changeStatus: function() {
 				this.radioStatus = !this.radioStatus;
 				this.$eventBus.$emit('radio-button-status', this.radioStatus);
+			}
+		},
+		created: function() {
+			if(this.$cookies.isKey('darkMode')) {
+				if (this.$cookies.get('darkMode') == 'true') {
+					this.radioStatus = true;
+				} else {
+					this.radioStatus = false;
+				}
 			}
 		}
 	};
