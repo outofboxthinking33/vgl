@@ -696,6 +696,10 @@ body.mode-dark .single-blog-container .social_share {
   background-color: black;
 }
 
+body.mode-dark .single-blog-container .social_share {
+  background-color: #333;
+}
+
 body.mode-dark .single-blog-container .span-reading-time.rt-reading-time span,
 body.mode-dark .single-blog-container .entry-header h1.entry-title,
 body.mode-dark .single-blog-container .social_share .social_share_heading,
@@ -710,7 +714,7 @@ body.mode-dark .single-blog-container .entry-content h3,
 body.mode-dark .single-blog-container .entry-content h4,
 body.mode-dark .single-blog-container .entry-content h5,
 body.mode-dark .single-blog-container .entry-content h6 {
-  border-color: black;
+  border-color: #333;
   color: #fff;
 }
 
@@ -955,6 +959,7 @@ body.mode-dark .single-blog-container .entry-content h6 {
   .blog-post-sidebar .blog-post-individual {
     display: flex;
     padding: 0;
+    border-top: solid 1px #fff;
   }
 
   .blog-post-sidebar .blog-post-individual:last-child {
@@ -1456,8 +1461,8 @@ body.mode-dark .logo-default {
 
 body.mode-dark .blog-post-sidebar,
 body.mode-dark .blog-post-individual .blog-post-individual-title {
-  background-color: #000;
-  border-color: #000;
+  background-color: #333;
+  border-color: #333;
   color: #fff;
 }
 
