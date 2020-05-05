@@ -4,7 +4,7 @@ jQuery(document).ready(function($) {
 		if ( typeof wp !== 'undefined' && wp.media && wp.media.editor) {
             e.preventDefault();
             var button = $(this);
-            var logo_input = $(this).closest('td').find('input[name="theme_options[logo_id]"]');
+            var logo_input = $(this).closest('td').find('input[type="hidden"]');
             var logo_image = $(this).closest('td').find('img.vgl-media-image');
             // var original_media = wp.emdia.editor.send.attachment;
             wp.media.editor.send.attachment = function(props, attachment) {

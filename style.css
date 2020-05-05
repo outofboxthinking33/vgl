@@ -687,6 +687,29 @@ header .subscription-form .input-submit input {
  * Single Blog Template
  */
 
+.single-blog-container.mode-dark,
+.single-blog-container.mode-dark .social_share {
+  background-color: black;
+}
+
+.single-blog-container.mode-dark .span-reading-time.rt-reading-time span,
+.single-blog-container.mode-dark .entry-header h1.entry-title,
+.single-blog-container.mode-dark .social_share .social_share_heading,
+.single-blog-container.mode-dark .social_share .social_share_icon,
+.single-blog-container.mode-dark .single-post-header .post-info .authorAvatar,
+.single-blog-container.mode-dark .entry-content p, 
+.single-blog-container.mode-dark .entry-content a,
+.single-blog-container.mode-dark .entry-content span,
+.single-blog-container.mode-dark .entry-content h1,
+.single-blog-container.mode-dark .entry-content h2,
+.single-blog-container.mode-dark .entry-content h3,
+.single-blog-container.mode-dark .entry-content h4,
+.single-blog-container.mode-dark .entry-content h5,
+.single-blog-container.mode-dark .entry-content h6 {
+  border-color: black;
+  color: #fff;
+}
+
  .single-post-header .post-info {
   display: flex;
   display: -webkit-flex;
@@ -1038,6 +1061,7 @@ header .search-bar {
   top: 50%;
   left: 50px;
   transform: translateY(-50%);
+  z-index: 500;
 }
 
 header .search-bar form#searchform input[type="text"] {
@@ -1390,4 +1414,66 @@ margin-bottom: 30px;
   color: #fdd3c2;
   padding-top: 20px;
   padding-bottom: 20px;
+}
+
+/* 
+ * dark mode
+ */
+
+.logo-darkmode {
+  display: none;
+}
+
+.logo-default {
+  display: block;
+}
+
+body.mode-dark .logo-darkmode {
+  display: block;
+}
+
+body.mode-dark .logo-default {
+  display: none;
+}
+
+body.mode-dark .blog-post-sidebar,
+body.mode-dark .blog-post-individual .blog-post-individual-title {
+  background-color: #000;
+  border-color: #000;
+  color: #fff;
+}
+
+body.mode-dark .vgl-menu.rectangle_menu ul#menu-primary-menu>li>a {
+  color: #fff;
+}
+
+body.mode-dark header .search-bar form#searchform input[type="text"],
+body.mode-dark header .search-bar form#searchform input[type="text"]::placeholder,
+body.mode-dark .search-bar .search-mobile {
+  color: #fff;
+}
+
+body.mode-dark .vgl-mobile-hamburger-container .mobile-hamburger .bottom-bar, 
+body.mode-dark .vgl-mobile-hamburger-container .mobile-hamburger .middle-bar, 
+body.mode-dark .vgl-mobile-hamburger-container .mobile-hamburger .top-bar {
+  background-color: #fff;
+}
+
+body.mode-dark header.header.active {
+  background-image: linear-gradient(#000 0%, #ffe6b7 100%);
+}
+
+body.mode-dark .vgl-mobile-menu.active .mobile-menu>ul>li.active a {
+  color: #fff;
+}
+
+body.mode-dark .vgl-mobile-menu.active .mobile-menu>ul>li>a,
+body.mode-dark header,
+body.mode-dark .vgl-mobile-menu.active .mobile-social .mobile-social-icon,
+body.mode-dark .subscription-form .input-email input,
+body.mode-dark .subscription-form .input-email input::placeholder,
+body.mode-dark .subscription-form .input-submit input,
+body.mode-dark .mobile-widget-2 ul li,
+body.mode-dark .mobile-widget-2 ul li > a {
+  color: #fff;
 }

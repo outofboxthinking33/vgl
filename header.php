@@ -23,8 +23,10 @@
 				<div class="logo">
 					<?php 
 						$logo_id = vgl_get_theme_option('logo_id');
+						$dark_logo_id = vgl_get_theme_option('dark_logo_id');
 					?>
-					<a href="<?php echo get_home_url(); ?>"><img src="<?php echo wp_get_attachment_image_src( $logo_id, 'full' )[0]; ?>"></a>
+					<a href="<?php echo get_home_url(); ?>" class="logo-default"><img src="<?php echo wp_get_attachment_image_src( $logo_id, 'full' )[0]; ?>"></a>
+					<a href="<?php echo get_home_url(); ?>" class="logo-darkmode"><img src="<?php echo wp_get_attachment_image_src( $dark_logo_id, 'full' )[0]; ?>"></a>
 				</div>
 				<?php if ( vgl_get_theme_option('menu_style') == 'rectangle_menu' ): ?>
 				<rectangle-menu menu-style="<?php echo vgl_get_theme_option('menu_style') ?>">

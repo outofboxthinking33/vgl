@@ -189,4 +189,6 @@ jQuery(document).ready(function($){
 			 }, 500);
 		}
 	});
+
+	jQuery('.mode-dark').parents('body').addClass('mode-dark');
 });

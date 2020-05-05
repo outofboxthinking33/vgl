@@ -13,7 +13,7 @@
 get_header();
 ?>
 
-<div id="primary" class="primary-container single-blog-container">
+<div id="primary" class="primary-container single-blog-container <?php $dark_mode  = get_post_meta( $post->ID, 'vgl_dark_mode', true ); echo 'mode-'.$dark_mode ?>">
 	<main id="main" class="main-content">
 		<?php
 		if ( have_posts() ) :

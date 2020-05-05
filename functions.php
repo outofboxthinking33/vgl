@@ -29,6 +29,9 @@ require_once(get_theme_file_path('/admin/admin.php'));
 require_once(get_theme_file_path('/inc/widgets/footer_widgets.php'));
 require_once(get_theme_file_path('/inc/widgets/mobile_menu_widget.php'));
 
+/* include post custom fields */
+require_once(get_theme_file_path('/inc/custom_fields/single_blog_customfield.php'));
+
 
 // Remove WP Version From Styles	
 add_filter( 'style_loader_src', 'sdt_remove_ver_css_js', 9999 );

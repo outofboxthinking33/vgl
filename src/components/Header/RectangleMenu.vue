@@ -149,7 +149,6 @@
 							line-height: normal;
 							letter-spacing: 0.7px;
 							text-align: center;
-							color: #000000;
 							text-transform: uppercase;
 							text-decoration: none;
 						}
@@ -187,6 +186,11 @@
 				ul#menu-primary-menu {
 					background-color: #fffcf2;
 					border-right: 3px solid #fbc6bb;
+
+					li > a {
+						color: #000000 !important;
+						background-color: transparent !important;
+					}
 				}
 
 				.vgl-sub-menus {

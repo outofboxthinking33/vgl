@@ -108,6 +108,22 @@ if ( !class_exists( 'vglThemeOptions' ) ) {
 						</td>
 					</tr>
 					<tr valign="top">
+						<th scope="row"><?php esc_html_e( 'DarkMode Logo Image', 'vgl' ); ?></th>
+						<td>
+							<?php $dark_logo_id = vglThemeOptions::get_theme_option( 'dark_logo_id' ); ?>
+							<div class="vgl-meta-fields">
+								<input type="hidden" name="theme_options[dark_logo_id]" value="<?php echo $dark_logo_id ?>">
+							</div>
+							<div class="vgl-meta-fields">
+								<img src="<?php echo wp_get_attachment_image_src( $dark_logo_id, 'full' )[0]; ?>" class="vgl-media-image <?php if ( !empty(wp_get_attachment_image_src( $dark_logo_id, 'full' ))){
+									echo 'active';	
+								} ?>">
+							</div>
+							<a class="vgl-media-upload-btn">Upload</a>
+							<a class="vgl-media-remove-btn">Remove</a>
+						</td>
+					</tr>
+					<tr valign="top">
 						<th scope="row"><?php esc_html_e( 'Menu Style', 'vgl' ); ?></th>
 						<td>
 							<?php $menu_style = vglThemeOptions::get_theme_option( 'menu_style' ); ?>
