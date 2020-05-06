@@ -35,17 +35,21 @@
 				if ( event.srcElement.nodeName.toLowerCase() == 'a' ) {
 					const allMenuItems = this.$el.querySelectorAll('ul#menu-primary-menu > .menu-item');
 					allMenuItems.forEach( ele => ele.classList.remove("active"));
-					event.target.parentNode.classList.add("active");
-					this.updateSubMenus();
-					this.hover = true;
+					if ( event.target.parentNode.classList.contains('menu-item-has-children')) {
+						event.target.parentNode.classList.add("active");
+						this.updateSubMenus();
+						this.hover = true;
+					} else {
+						this.hover = false;
+					}
 				}
 			}
 		},
 		mounted: function() {
-			this.$el.querySelectorAll('ul#menu-primary-menu > .menu-item.menu-item-has-children > a').forEach( ele => ele.addEventListener('mouseover', this.mouseOver) );
+			this.$el.querySelectorAll('ul#menu-primary-menu > .menu-item > a').forEach( ele => ele.addEventListener('mouseover', this.mouseOver) );
 
 			const firstMenuItem = this.$el.querySelector('ul#menu-primary-menu > .menu-item');
-			const allMenuItems = this.$el.querySelectorAll('ul#menu-primary-menu > .menu-item');
+			const allMenuItems = this.$el.querySelectorAll('ul#menu-primary-menu > .menu-item.menu-item-has-children');
 
 			allMenuItems.forEach( ele => ele.classList.remove("active"));
 			firstMenuItem.classList.add("active");
@@ -114,13 +118,8 @@
 							margin-right: 0;
 						}
 
-						&.active:before,
-						&.active:focus {
-							background-color: #fbc6bbff;
-						}
-
-						&.active:before,
-						&.active:focus {
+						&:hover:before,
+						&:hover:focus {
 							content: '';
 							position: absolute;
 							top: 50%;
