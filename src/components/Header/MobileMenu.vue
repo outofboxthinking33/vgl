@@ -96,6 +96,7 @@
 			this.$el.querySelectorAll('.mobile-menu > ul > li.menu-item-has-children').forEach( ele => ele.addEventListener('click', this.clickMenuItem) );
 
 			this.$el.querySelector('.mobile-menu > ul > li.menu-item-has-children').classList.add('active');
+			this.$el.querySelector('.mobile-menu > ul > li.menu-item-has-children > ul.sub-menu').classList.add('active');
 		}
 	};
 </script>

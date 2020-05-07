@@ -1515,3 +1515,11 @@ body.mode-dark .mobile-widget-2 ul li,
 body.mode-dark .mobile-widget-2 ul li > a {
   color: #fff;
 }
+
+body.mode-dark .vgl-mobile-menu.active .mobile-menu>ul>li ul.sub-menu>li>a {
+  color: #fff;
+}
+
+body.mode-dark .blog-post-sidebar .blog-post-individual.active {
+  background-color: #000;
+}
