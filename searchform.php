@@ -1,0 +1,1 @@
+<form role="search" method="get" id="searchform" action="http://local.vgl.com/" class="searchform"><div><label for="s" class="screen-reader-text">Search for:</label> <input type="text" value="" name="s" id="s" placeholder="What you are looking for?"> <button type="submit" id="searchsubmit" value=""><i class="fa fa-search"></i></button></div></form>

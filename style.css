@@ -1081,10 +1081,21 @@ header .search-bar form#searchform input[type="text"] {
   border-radius: 11px;
   border: solid 1px rgba(0, 0, 0, 0.14);
   padding: 10px 30px;
+  padding-left: 50px;
 }
 
-header .search-bar form#searchform input#searchsubmit {
-  display: none;
+header .search-bar form#searchform button#searchsubmit {
+  background: transparent;
+  border: none;
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  transform: translateY(-50%);
+}
+
+
+header .search-bar form#searchform button#searchsubmit i {
+  font-size: 25px;
 }
 
 .search-bar .search-mobile {
