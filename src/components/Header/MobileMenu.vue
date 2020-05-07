@@ -94,6 +94,8 @@
 			}
 
 			this.$el.querySelectorAll('.mobile-menu > ul > li.menu-item-has-children').forEach( ele => ele.addEventListener('click', this.clickMenuItem) );
+
+			this.$el.querySelector('.mobile-menu > ul > li.menu-item-has-children').classList.add('active');
 		}
 	};
 </script>
@@ -106,8 +108,8 @@
 	@media screen and (max-width: 1023px) {
 		.vgl-mobile-menu.active {
 			display: block;
-			padding-left: 50px;
-			padding-right: 50px;
+			padding-left: 25px;
+			padding-right: 25px;
 
 			.mobile-menu {
 
@@ -138,12 +140,16 @@
 							letter-spacing: 0.75px;
 							color: #000000;
 							text-decoration: none;
+							padding-left: 10px;
+							padding-right: 10px;
 						}
 
 						ul.sub-menu {
 							display: none;
 							padding-top: 20px;
 							padding-bottom: 20px;
+							padding-left: 10px;
+							padding-right: 10px;
 
 							&:before,
 							&:after {
@@ -192,6 +198,8 @@
 				-webkit-justify-content: space-between;
 				-moz-justify-content: space-between;
 				-ms-justify-content: space-between;
+				padding-left: 10px;
+				padding-right: 10px;
 
 				.mobile-social-icon {
 					font-size: 25px;
@@ -215,6 +223,8 @@
 				padding-top: 10px;
 				padding-bottom: 10px;
 				border-bottom: 1px solid rgba(248,177,149,.47);
+				padding-left: 10px;
+				padding-right: 10px;
 
 				.mobile-darkmode-status {
 					display: flex;
