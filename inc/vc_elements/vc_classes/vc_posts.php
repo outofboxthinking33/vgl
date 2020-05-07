@@ -238,13 +238,11 @@ class VglPosts extends WPBakeryShortCode
 					'permalink'		=> $permalink
 				);
 
-				$index++;
-
-			} else {
-
-				break;
-
 			}
+
+			$index++;
+
+			if ( $index >= $start_index + $item_count ) break;
 
 		}
 
@@ -291,8 +289,6 @@ class VglPosts extends WPBakeryShortCode
 
 		while( $query->have_posts() ) {
 
-			$index++;
-
 			$query->the_post();
 
 			if ($start_index <= $index && $index < $start_index + $count) {
@@ -324,6 +320,8 @@ class VglPosts extends WPBakeryShortCode
 				break;
 
 			}
+
+			$index++;
 
 		}
 
