@@ -157,7 +157,11 @@ if ($gradient_start_color && $gradient_end_color) {
 }
 
 $output .= '<div ' . implode( ' ', $wrapper_attributes ) . '>';
-$output .= '<div class="' . $gradientCss . '" data-gradient-start="' . $gradient_start_color . '" data-gradient-end="' . $gradient_end_color . '" style=" background-image: linear-gradient(180deg,' . $gradient_start_color . " 0%," . $gradient_end_color . " 100%" . '); position: absolute; top: 0; left: 0; right: 0; bottom: 0; top: 0; transition: all ease-in-out 1s;"></div>';
+
+if(!empty($gradient_start_color) && !empty($gradient_end_color)) {
+	$output .= '<div class="gradient-background" data-primary-bg="' . $gradient_start_color . '" data-secondary-bg="'. $gradient_end_color . '" style=" background-image: linear-gradient(180deg,' . $gradient_start_color . " 0%," . $gradient_end_color . " 100%" . '); position: absolute; top: 0; left: 0; right: 0; bottom: 0; top: 0; transition: all ease-in-out 1s;"></div>';
+}
+
 $output .= wpb_js_remove_wpautop( $content );
 $output .= '</div>';
 $output .= $after_output;

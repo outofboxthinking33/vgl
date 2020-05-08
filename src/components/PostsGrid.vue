@@ -380,6 +380,12 @@
 			box-shadow: 5px 5px 0px #000;
 			transition: all ease-in-out .2s;
 
+			&:hover {
+            	transform: translate(6px, 6px);
+                border-width: 1px;
+                box-shadow: 1px 2px 0 #000;
+            }
+
 			&.active {
 				background-color: #fff;
 			}
