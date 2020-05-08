@@ -1,191 +1,203 @@
 <template>
-	<div class="vgl-woo-product-slider vgl-container">
-		<VueSlickCarousel v-bind="settings">
-			<div v-for="product in products" :key="product.id" class="vgl-woo-product-slider-item">
-				<div class="slider-image" :style="{ 'background-image': 'url(' + product.featured_url + ')'  }"></div>
-				<div class="slider-content">
-					<p class="title">{{ product.product_name }}</p>
-					<p class="price">{{ product.currency }}{{ product.price }}</p>
-				</div>
-				<a class="add_to_cart" :href="product.shopnow_url">Shop now</a>
-			</div>
-		</VueSlickCarousel>
-	</div>
+    <div class="vgl-woo-product-slider vgl-container">
+        <VueSlickCarousel v-bind="settings">
+            <div v-for="product in products" :key="product.id" class="vgl-woo-product-slider-item">
+                <div class="slider-image" :style="{ 'background-image': 'url(' + product.featured_url + ')'  }"></div>
+                <div class="slider-content">
+                    <p class="title">{{ product.product_name }}</p>
+                    <p class="price">{{ product.currency }}{{ product.price }}</p>
+                </div>
+                <a class="add_to_cart" :href="product.shopnow_url">Shop now</a>
+            </div>
+        </VueSlickCarousel>
+    </div>
 </template>
 
 <script>
-	import VueSlickCarousel from 'vue-slick-carousel';
+    import VueSlickCarousel from 'vue-slick-carousel';
 
-	export default {
-		name: 'WooProductSlider',
-		components: {
-			VueSlickCarousel
-		},
-		props: {
-			products: {
-				type: Array,
-				required: true
-			},
-			productCount: {
-				type: Number,
-				required: true
-			},
-			desktopSlideCount: {
-				type: Number,
-				required: true
-			},
-			mobileSlideCount: {
-				type: Number,
-				required: true
-			}
-		},
-		data: function() {
-			return {
-				settings: {
-					arrows: false,
-					dots: true,
-					infinite: false,
-					slidesToScroll: 1,
-					slidesToShow: this.desktopSlideCount,
-					responsive: [
-						{
-							breakpoint: 768,
-							settings: {
-								slidesToShow: this.mobileSlideCount,
-								arrows: true,
-								dots: false
-							}
-						}
-					]
-				},
-				dotCount: 0
-			}
-		},
-		mounted: function() {
-			const dots = this.$el.querySelectorAll('.slick-dots li');
-			this.dotCount = dots.length;
-			// this.$el.querySelectorAll('.slick-dots li').setAttribute("width", "calc(100% / " + this.dotCount + ");")
-			dots.forEach( element => { element.style.width = "calc(100% / " + this.dotCount + ")"; } )
-		},
-		computed: function() {
-			return {
+    export default {
+        name: 'WooProductSlider',
+        components: {
+            VueSlickCarousel
+        },
+        props: {
+            products: {
+                type: Array,
+                required: true
+            },
+            productCount: {
+                type: Number,
+                required: true
+            },
+            desktopSlideCount: {
+                type: Number,
+                required: true
+            },
+            mobileSlideCount: {
+                type: Number,
+                required: true
+            }
+        },
+        data: function() {
+            return {
+                settings: {
+                    arrows: false,
+                    dots: true,
+                    infinite: false,
+                    slidesToScroll: 1,
+                    slidesToShow: this.desktopSlideCount,
+                    responsive: [
+                        {
+                            breakpoint: 768,
+                            settings: {
+                                slidesToShow: this.mobileSlideCount,
+                                arrows: true,
+                                dots: false
+                            }
+                        }
+                    ]
+                },
+                dotCount: 0
+            }
+        },
+        mounted: function() {
+            const dots = this.$el.querySelectorAll('.slick-dots li');
+            this.dotCount = dots.length;
+            // this.$el.querySelectorAll('.slick-dots li').setAttribute("width", "calc(100% / " + this.dotCount + ");")
+            dots.forEach( element => { element.style.width = "calc(100% / " + this.dotCount + ")"; } )
+        },
+        computed: function() {
+            return {
 
-			}
-		}
-	};
+            }
+        }
+    };
 </script>
 
 <style lang="scss">
-	.vgl-woo-product-slider {
-		
-		@media screen and (max-width: 768px) {
-			.slick-next, .slick-prev {
-				z-index: 100;
-				left: initial;
-				width: initial;
-				height: initial;
-				right: initial;
-				top: -80px;
-			}
+    .vgl-woo-product-slider {
+        
+        @media screen and (max-width: 768px) {
+            .slick-next, .slick-prev {
+                z-index: 100;
+                left: initial;
+                width: initial;
+                height: initial;
+                right: initial;
+                top: -80px;
+            }
 
-			.slick-next:before, .slick-prev:before {
-				font-family: initial;
-				color: #000;
-				font-size: 50px;
-			}
+            .slick-next:before, .slick-prev:before {
+                font-family: initial;
+                color: #000;
+                font-size: 50px;
+            }
 
-			.slick-next {
-				left: 50%;
-				transform: translateX(50%);
-			}
+            .slick-next {
+                left: 50%;
+                transform: translateX(50%);
+            }
 
-			.slick-prev {
-				right: 50%;
-				transform: translatex(-50%);
-			}
-		}
+            .slick-prev {
+                right: 50%;
+                transform: translatex(-50%);
+            }
+        }
 
-		.vgl-woo-product-slider-item {
-			padding-left: 30px;
-			padding-right: 30px;
+        .vgl-woo-product-slider-item {
+            padding-left: 30px;
+            padding-right: 30px;
 
-			.add_to_cart {
-				font-family: Lato;
-				font-size: 20px;
-				font-weight: bold;
-				background-color: #D4D6EA;
-				padding: 15px 30px;
-				display: block;
-				text-align: center;
-				width: 180px;
-				margin: 0 auto;
-				border: solid 2px #000;
-				box-shadow: 2px 5px 0px #000;
-				text-decoration: none;
-				color: #000;
-			}
+            .add_to_cart {
+                font-family: Lato;
+                font-size: 20px;
+                font-weight: 700;
+                background-color: #d4d6ea;
+                padding: 15px 30px;
+                display: block;
+                text-align: center;
+                width: 180px;
+                margin: 0 auto;
+                border: 2px solid #000;
+                -webkit-box-shadow: 2px 5px 0 #000;
+                box-shadow: 2px 5px 0 #000;
+                text-decoration: none;
+                color: #000;
+                -webkit-transition: all .2s ease-out;
+                -moz-transition: all .2s ease-out;
+                -ms-transition: all .2s ease-out;
+                -o-transition: all .2s ease-out;
+                transition: all .2s ease-out;
 
-			.slider-image {
-				padding-bottom: 100%;
-				background-position: 50%;
-				background-size: cover;
-				border-radius: 50%;
-				overflow: hidden;
-				box-shadow: 7px 7px 0px #fedb02;
-			}
+                &:hover {
+                    transform: translate(6px, 6px);
+                    border-width: 1px;
+                    box-shadow: 1px 2px 0 #000;
+                }
+            }
 
-			.slider-content {
-				height: 95px;
-				overflow-y: hidden;
+            .slider-image {
+                padding-bottom: 100%;
+                background-position: 50%;
+                background-size: cover;
+                border-radius: 50%;
+                overflow: hidden;
+                box-shadow: 7px 7px 0px #fedb02;
+            }
 
-				.title {
-					font-size: 20px;
-					font-weight: 900;
-					text-align: center;
-					margin-top: 10px;
-					margin-bottom: 0;
-					line-height: normal;
-					max-height: 50px;
-					overflow-y: hidden;
-				}
+            .slider-content {
+                height: 95px;
+                overflow-y: hidden;
 
-				.price {
-					font-size: 18px;
-					font-weight: bold;
-					text-align: center;
-					color: #424242;
-					margin-top: 0;
-					margin-bottom: 0;
-				}
-			}
-		}
+                .title {
+                    font-size: 20px;
+                    font-weight: 900;
+                    text-align: center;
+                    margin-top: 10px;
+                    margin-bottom: 0;
+                    line-height: normal;
+                    max-height: 50px;
+                    overflow-y: hidden;
+                }
 
-		.slick-slider .slick-list {
-			overflow: visible;
-		}
+                .price {
+                    font-size: 18px;
+                    font-weight: bold;
+                    text-align: center;
+                    color: #424242;
+                    margin-top: 0;
+                    margin-bottom: 0;
+                }
+            }
+        }
 
-		.slick-dots li {
-			height: 7px;
-			background-color: #a8abc9;
-			margin: 0;
-			padding: 0;
-			float: left;
-			transition: all ease-in-out .2s;
-			-webkit-transition: all ease-in-out .2s;
+        .slick-slider .slick-list {
+            overflow: visible;
+        }
 
-			button {
-				display: none;
-			}
-		}
+        .slick-dots li {
+            height: 7px;
+            background-color: #a8abc9;
+            margin: 0;
+            padding: 0;
+            float: left;
+            transition: all ease-in-out .2s;
+            -webkit-transition: all ease-in-out .2s;
 
-		.slick-dots li.slick-active {
-			background-color: #424242;
-		}
+            button {
+                display: none;
+            }
+        }
 
-		.slick-dots {
-			position: relative;
-			bottom: 0;
-			margin-top: 50px;
-		}
-	}
+        .slick-dots li.slick-active {
+            background-color: #424242;
+        }
+
+        .slick-dots {
+            position: relative;
+            bottom: 0;
+            margin-top: 50px;
+        }
+    }
 </style>
