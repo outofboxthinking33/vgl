@@ -53,27 +53,25 @@ function vgl_loadmore_blogs() {
 	global $post; 
 	$id = $_POST['data']['theID'];
 	$isNext = $_POST['data']['isNext'];
-	$isMobile = $_POST['data']['isMobile'];
+	$loadSidebarNextArticle = $_POST['data']['loadSidebarNextArticle'];
+	$data = [];
 
-	if ($isMobile == 'desktop') {
-		$sidebarItemCount = 4;
-	} else {
-		$sidebarItemCount = 2;
-	}
+	$sidebarItemCount = 1;
 
 	$post = get_post( $id, OBJECT );
+
 	setup_postdata( $post );
 
-	if ( $isNext == 'true' ) {
+	$post = get_next_post();
 
-		$post = get_next_post();
+	setup_postdata( $post );
 
-		if ($post == Null ) {
-			print_r(json_encode(array( 'article' => '', 'sidebar' => '', 'status' => 'fail' )));
-		}
-
-		setup_postdata($post);
-	}
+	$data[] = array(
+		'id'			=> get_the_ID(),
+		'featured_url'	=> get_the_post_thumbnail_url( $post, 'thumbnail' ),
+		'title'			=> get_the_title( $post ),
+		'link'			=> get_the_permalink( $post )
+	);
 
 	ob_start();
 
@@ -135,46 +133,30 @@ function vgl_loadmore_blogs() {
 	$html = ob_get_contents();
 	ob_get_clean();
 
-	global $post;
+	$post = get_next_post();
 
-	$data = array();
+	setup_postdata($post);
 
 	$data[] = array(
 		'id'			=> get_the_ID(),
 		'featured_url'	=> get_the_post_thumbnail_url( $post, 'thumbnail' ),
-		'title'			=> get_the_title( $post )
+		'title'			=> get_the_title( $post ),
+		'link'			=> get_the_permalink( $post )
 	);
-
-
-	for ($i=0; $i < $sidebarItemCount - 1; $i++) { 
-
-		$post = get_next_post();
-
-		setup_postdata($post);
-
-		$data[] = array(
-			'id'			=> get_the_ID(),
-			'featured_url'	=> get_the_post_thumbnail_url( $post, 'thumbnail' ),
-			'title'			=> get_the_title( $post )
-		);
-
-	}
 	
 	wp_reset_postdata();
 
 	$sidebar = '';
-	foreach ($data as $key => $value) {
-		$active = $key == 0 ? 'active' : 'last';
+	for ($i=0; $i < count($data); $i++) { 
+		$sidebar .= '<div data-id="' . $data[$i]['id'] . '" data-link=['. $data[$i]['link'] . '] class="blog-post-individual">';
 
-		$sidebar .= '<div data-id="' . $value['id'] . '" class="blog-post-individual ' . $active . '">';
+		$sidebar .= '<div class="blog-post-individual-featuredimg" style="background-image:url(' . $data[$i]['featured_url'] . ')"></div>';
 
-		$sidebar .= '<div class="blog-post-individual-featuredimg" style="background-image:url(' . $value['featured_url'] . ')"></div>';
-
-		$sidebar .= '<div class="blog-post-individual-title">' . $value['title'] . '</div>'; 
+		$sidebar .= '<div class="blog-post-individual-title">' . $data[$i]['title'] . '</div>'; 
 
 		$sidebar .= '</div>';
 	}
 
-	print_r(json_encode(array( 'article' => $html, 'sidebar' => $sidebar, 'status' => 'ok' )));
+	print_r(json_encode(array( 'article' => $html, 'sidebar' => $sidebar, 'status' => 'ok', 'isSidebarItem' => $loadSidebarNextArticle, 'currentPostId' => $data[0]['id'] )));
 	wp_die();
 }
