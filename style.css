@@ -696,17 +696,18 @@ header .subscription-form .input-submit input {
   }
 
   .vglstories-title h2 {
-    font-size: 2.5rem;
+    font-size: 3.4rem;
     line-height: 3.6rem;
+    max-width: 200px;
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .vglstories-title h2 {
-    font-size: 3rem;
-    line-height: 3.6rem;
-    max-width: 50%;
-    top: 10%;
+    font-size: 4.5rem;
+    line-height: 4.6rem;
+    max-width: 300px;
+    top: 5%;
     left: 5%;
   }
 } 
