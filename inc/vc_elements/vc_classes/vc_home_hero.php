@@ -174,14 +174,22 @@ class vglHomeHero extends WPBakeryShortCode
 
 				$permalink = get_the_permalink();
 
+				$slideColor = false;
+				if(get_field('slider_bar_color', $post->ID)) {
+					$slideColor = get_field('slider_bar_color', $post->ID);
+				}
+
 				$data[] = array(
 					'id'			=> $post->ID,
 					'featured_url'	=> $featured_url,
 					'title'			=> $title,
 					'authorName'	=> $authorName,
 					'category'		=> $category,
-					'permalink'		=> $permalink
+					'permalink'		=> $permalink,
+					'slideColor'	=> $slideColor ? $slideColor : ''
 				);
+
+
 
 			}
 

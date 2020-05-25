@@ -8,8 +8,9 @@
                 </div>
                 <div :class="['vgl-post-info', 'index' + index]">
                     <a :href="post.permalink"><h3 class="title" v-html="post.title"></h3></a>
-                    <span><b>by</b> {{ post.authorName }} | {{ post.category }}</span>
-                    <a class="read_more" :href="post.permalink">READ MORE</a>
+                    <div class="vgl-post-info__excerpt"><span>{{ post.excerpt }}</span></div>
+                    <span class="vgl-post-info__author"><b>by</b> {{ post.authorName }} | {{ post.category }}</span>
+                    <a class="vgl-post-info__more read_more" :href="post.permalink">READ MORE</a>
                 </div>
             </div>
         </masonry>
@@ -20,7 +21,7 @@
                 </div>
                 <div class="post-info">
                     <a :href="post.permalink"><p class="title" v-html="post.title"></p></a>
-                    <p class="excerpt"></p>
+                    <div class="vgl-post-info__excerpt"><span>{{ post.excerpt }}</span></div>
                     <span class="name_category"><b>by</b> {{ post.authorName }} | {{ post.category }}</span>
                     <a class="read_more" :href="post.permalink">READ MORE</a>
                 </div>
@@ -145,6 +146,8 @@
                     background-size: cover;
                     background-repeat: no-repeat;
                     background-position: center;
+                    transition: all 1.5s;
+                    -webkit-transition: all 1.5s;
 
                     a {
                         position: absolute;
@@ -152,6 +155,25 @@
                         left: 0;
                         right: 0;
                         bottom: 0;
+                    }
+
+                    &:after {
+                        content: "";
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: black;
+                        opacity: 0;
+                        transition: all 1.5s;
+                        -webkit-transition: all 1.5s;
+                    }
+
+                    &:hover {
+                        &:after {
+                            opacity: 0.5;
+                        }
                     }
                 }
 
@@ -225,16 +247,27 @@
 
                 > a.read_more {
                     font-family: Lato;
-                    font-size: 14px;
-                    font-weight: 300;
+                    font-size: 16px;
+                    line-height: 19px;
+                    font-weight: 400;
                     font-stretch: normal;
                     font-style: normal;
                     line-height: normal;
                     letter-spacing: normal;
-                    color: #424242;
+                    color: #000000;
                     display: inline-block;
                     margin-top: 13px;
                     text-decoration: underline;
+                }
+
+                .vgl-post-info__excerpt {
+                    margin: 12px 0px;
+                    font-size: 16px;
+                    line-height: 19px;
+
+                    span, b, p {
+                      font-family: Muli;
+                    }
                 }
             }
         }
@@ -242,6 +275,8 @@
 
     .vgl-posts.list {
         position: relative;
+        margin-left: 15px;
+        margin-right: 15px;
 
         .posts-heading {
             font-size: 30px;
@@ -291,6 +326,8 @@
                     background-size: cover;
                     background-repeat: no-repeat;
                     background-position: center;
+                    transition: all 1.5s;
+                    -webkit-transition: all 1.5s;
 
                     a {
                         position: absolute;
@@ -298,6 +335,23 @@
                         left: 0;
                         right: 0;
                         bottom: 0;
+                    }
+
+                    &:after {
+                        content: "";
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: black;
+                        opacity: 0;
+                    }
+
+                    &:hover {
+                        &:after {
+                            opacity: 0.5;
+                        }
                     }
                 }
 
@@ -354,6 +408,10 @@
                     letter-spacing: normal;
                     color: #000000;
                 }
+
+                .vgl-post-info__excerpt {
+                    margin: 10px 0px;
+                }
             }
         }
     }
@@ -387,7 +445,7 @@
             }
 
             &.active {
-                background-color: #fff;
+
             }
         }
     }

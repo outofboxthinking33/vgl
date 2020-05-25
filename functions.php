@@ -32,6 +32,10 @@ require_once(get_theme_file_path('/inc/widgets/mobile_menu_widget.php'));
 /* include post custom fields */
 require_once(get_theme_file_path('/inc/custom_fields/single_blog_customfield.php'));
 
+/**
+ * Custom template tags for the theme.
+ */
+require_once(get_theme_file_path('/inc/template-tags.php'));
 
 // Remove WP Version From Styles	
 add_filter( 'style_loader_src', 'sdt_remove_ver_css_js', 9999 );
@@ -62,7 +66,7 @@ function vgl_loadmore_blogs() {
 
 	setup_postdata( $post );
 
-	$post = get_next_post();
+	$post = get_previous_post();
 
 	setup_postdata( $post );
 
@@ -79,17 +83,19 @@ function vgl_loadmore_blogs() {
 
 	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> data-id="<?php the_ID(); ?>">
 		<header class="entry-header">
-			<?php 
+			<?php
+				global $post;
+
+			    echo do_shortcode('[rt_reading_time label="LOOK" postfix="MINUTE READ" postfix_singular="MINUTE READ"]');
 
 				the_title( '<h1 class="entry-title">', '</h1>' );
 
 				?>
 
-				<div class="single-post-header">
+				<div class="single-post-header" data-post-color="<?php echo get_field('slider_bar_color', $post->ID); ?>">
 					<div class="featured-image"><img src="<?php echo get_the_post_thumbnail_url( $post, 'full' ); ?>"></div>
 					<div class="post-info">
-						<?php 
-							global $post;
+						<?php						
 
 							$authorID = get_post_field( 'post_author', $post->ID );
 
@@ -133,7 +139,7 @@ function vgl_loadmore_blogs() {
 	$html = ob_get_contents();
 	ob_get_clean();
 
-	$post = get_next_post();
+	$post = get_previous_post();
 
 	setup_postdata($post);
 
@@ -160,3 +166,9 @@ function vgl_loadmore_blogs() {
 	print_r(json_encode(array( 'article' => $html, 'sidebar' => $sidebar, 'status' => 'ok', 'isSidebarItem' => $loadSidebarNextArticle, 'currentPostId' => $data[0]['id'] )));
 	wp_die();
 }
+
+function tn_custom_excerpt_length( $length ) {
+	return 15;
+}
+
+add_filter( 'excerpt_length', 'tn_custom_excerpt_length', 999 );

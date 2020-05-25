@@ -76,6 +76,14 @@
 </script>
 
 <style lang="scss">
+    .woo-slider-heading {
+        text-align: center;
+    }
+
+    .woo-slider-subheading {
+        text-align: center;
+    }
+
     .vgl-woo-product-slider {
         
         @media screen and (max-width: 768px) {
@@ -140,10 +148,15 @@
             .slider-image {
                 padding-bottom: 100%;
                 background-position: 50%;
-                background-size: cover;
+                background-size: 100%;
                 border-radius: 50%;
                 overflow: hidden;
                 box-shadow: 7px 7px 0px #fedb02;
+                -webkit-transition: all .5s ease-out;
+                -moz-transition: all .5s ease-out;
+                -ms-transition: all .5s ease-out;
+                -o-transition: all .5s ease-out;
+                transition: all .5s ease-out;
             }
 
             .slider-content {
@@ -170,10 +183,17 @@
                     margin-bottom: 0;
                 }
             }
+
+            &:hover {
+                .slider-image {
+                    background-size: 110%;
+                }
+            }
         }
 
         .slick-slider .slick-list {
-            overflow: visible;
+            overflow: auto;
+            padding: 15px 0px;
         }
 
         .slick-dots li {

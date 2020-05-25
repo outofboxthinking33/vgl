@@ -31,22 +31,38 @@ if ( !class_exists('vcElements') ) {
 			}
 
 			$attrs = array(
-				array(
-					'type'			=> 'colorpicker',
-					'heading'		=> 'Background Gradient Start Color',
-					'param_name'	=> 'gradient_start_color',
-					'group'			=> 'Additional Settings'
+				'vc_row' => array(
+					array(
+						'type'			=> 'colorpicker',
+						'heading'		=> 'Background Gradient Start Color',
+						'param_name'	=> 'gradient_start_color',
+						'group'			=> 'Additional Settings'
+					),
+					array(
+						'type'			=> 'colorpicker',
+						'heading'		=> 'Background Gradient End Color test',
+						'param_name'	=> 'gradient_end_color',
+						'group'			=> 'Additional Settings'
+					)
 				),
-				array(
-					'type'			=> 'colorpicker',
-					'heading'		=> 'Background Gradient End Color',
-					'param_name'	=> 'gradient_end_color',
-					'group'			=> 'Additional Settings'
+				'vc_basic_grid' => array(
+					array(
+						'type'			=> 'colorpicker',
+						'heading'		=> 'Grid Title',
+						'param_name'	=> 'grid_title',
+						'group'			=> 'General'
+					),
+					array(
+						'type'			=> 'checkbox',
+						'heading'		=> __( 'Show post title', 'js_composer' ),
+						'param_name'	=> 'show_title',
+						'group'			=> __( 'Item Design', 'js_composer' )
+					)
 				)
 			);
 
-			foreach ($attrs as $attr) {
-				vc_add_param('vc_row', $attr);	
+			foreach ($attrs as $identifier => $attr) {
+				vc_add_params($identifier, $attr);	
 			}
 		}
 

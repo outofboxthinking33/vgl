@@ -2,8 +2,35 @@ jQuery(document).ready(function($){
 	jQuery('#searchform input[type="text"]').attr("placeholder", "What you are looking for?");
 	window.load_more_poastAajx = true;
 
+	const checkFixedHeader = () => {
+		// change header color on scroll
+		if($(window).scrollTop() > 10) {
+	      $('.header').addClass('filled');
+	      $('body').addClass('scrolled');
+
+	      // handle border overlay
+	      var mainPostColor = $('[data-post-color]').last().data('post-color');
+	      $('header.filled .main-header').css('border-color', mainPostColor);
+	    } else {
+	      //remove the background property so it comes transparent again
+	      $('.header').removeClass('filled');
+	      $('body').removeClass('scrolled');
+	      $('header .main-header').css('border-color', 'transparent');
+	    }
+
+	    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+	      	$('body').addClass('bottom');
+	   	} else {
+	   	    $('body').removeClass('bottom');
+	   	} 	
+	}
+
+	checkFixedHeader();
+
 	/* autoload next post */
 	$(window).on('scroll', function(e) {
+        checkFixedHeader();
+
 		// Deal auto load on screen wider than 1024px width
 		if ( $('.single-blog-container').length > 0 && $(window).width() >= 1024) {
 			// At the End of blogs
@@ -47,6 +74,7 @@ jQuery(document).ready(function($){
 							var res = JSON.parse(response); 
 
 							if (res.status == 'ok') {
+								$('.main-content').append('<div class="zigzag"></div>'); 
 								$('.main-content').append(res.article); 
 								$('.lightening-loading').hide(); 
 

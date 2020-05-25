@@ -195,7 +195,7 @@
 		}
 
 		.slick-slider .slick-list {
-			overflow: visible;
+			overflow: hidden;
 		}
 
 		.slick-dots li {

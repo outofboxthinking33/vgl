@@ -3,6 +3,8 @@
 		<?php 
 		
 		if ( is_single() ) :
+            
+            global $post;
 
 			echo do_shortcode('[rt_reading_time label="LOOK" postfix="MINUTE READ" postfix_singular="MINUTE READ"]');
 
@@ -10,11 +12,10 @@
 
 			?>
 
-			<div class="single-post-header">
+			<div class="single-post-header" data-post-color="<?php echo get_field('slider_bar_color', $post->ID); ?>">
 				<div class="featured-image"><img src="<?php echo get_the_post_thumbnail_url( $post, 'full' ); ?>"></div>
 				<div class="post-info">
-					<?php 
-						global $post;
+					<?php					
 
 						$authorID = get_post_field( 'post_author', $post->ID );
 

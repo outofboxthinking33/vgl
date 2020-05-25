@@ -136,13 +136,16 @@ class vglHotPosts extends WPBakeryShortCode
 
 			$authorName = get_the_author_meta( 'user_nicename', $authorID );
 
+			$excerpt = html_entity_decode(get_the_excerpt($hot_post));
+
 			$data[] = array(
 				'id'			=> $hot_post,
 				'featured_url'	=> $featured_url,
 				'title'			=> $title,
 				'category'		=> $category,
 				'permalink'		=> $permalink,
-				'authorName'	=> $authorName
+				'authorName'	=> $authorName,
+				'excerpt'		=> $excerpt
 			);
 		}
 

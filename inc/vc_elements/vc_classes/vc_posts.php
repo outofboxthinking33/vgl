@@ -229,13 +229,16 @@ class VglPosts extends WPBakeryShortCode
 
 				$permalink = get_the_permalink();
 
+				$excerpt = html_entity_decode(get_the_excerpt($hot_post));
+
 				$data[] = array(
 					'id'			=> $post->ID,
 					'featured_url'	=> $featured_url,
 					'title'			=> $title,
 					'authorName'	=> $authorName,
 					'category'		=> $category,
-					'permalink'		=> $permalink
+					'permalink'		=> $permalink,
+					'excerpt'		=> $excerpt
 				);
 
 			}
@@ -307,11 +310,14 @@ class VglPosts extends WPBakeryShortCode
 
 				$permalink = get_the_permalink();
 
+				$excerpt = html_entity_decode(get_the_excerpt($hot_post));
+
 				$data[] = array(
 					'id'			=> $post->ID,
 					'featured_url'	=> $featured_url,
 					'title'			=> $title,
 					'authorName'	=> $authorName,
+					'excerpt'		=> $excerpt,
 					'category'		=> $category,
 					'permalink'		=> $permalink
 				);
