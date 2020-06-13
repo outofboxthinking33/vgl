@@ -1,4 +1,4 @@
-<div class="blog-post-sidebar">
+<div class="blog-post-sidebar sticky_block">
 	<?php 
 		global $post;
 
@@ -19,6 +19,8 @@
 
 	<?php 
 
+	get_next_post();
+
 	for ($i=0; $i < 3; $i++) { 
 
 		$post = get_next_post();
@@ -38,23 +40,5 @@
 
 	<?php
 	} 
-	?>
-
-	<script type="text/javascript">
-		jQuery(document).ready(function($) {
-			if ($(window).width() < 1024) {
-				$('.blog-post-individual').eq(1).remove();
-				$('.blog-post-individual').eq(2).remove();
-				$('.blog-post-individual').eq(2).remove();
-			} else {
-				$('.blog-post-individual.prev').remove();
-			}
-		});
-	</script>
-
-	<?php
-
-	wp_reset_postdata();
-
 	?>
 </div>

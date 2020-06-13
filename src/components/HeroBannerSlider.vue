@@ -1,7 +1,7 @@
 <template>
     <div class="vgl-home-hero-slider vgl-container" :style="{ '--bordder-color': borderColor, '--border-width': borderWidth }">
         <div class="vgl-slider-item-border-bottom"></div>
-        <VueSlickCarousel :slidesToShow="1" :slidesToScroll="1" :speed="3000" :autoplay="true" :infinite="true" :dots="true" @afterChange="onSlideChange">
+        <VueSlickCarousel :slidesToShow="1" :slidesToScroll="1" :speed="2000" :autoplay="true" :infinite="true" :dots="true" @afterChange="onSlideChange">
             <div v-for="post in posts" :key="post.id">
                 <div class="vgl-slider-item" :data-bcolor="post.slideColor" v-bind:style="{ 'background-image': 'url(' + post.featured_url + ')' }">
                     <div class="vgl-slider-info">

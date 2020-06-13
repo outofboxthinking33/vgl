@@ -1,7 +1,7 @@
 <?php
 
 function front_enqueue_scripts() {
-
+	
 	// enqueue style.css
 	wp_enqueue_style( 'style', get_stylesheet_uri() );
 
@@ -117,20 +117,24 @@ function vgl_loadmore_blogs() {
 
 			?>
 		</header>
+		<div class="entry-main">
+			<div class="entry-content">
+				<?php
+					the_content( sprintf(
+						/* translators: %s: Name of current post. */
+						wp_kses( __( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'bluemedora' ), array( 'span' => array( 'class' => array() ) ) ),
+						the_title( '<span class="screen-reader-text">"', '"</span>', false )
+					) );
 
-		<div class="entry-content">
-			<?php
-				the_content( sprintf(
-					/* translators: %s: Name of current post. */
-					wp_kses( __( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'bluemedora' ), array( 'span' => array( 'class' => array() ) ) ),
-					the_title( '<span class="screen-reader-text">"', '"</span>', false )
-				) );
-
-				wp_link_pages( array(
-					'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'bluemedora' ),
-					'after'  => '</div>',
-				) );
-			?>
+					wp_link_pages( array(
+						'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'bluemedora' ),
+						'after'  => '</div>',
+					) );
+				?>
+			</div>
+			<div class="entry-sidebar">
+				<?php get_template_part( 'template-parts/blog', 'sidebar' ); ?>
+			</div>
 		</div>
 	</article>
 

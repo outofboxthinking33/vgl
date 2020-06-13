@@ -10,6 +10,43 @@
 	</script>
 
     <?php wp_head(); ?>
+
+    <?php if(is_front_page()): ?>
+    	<script src="<https://htlbid.com/v3/verygoodlight.com/htlbid.js>"></script>
+		<script>
+			var htlbid = htlbid || {};
+			htlbid.cmd = htlbid.cmd || [];
+
+			htlbid.cmd.push(function() {
+		            // Change layout depending on the query string variable. 
+		            let params = new URLSearchParams(location.search);
+		            if (params.get('environment') === 'dev') {
+		                htlbid.layout('homepage_redesign');
+		                htlbid.setTargeting('is_testing', 'yes'); // required for testing.
+		            } else {
+		                htlbid.layout(homepage);
+		            }
+		        });
+		</script>
+    <?php elseif(is_home()): ?>
+	    <script src="<https://htlbid.com/v3/verygoodlight.com/htlbid.js>"></script>
+		<script>
+			var htlbid = htlbid || {};
+			htlbid.cmd = htlbid.cmd || [];
+
+			htlbid.cmd.push(function() {
+		            // Change layout depending on the query string variable. 
+		            let params = new URLSearchParams(location.search);
+		            if (params.get('environment') === 'dev') {
+		                htlbid.layout('post_redesign');
+		                htlbid.setTargeting('is_testing', 'yes'); // required for testing.
+		            } else {
+		                htlbid.layout(post);
+		            }
+		            // rest of targeting settings. 
+		        });
+		</script>
+	<?php endif; ?>
 </head>
 
 <body <?php body_class(); ?>>
@@ -18,12 +55,12 @@
 			<div class="main-header">
 				<div class="search-bar">
 					<?php get_search_form(array( 'echo' => true )) ?>
-					<div class="search-mobile">
+				</div>
+				<a class="search-mobile">
 						<svg xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 24 24">
   <path d="M15.853 16.56A9.458 9.458 0 019.5 19C4.257 19 0 14.743 0 9.5S4.257 0 9.5 0 19 4.257 19 9.5c0 2.442-.923 4.67-2.44 6.353l7.44 7.44-.707.707-7.44-7.44zM9.5 1C14.191 1 18 4.809 18 9.5S14.191 18 9.5 18 1 14.191 1 9.5 4.809 1 9.5 1z"/>
 </svg>
-					</div>
-				</div>
+				</a>
 				<div class="logo">
 					<?php 
 						$logo_id = vgl_get_theme_option('logo_id');
@@ -35,7 +72,7 @@
 				<?php if ( vgl_get_theme_option('menu_style') == 'rectangle_menu' ): ?>
 				<rectangle-menu menu-style="<?php echo vgl_get_theme_option('menu_style') ?>">
 					<template v-slot:menu>
-						<?php echo wp_nav_menu( array( 'menu' => '3', 'menu_class' => '', 'container' => 'ul', 'depth' => 2 ) ); ?>
+						<?php echo wp_nav_menu( array( 'menu' => '22196', 'menu_class' => '', 'container' => 'ul', 'depth' => 2 ) ); ?>
 					</template>
 				</rectangle-menu>
 				<?php else: ?> 
@@ -50,7 +87,7 @@
 				?>
 				<mobile-menu dark-mode-active-icon="<?php echo wp_get_attachment_image_src( $darkModeActiveIcon, 'full' )[0]; ?>" dark-mode-deactive-icon="<?php echo wp_get_attachment_image_src( $darkModeDeactiveIcon, 'full' )[0]; ?>">
 					<template v-slot:mobile-menu>
-						<?php echo wp_nav_menu( array( 'menu' => '3', 'menu_class' => '', 'container' => 'ul', 'depth' => 2 ) ); ?>
+						<?php echo wp_nav_menu( array( 'menu' => '22196', 'menu_class' => '', 'container' => 'ul', 'depth' => 2 ) ); ?>
 					</template>
 					<template v-slot:mobile-social>
 						<a class="mobile-social-icon" href="<?php vgl_get_theme_option('mobile_social_facebook'); ?>"><i class="fa fa-facebook" aria-hidden="true"></i></a>

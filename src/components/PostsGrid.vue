@@ -9,7 +9,7 @@
                 <div :class="['vgl-post-info', 'index' + index]">
                     <a :href="post.permalink"><h3 class="title" v-html="post.title"></h3></a>
                     <div class="vgl-post-info__excerpt"><span>{{ post.excerpt }}</span></div>
-                    <span class="vgl-post-info__author"><b>by</b> {{ post.authorName }} | {{ post.category }}</span>
+                    <span class="vgl-post-info__author"><b>by</b> <span class="author">{{ post.authorName }}</span> | <span class="category">{{ post.category }}</span></span>
                     <a class="vgl-post-info__more read_more" :href="post.permalink">READ MORE</a>
                 </div>
             </div>
@@ -22,7 +22,7 @@
                 <div class="post-info">
                     <a :href="post.permalink"><p class="title" v-html="post.title"></p></a>
                     <div class="vgl-post-info__excerpt"><span>{{ post.excerpt }}</span></div>
-                    <span class="name_category"><b>by</b> {{ post.authorName }} | {{ post.category }}</span>
+                    <span class="name_category"><b>by</b> <span class="author">{{ post.authorName }}</span> | <span class="category">{{ post.category }}</span></span>
                     <a class="read_more" :href="post.permalink">READ MORE</a>
                 </div>
             </div>
@@ -155,6 +155,7 @@
                         left: 0;
                         right: 0;
                         bottom: 0;
+                        z-index: 1;
                     }
 
                     &:after {
@@ -208,6 +209,22 @@
             &::after {
                 content: none;
                 display: none;
+            }
+
+            .vgl-post-info__author {
+                b {
+                    color: #000;
+                    font-weight: normal;
+                }
+
+                .author {
+                    text-transform: capitalize;
+                    color: #424242;
+                }
+
+                .category {
+                    text-transform: uppercase;
+                }
             }
 
             .vgl-post-info {
@@ -270,6 +287,14 @@
                     }
                 }
             }
+
+            @media screen and (max-width: 1023px) {
+                margin-bottom: 50px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            margin-top: 69px;
         }
     }
 
@@ -279,17 +304,16 @@
         margin-right: 15px;
 
         .posts-heading {
-            font-size: 30px;
-            font-weight: bold;
+            font-size: 42px;
+            font-weight: normal;
             font-stretch: normal;
             font-style: normal;
             line-height: 1.37;
             letter-spacing: normal;
             color: #000000;
-            position: absolute;
+            position: relative;
+            margin-bottom: 30px;
             z-index: 100;
-            transform: rotate(-90deg) translate(-100%,-100%);
-            transform-origin: top left;
             top: 0;
             left: 0;
 
@@ -301,7 +325,7 @@
                 font-size: 42px;
                 transform: none;
                 text-align: center;
-                margin-bottom: 50px;
+                margin-bottom: 40px;
             }
         }
         
@@ -335,6 +359,7 @@
                         left: 0;
                         right: 0;
                         bottom: 0;
+                        z-index: 1;
                     }
 
                     &:after {
@@ -342,7 +367,7 @@
                         position: absolute;
                         top: 0;
                         left: 0;
-                        width: 100%;
+                        width: calc(100% - 15px);
                         height: 100%;
                         background: black;
                         opacity: 0;
@@ -367,13 +392,6 @@
                 float: left;
                 padding-left: 15px;
 
-                @media screen and (max-width: 768px) {
-                    width: 100%;
-                    float: none;
-                    padding-left: 0;
-                    padding-top: 30px;
-                }
-
                 .title {
                     font-size: 28px;
                     font-weight: 800;
@@ -396,28 +414,72 @@
                     color: #424242;
                     display: block;
                     margin-top: 10px;
-                    margin-bottom: 30px;
+                    margin-bottom: 28px;
+
+                    b {
+                        color: #000;
+                    }
+
+                    .author {
+                        text-transform: capitalize;
+                        color: #424242;
+                    }
+
+                    .category {
+                        text-transform: uppercase;
+                    }
                 }
 
-                > a {
+                .read_more {
                     font-size: 16px;
-                    font-weight: 700;
+                    font-weight: normal;
                     font-stretch: normal;
                     font-style: normal;
                     line-height: normal;
                     letter-spacing: normal;
                     color: #000000;
+                    text-transform: uppercase;
+                    text-decoration: underline;
                 }
 
                 .vgl-post-info__excerpt {
                     margin: 10px 0px;
                 }
+
+                @media screen and (max-width: 768px) {
+                    width: 100%;
+                    float: none;
+                    padding-left: 0;
+                    padding-top: 10px;
+
+                    .name_category {
+                        margin-bottom: 28px;
+                    }
+
+                    .read_more {
+                        font-weight: 400;
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            position: relative;
+            padding-left: 0px;
+            padding-right: 0px;
+            margin-right: -30px;
+            margin-left: 0px;
+
+            .vgl-post {
+                margin-bottom: 60px;
             }
         }
     }
 
     .vgl-posts {
         .vgl-loadmorebtn {
+            position: relative;
             font-family: SportingGrotesque;
             font-size: 24px;
             font-weight: normal;
@@ -437,6 +499,7 @@
             max-width: 400px;
             box-shadow: 5px 5px 0px #000;
             transition: all ease-in-out .2s;
+            left: 30%;
 
             &:hover {
                 transform: translate(6px, 6px);
@@ -446,6 +509,20 @@
 
             &.active {
 
+            }
+        }
+
+        @media screen and (max-width: 1023px) {
+            .vgl-loadmorebtn {
+                left: 33%;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .vgl-loadmorebtn {
+                left: 0;
+                right: 0;
+                margin: 0 auto;
             }
         }
     }

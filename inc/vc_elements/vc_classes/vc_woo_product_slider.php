@@ -59,7 +59,8 @@ class vglWooProductSlider extends WPBakeryShortCode
 	    				'value'					=> array(
 	    					'Title'				=> 'title',
 	    					'Date'				=> 'date',
-	    					'ID'				=> 'id'
+	    					'ID'				=> 'id',
+	    					'Manual'			=> 'menu_order'
 	    				),
 	    				'save_always'			=> true,
 	    				'group'					=> 'VGL'
@@ -117,8 +118,8 @@ class vglWooProductSlider extends WPBakeryShortCode
 				'post_type'					=> 'product',
 				'post_status'				=> 'publish',
 				'posts_per_page'			=> $product_count,
-				'order'						=> $order,
-				'order_by'					=> $order_by
+				'order_by'					=> $order_by,
+				'order'						=> $order
 			);
 
 		$query = new WP_Query($args);
@@ -143,11 +144,11 @@ class vglWooProductSlider extends WPBakeryShortCode
 
 			$featured_url = get_the_post_thumbnail_url( $post, 'full' );
 
-			$shop_now_url = get_field('custom_add_to_cart', $post->ID);
+			$shop_now_url = $product->add_to_cart_url();
 
 			$data[] = array(
 				'id'			=> $post->ID,
-				'price'			=> $price['sale_price'],
+				'price'			=> $price['sale_price'] ? $price['sale_price'] : $price['price'],
 				'currency'		=> get_woocommerce_currency_symbol(),
 				'product_name'	=> htmlentities($product_name, ENT_QUOTES),
 				'featured_url'	=> $featured_url,

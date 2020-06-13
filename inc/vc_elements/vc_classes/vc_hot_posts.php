@@ -77,6 +77,13 @@ class vglHotPosts extends WPBakeryShortCode
 	    				),
 	    				'param_name'	=> 'post_images',
 	    				'group'			=> 'VGL'
+	    			),
+	    			array(
+	    				'type'			=> 'textfield',
+	    				'heading'		=> 'Exclude posts [comma separated list]',
+	    				'param_name'	=> 'exclude_posts',
+	    				'default'		=> '',
+	    				'group'			=> 'VGL'
 	    			)
 	    		)
 	    	)	
@@ -89,12 +96,13 @@ class vglHotPosts extends WPBakeryShortCode
 		extract(
 			shortcode_atts(
 				array(
-					'vgl_title'					=> '',
+					'vgl_title'				=> '',
 					'columns'				=> '1',
 					'hot_posts' 			=> '',
 					'custom_css'			=> '',
 					'is_custom_image'		=> '',
-					'post_images'			=> ''
+					'post_images'			=> '',
+					'exclude_posts'			=> ''
 				),
 				$atts
 			)
@@ -134,7 +142,7 @@ class vglHotPosts extends WPBakeryShortCode
 
 			$authorID = get_post_field( 'post_author', $hot_post );
 
-			$authorName = get_the_author_meta( 'user_nicename', $authorID );
+			$authorName = get_the_author_meta( 'display_name', $authorID );
 
 			$excerpt = html_entity_decode(get_the_excerpt($hot_post));
 

@@ -5,7 +5,7 @@
             <div v-for="post in posts" :key="post.id" :class="[{ 'col-full': colCount == 1, 'col-half': colCount == 2, 'col-one-third': colCount == 3, 'col-one-fourth': colCount == 4, 'col-one-fifth': colCount == 5 }, 'vgl-hot-post']">
                 <a :href="post.permalink"><img :src="post.featured_url"></a>
                 <div>
-                    <span><b>by</b> {{ post.authorName }} | {{ post.category }}</span>
+                    <span><b>by</b> <span class="author">{{ post.authorName }}</span> | <span class="category">{{ post.category }}</span></span>
                     <a :href="post.permalink"><p>{{ post.title }}</p></a>
                 </div>
             </div>
@@ -125,6 +125,9 @@
     @media screen and (max-width: 1023px) {
         .vgl-hot-posts .vgl-hot-post {
             width: 100%;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            padding-top: 5px;
         }
 
         .vgl-hot-post-title {
@@ -135,5 +138,30 @@
             padding-left: 15px;
             padding-right: 15px;
         }
+
+        .vgl-hot-posts .vgl-content-wrapper {
+            flex-direction: column;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .vgl-hot-post-title {
+            padding: 0px;
+
+            .vgl-hot-posts .vgl-hot-post {
+                width: 100%;
+                margin-top: 13px;
+                margin-bottom: 13px;
+                padding-top: 5px;
+                padding-left: 0px;
+                padding-right: 0px;
+                margin: 15px 0px;
+
+                &:last-child {
+                    margin-bottom: 0px;
+                }
+            }
+        }
+
     }
 </style>

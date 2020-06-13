@@ -56,6 +56,16 @@ class VglPosts extends WPBakeryShortCode
 	    			),
 	    			array(
 	    				'type'			=> 'dropdown',
+	    				'heading'		=> 'Source',
+	    				'param_name'	=> 'source',
+	    				'value'			=> array(
+	    					'All Posts'		=> '',
+	    					'Reviews'		=> 'reviews',
+	    				),
+	    				'group'			=> 'VGL'
+	    			),
+	    			array(
+	    				'type'			=> 'dropdown',
 	    				'heading'		=> 'Columns',
 	    				'param_name'	=> 'columns',
 	    				'value'			=> array(
@@ -156,6 +166,13 @@ class VglPosts extends WPBakeryShortCode
 	    				'group'					=> 'VGL'
 	    			),
 	    			array(
+	    				'type'					=> 'textfield',
+	    				'heading'				=> 'Exclude posts [comma separated list]',
+	    				'param_name'			=> 'exclude_posts',
+	    				'default'				=> '',
+	    				'group'					=> 'VGL'
+	    			),
+	    			array(
 	    				'type'					=> 'css_editor',
 	    				'heading'				=> 'CSS',
 	    				'param_name'			=> 'custom_css',
@@ -173,6 +190,7 @@ class VglPosts extends WPBakeryShortCode
 				array(
 					'type'					=> 'slider',
 					'style' 				=> '',
+					'source'				=> '',
 					'columns'				=> 1,
 					'heading'				=> '',
 					'desktop_slider_show' 	=> '4',
@@ -183,6 +201,7 @@ class VglPosts extends WPBakeryShortCode
 					'order_by'				=> 'date',
 					'show_loadmore'			=> '',
 					'loadmore_text'			=> '',
+					'exclude_posts'			=> '',
 					'custom_css'			=> ''
 				),
 				$atts
@@ -193,6 +212,8 @@ class VglPosts extends WPBakeryShortCode
 
 		$hot_posts = explode(',', $hot_posts);
 
+		$excluded_posts = explode(',', $exclude_posts);
+
 		ob_start();
 
 		$args = array(
@@ -201,7 +222,12 @@ class VglPosts extends WPBakeryShortCode
 				'posts_per_page'			=> -1,
 				'order'						=> $order,
 				'order_by'					=> $order_by,
+				'post__not_in' 				=> $excluded_posts ? $excluded_posts : []
 			);
+
+		if($source == 'reviews') {
+			$args['tag'] = ['reviews', 'review'];
+		}
 
 		$query = new WP_Query($args);
 
@@ -223,7 +249,7 @@ class VglPosts extends WPBakeryShortCode
 
 				$authorID = get_post_field( 'post_author', $post->ID );
 
-				$authorName = get_the_author_meta( 'user_nicename', $authorID );
+				$authorName = get_the_author_meta( 'display_name', $authorID );
 
 				$category = get_the_category()[0]->name;
 

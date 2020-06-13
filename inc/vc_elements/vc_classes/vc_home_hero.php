@@ -168,7 +168,7 @@ class vglHomeHero extends WPBakeryShortCode
 
 				$authorID = get_post_field( 'post_author', $post->ID );
 
-				$authorName = get_the_author_meta( 'user_nicename', $authorID );
+				$authorName = get_the_author_meta( 'display_name', $authorID );
 
 				$category = get_the_category()[0]->name;
 
