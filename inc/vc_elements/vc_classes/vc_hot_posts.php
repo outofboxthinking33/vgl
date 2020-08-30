@@ -77,13 +77,6 @@ class vglHotPosts extends WPBakeryShortCode
 	    				),
 	    				'param_name'	=> 'post_images',
 	    				'group'			=> 'VGL'
-	    			),
-	    			array(
-	    				'type'			=> 'textfield',
-	    				'heading'		=> 'Exclude posts [comma separated list]',
-	    				'param_name'	=> 'exclude_posts',
-	    				'default'		=> '',
-	    				'group'			=> 'VGL'
 	    			)
 	    		)
 	    	)	
@@ -101,8 +94,7 @@ class vglHotPosts extends WPBakeryShortCode
 					'hot_posts' 			=> '',
 					'custom_css'			=> '',
 					'is_custom_image'		=> '',
-					'post_images'			=> '',
-					'exclude_posts'			=> ''
+					'post_images'			=> ''
 				),
 				$atts
 			)
@@ -124,11 +116,11 @@ class vglHotPosts extends WPBakeryShortCode
 			
 			if ( $is_custom_image && count($post_images) > $index ) {
 
-				$featured_url = wp_get_attachment_image_src($post_images[$index], 'full', true)[0];
+				$featured_url = wp_get_attachment_image_src($post_images[$index], 'hot-posts', true)[0];
 
 			} else {
 
-				$featured_url = get_the_post_thumbnail_url( $hot_post, 'full' );
+				$featured_url = get_the_post_thumbnail_url( $hot_post, 'hot-posts' );
 
 			}
 
@@ -140,9 +132,12 @@ class vglHotPosts extends WPBakeryShortCode
 
 			$permalink = get_the_permalink( $hot_post );
 
-			$authorID = get_post_field( 'post_author', $hot_post );
+			$byline = strip_tags(get_the_term_list( $hot_post, 'byline', '', ', ', '' ));
 
-			$authorName = get_the_author_meta( 'display_name', $authorID );
+			if(!$byline) {
+				$authorID = get_post_field( 'post_author', $hot_post );
+				$authorName = strip_tags(get_the_author_meta( 'display_name', $authorID ));
+			}
 
 			$excerpt = html_entity_decode(get_the_excerpt($hot_post));
 
@@ -152,14 +147,14 @@ class vglHotPosts extends WPBakeryShortCode
 				'title'			=> $title,
 				'category'		=> $category,
 				'permalink'		=> $permalink,
-				'authorName'	=> $authorName,
+				'authorName'	=> $byline ? $byline : $authorName,
 				'excerpt'		=> $excerpt
 			);
 		}
 
 		?>
 
-		<hot-posts :posts='<?php echo json_encode($data); ?>' col-count='<?php echo $columns; ?>' title="<?php echo $vgl_title ?>" class="<?php echo $css_class; ?>"></hot-posts>
+		<hot-posts :posts='<?php echo htmlspecialchars(json_encode($data), ENT_QUOTES, 'UTF-8'); ?>' col-count='<?php echo $columns; ?>' title="<?php echo $vgl_title ?>" class="<?php echo $css_class; ?>"></hot-posts>
 
 		<?php
 

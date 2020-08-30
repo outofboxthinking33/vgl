@@ -166,13 +166,6 @@ class VglPosts extends WPBakeryShortCode
 	    				'group'					=> 'VGL'
 	    			),
 	    			array(
-	    				'type'					=> 'textfield',
-	    				'heading'				=> 'Exclude posts [comma separated list]',
-	    				'param_name'			=> 'exclude_posts',
-	    				'default'				=> '',
-	    				'group'					=> 'VGL'
-	    			),
-	    			array(
 	    				'type'					=> 'css_editor',
 	    				'heading'				=> 'CSS',
 	    				'param_name'			=> 'custom_css',
@@ -201,7 +194,6 @@ class VglPosts extends WPBakeryShortCode
 					'order_by'				=> 'date',
 					'show_loadmore'			=> '',
 					'loadmore_text'			=> '',
-					'exclude_posts'			=> '',
 					'custom_css'			=> ''
 				),
 				$atts
@@ -212,17 +204,14 @@ class VglPosts extends WPBakeryShortCode
 
 		$hot_posts = explode(',', $hot_posts);
 
-		$excluded_posts = explode(',', $exclude_posts);
-
 		ob_start();
 
 		$args = array(
 				'post_type'					=> 'post',
 				'post_status'				=> 'publish',
-				'posts_per_page'			=> -1,
+				'posts_per_page'			=> $item_count,
 				'order'						=> $order,
-				'order_by'					=> $order_by,
-				'post__not_in' 				=> $excluded_posts ? $excluded_posts : []
+				'order_by'					=> $order_by
 			);
 
 		if($source == 'reviews') {
@@ -232,6 +221,7 @@ class VglPosts extends WPBakeryShortCode
 		$query = new WP_Query($args);
 
 		$data = [];
+		$postIds = [];
 
 		$index = 0;
 
@@ -239,40 +229,41 @@ class VglPosts extends WPBakeryShortCode
 
 			$query->the_post();
 
-			if ( $start_index <= $index && $index < $start_index + $item_count ) {
+			global $post;
 
-				global $post;
+			$attachment_id = get_post_thumbnail_id($post);
 
-				$featured_url = get_the_post_thumbnail_url( $post, 'full' );
-
-				$title = get_the_title( $post );
-
-				$authorID = get_post_field( 'post_author', $post->ID );
-
-				$authorName = get_the_author_meta( 'display_name', $authorID );
-
-				$category = get_the_category()[0]->name;
-
-				$permalink = get_the_permalink();
-
-				$excerpt = html_entity_decode(get_the_excerpt($hot_post));
-
-				$data[] = array(
-					'id'			=> $post->ID,
-					'featured_url'	=> $featured_url,
-					'title'			=> $title,
-					'authorName'	=> $authorName,
-					'category'		=> $category,
-					'permalink'		=> $permalink,
-					'excerpt'		=> $excerpt
-				);
-
+			if($type == 'grid' && $style == 'list') {
+				$featured_url = get_the_post_thumbnail_url($post->ID, 'posts-slider');
+			} else if ($type == 'grid' && $style == 'masonry') {
+				$featured_url = get_the_post_thumbnail_url($post->ID, 'posts-slider-masonry');
+			} else {
+				$featured_url = get_the_post_thumbnail_url($post->ID, 'posts-slider-carousel');
 			}
 
-			$index++;
+			$title = get_the_title( $post );
 
-			if ( $index >= $start_index + $item_count ) break;
+			$authorID = get_post_field( 'post_author', $post->ID );
 
+			$authorName = strip_tags(get_the_author_meta( 'display_name', $authorID ));
+
+			$category = get_the_category()[0]->name;
+
+			$permalink = get_the_permalink();
+
+			$excerpt = html_entity_decode(get_the_excerpt($hot_post));
+
+			$postIds[] = $post->ID;
+
+			$data[] = array(
+				'id'			=> $post->ID,
+				'featured_url'	=> $featured_url,
+				'title'			=> $title,
+				'authorName'	=> $authorName,
+				'category'		=> $category,
+				'permalink'		=> $permalink,
+				'excerpt'		=> $excerpt
+			);
 		}
 
 		wp_reset_postdata();
@@ -281,11 +272,11 @@ class VglPosts extends WPBakeryShortCode
 
 		<?php if ( $type == 'grid' ): ?>
 
-		<posts-grid :posts='<?php echo json_encode($data); ?>' :start-index='<?php echo $start_index; ?>' :count='<?php echo $item_count; ?>' :col-count='<?php echo $columns ?>' grid-style="<?php echo $style; ?>" class="<?php echo $style; ?>" heading="<?php echo $heading; ?>" <?php if ( $show_loadmore ): ?> :show-load-more="true" load-more-text="<?php echo $loadmore_text ?>" order="<?php echo $order ?>" order-by="<?php echo $order_by ?>" <?php endif; ?>> </posts-grid>
+		<posts-grid :posts='<?php echo htmlspecialchars(json_encode($data), ENT_QUOTES, 'UTF-8'); ?>' :post-ids='<?php echo json_encode($postIds); ?>' :start-index='<?php echo $start_index; ?>' :count='<?php echo $item_count; ?>' :col-count='<?php echo $columns ?>' grid-style="<?php echo $style; ?>" class="<?php echo $style; ?>" heading="<?php echo $heading; ?>" <?php if ( $show_loadmore ): ?> :show-load-more="true" load-more-text="<?php echo $loadmore_text ?>" order="<?php echo $order ?>" order-by="<?php echo $order_by ?>" <?php endif; ?>> </posts-grid>
 
 		<?php elseif (  $type == 'slider'): ?>
 
-		<posts-slider :posts='<?php echo json_encode($data); ?>' :count='<?php echo $item_count; ?>' heading='<?php echo $heading; ?>' desktop-slider-show='<?php echo $desktop_slider_show; ?>' mobile-slider-show='<?php echo $mobile_slider_show; ?>' class="<?php echo $type . " " . $css_class; ?>"></posts-slider>
+		<posts-slider :posts='<?php echo htmlspecialchars(json_encode($data), ENT_QUOTES, 'UTF-8'); ?>' :count='<?php echo $item_count; ?>' heading='<?php echo $heading; ?>' desktop-slider-show='<?php echo $desktop_slider_show; ?>' mobile-slider-show='<?php echo $mobile_slider_show; ?>' class="<?php echo $type . " " . $css_class; ?>"></posts-slider>
 
 		<?php endif; ?>
 		<?php
@@ -297,49 +288,42 @@ class VglPosts extends WPBakeryShortCode
 	}
 
 	public function vgl_loadmore_posts() {
+		
+		$data = [];
+		$cache_key = 'vgl-loadmore';
 		$order = $_POST['data']['order'];
 		$order_by = $_POST['data']['orderBy'];
 		$count = $_POST['data']['count'];
 		$start_index = $_POST['data']['startIndex'];
+		$postIds = $_POST['data']['postIds'];
 
 		$args = array(
 			'post_type'					=> 'post',
 			'post_status'				=> 'publish',
 			'posts_per_page'			=> -1,
 			'order'						=> $order,
-			'order_by'					=> $order_by,
+			'order_by'					=> $order_by
 		);
 
-		$query = new WP_Query($args);
-
-		$data = [];
-
-		$index = 0;
-
-		while( $query->have_posts() ) {
-
-			$query->the_post();
-
-			if ($start_index <= $index && $index < $start_index + $count) {
+		if(!$data = get_transient( $cache_key )) {
+			
+			$query = new WP_Query($args);
+			
+			$index = 0;
+			while( $query->have_posts() ) {
+				$query->the_post();
 
 				global $post;
-
-				$featured_url = get_the_post_thumbnail_url( $post, 'full' );
-
+				
+				$featured_url = get_the_post_thumbnail_url( $post, 'posts-slider' );
 				$title = get_the_title( $post );
-
 				$authorID = get_post_field( 'post_author', $post->ID );
-
 				$authorName = get_the_author_meta( 'user_nicename', $authorID );
-
 				$category = get_the_category()[0]->name;
-
 				$permalink = get_the_permalink();
-
 				$excerpt = html_entity_decode(get_the_excerpt($hot_post));
-
 				$data[] = array(
-					'id'			=> $post->ID,
+					'id'			=> "$post->ID",
 					'featured_url'	=> $featured_url,
 					'title'			=> $title,
 					'authorName'	=> $authorName,
@@ -347,18 +331,24 @@ class VglPosts extends WPBakeryShortCode
 					'category'		=> $category,
 					'permalink'		=> $permalink
 				);
-			} elseif ( $index >= $start_index + $count ) {
-
-				break;
-
 			}
 
-			$index++;
-
+			set_transient($cache_key, $data, 86400);
 		}
 
+		// Filter existing posts
+		foreach($data as $index => $post) {		
+			if(in_array($post['id'], $postIds)) {
+				unset($data[$index]);
+			}
+		}
+
+		$data = array_values($data);
+
 		// print_r(json_encode(array( 'order' => $order, 'order_by' => $order_by, 'start_index' => $start_index, 'count' => $count )));
-		print_r(json_encode($data));
+		$posts = array_slice($data, $start_index , $count);
+
+		print_r(json_encode($posts, JSON_PRETTY_PRINT));
 		wp_die();
 	}
 }

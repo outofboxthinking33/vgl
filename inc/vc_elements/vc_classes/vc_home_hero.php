@@ -168,7 +168,7 @@ class vglHomeHero extends WPBakeryShortCode
 
 				$authorID = get_post_field( 'post_author', $post->ID );
 
-				$authorName = get_the_author_meta( 'display_name', $authorID );
+				$authorName = strip_tags(get_the_author_meta( 'display_name', $authorID ));
 
 				$category = get_the_category()[0]->name;
 
@@ -199,11 +199,11 @@ class vglHomeHero extends WPBakeryShortCode
 
 		<?php if ( $layout == 'grid' ): ?>
 
-			<hero-banner-grid :posts='<?php echo json_encode($data); ?>' border-color="<?php echo $bottom_color; ?>" border-width="<?php echo $border_width; ?>"></hero-banner-grid>
+			<hero-banner-grid :posts='<?php echo htmlspecialchars(json_encode($data), ENT_QUOTES, 'UTF-8'); ?>' border-color="<?php echo $bottom_color; ?>" border-width="<?php echo $border_width; ?>"></hero-banner-grid>
 
 		<?php elseif ( $layout == 'slider' ): ?>
 
-			<hero-banner-slider :posts='<?php echo json_encode($data); ?>' border-color="<?php echo $bottom_color; ?>" border-width="<?php echo $border_width; ?>"></hero-banner-slider>
+			<hero-banner-slider :posts='<?php echo htmlspecialchars(json_encode($data), ENT_QUOTES, 'UTF-8'); ?>' border-color="<?php echo $bottom_color; ?>" border-width="<?php echo $border_width; ?>"></hero-banner-slider>
 
 		<?php endif; ?>
 

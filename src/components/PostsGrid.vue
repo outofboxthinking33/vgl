@@ -9,7 +9,7 @@
                 <div :class="['vgl-post-info', 'index' + index]">
                     <a :href="post.permalink"><h3 class="title" v-html="post.title"></h3></a>
                     <div class="vgl-post-info__excerpt"><span>{{ post.excerpt }}</span></div>
-                    <span class="vgl-post-info__author"><b>by</b> <span class="author">{{ post.authorName }}</span> | <span class="category">{{ post.category }}</span></span>
+                    <span class="vgl-post-info__author"><b>by</b> <span class="author" v-html="post.authorName"></span> | <span class="category">{{ post.category }}</span></span>
                     <a class="vgl-post-info__more read_more" :href="post.permalink">READ MORE</a>
                 </div>
             </div>
@@ -22,7 +22,7 @@
                 <div class="post-info">
                     <a :href="post.permalink"><p class="title" v-html="post.title"></p></a>
                     <div class="vgl-post-info__excerpt"><span>{{ post.excerpt }}</span></div>
-                    <span class="name_category"><b>by</b> <span class="author">{{ post.authorName }}</span> | <span class="category">{{ post.category }}</span></span>
+                    <span class="name_category"><b>by</b> <span class="author" v-html="post.authorName"></span> | <span class="category">{{ post.category }}</span></span>
                     <a class="read_more" :href="post.permalink">READ MORE</a>
                 </div>
             </div>
@@ -41,6 +41,10 @@
         },
         props: {
             posts: {
+                type: Array,
+                required: true
+            },
+            postIds: {
                 type: Array,
                 required: true
             },
@@ -85,6 +89,7 @@
             return {
                 index: this.startIndex + this.count,
                 updatedPosts: this.posts,
+                updatedPostsIds: this.postIds || [],
                 isActive: false,
                 loadMorePostCount: 12,
                 postIndex: 0
@@ -102,17 +107,26 @@
                             startIndex: this.index,
                             order: this.order,
                             orderBy: this.orderBy,
-                            count: this.loadMorePostCount
+                            count: this.loadMorePostCount,
+                            postIds: this.updatedPostsIds
                         }
                     },
                     {
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-                            'Accept': 'text/html, */*; q=0.01'
+                            'Accept': 'application/json, */*; q=0.01'
                         }
                     }
                 )
-                .success( response => { JSON.parse(response).forEach( ele => this.updatedPosts.push(ele) ); this.index = this.index + this.loadMorePostCount; });
+                .success( response => { 
+                    JSON.parse(response).forEach( ele => {
+                        console.log('Rendered post: ', ele);
+                        this.updatedPosts.push(ele);
+                        this.updatedPostsIds.push(ele.id);
+                    }); 
+                    
+                    this.index = this.index + this.loadMorePostCount; 
+                });
             }
         },
         computed: {

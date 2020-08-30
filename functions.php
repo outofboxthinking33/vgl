@@ -176,3 +176,15 @@ function tn_custom_excerpt_length( $length ) {
 }
 
 add_filter( 'excerpt_length', 'tn_custom_excerpt_length', 999 );
+
+add_theme_support( 'title-tag' );
+
+add_image_size( 'posts-slider', 9999, 314 );
+
+add_image_size( 'posts-slider-masonry', 9999, 848 );
+
+add_image_size( 'posts-slider-carousel', 9999, 380 );
+
+add_image_size( 'hot-posts', 190, 9999 );
+
+add_image_size( 'celeb-images', 380, 380, true );

@@ -17,17 +17,17 @@
 				<div class="post-info">
 					<?php					
 
-						$authorID = get_post_field( 'post_author', $post->ID );
+						$authorID = $post->post_author;
 
-						$authorName = get_the_author_meta( 'user_nicename', $authorID );
+						$authorName = strip_tags(get_the_author_meta( 'display_name', $authorID ));
 
-						$authorAvatarUrl = get_avatar_url( $authorID, ['size' => 60] );
+						$authorAvatarUrl = get_avatar( get_the_author_email(), '112' );
 
 						$category = get_the_category()[0]->name;
 					?>
-					<div class="authorAvatar"><img src="<?php echo $authorAvatarUrl; ?>"></div>
+					<div class="authorAvatar"><?php echo $authorAvatarUrl; ?></div>
 					<div class="authorInfo">
-						<span class="authorName">by <span class="author"><?php echo $authorName; ?></span></span>
+						<span class="authorName author-<?php echo $authorID ?>">by <span class="author"><?php echo $authorName; ?></span></span>
 						<span class="postDate"><?php echo get_the_date(); ?></span>
 					</div>
 				</div>

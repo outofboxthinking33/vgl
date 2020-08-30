@@ -5,8 +5,8 @@
             <div v-for="post in posts" :key="post.id">
                 <div class="vgl-slider-item" :data-bcolor="post.slideColor" v-bind:style="{ 'background-image': 'url(' + post.featured_url + ')' }">
                     <div class="vgl-slider-info">
-                        <h2 class="vgl-slider-title"><a :href="post.permalink">{{ post.title }}</a></h2>
-                        <span>by {{ post.authorName }} | {{ post.category }}</span>
+                        <h2 class="vgl-slider-title"><a :href="post.permalink" v-html="post.title" /></h2>
+                        <span>by <span class="author" v-html="post.authorName"></span> | <span class="category">{{ post.category }}</span></span>
                     </div>
                 </div>
             </div>
@@ -118,6 +118,13 @@
         position: absolute;
         bottom: 100px;
 
+        .author {
+            a {
+                color: #fff;
+                text-decoration: none;
+            }
+        }
+
         @media screen and (max-width: 768px) {
             width: 100%;
             padding-left: 25px;
@@ -143,8 +150,8 @@
         font-style: normal;
         line-height: 1.24;
         letter-spacing: normal;
-        color: #ffffff;
-        text-decoration: none;
+        color: #ffffff !important;
+        text-decoration: none !important;
         text-shadow:-1px 0px 5px rgba(0,0,0,0.5);
     }
 

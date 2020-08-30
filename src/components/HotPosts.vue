@@ -1,11 +1,11 @@
 <template>
     <div class="vgl-hot-posts vgl-container">
+        <h2 class="vgl-hot-post-title">{{ title }}</h2>
         <div class="vgl-content-wrapper">
-            <h2 class="vgl-hot-post-title">{{ title }}</h2>
             <div v-for="post in posts" :key="post.id" :class="[{ 'col-full': colCount == 1, 'col-half': colCount == 2, 'col-one-third': colCount == 3, 'col-one-fourth': colCount == 4, 'col-one-fifth': colCount == 5 }, 'vgl-hot-post']">
                 <a :href="post.permalink"><img :src="post.featured_url"></a>
                 <div>
-                    <span><b>by</b> <span class="author">{{ post.authorName }}</span> | <span class="category">{{ post.category }}</span></span>
+                    <span><b>by</b> <span class="author" v-html="post.authorName"></span> | <span class="category">{{ post.category }}</span></span>
                     <a :href="post.permalink"><p>{{ post.title }}</p></a>
                 </div>
             </div>
@@ -45,12 +45,14 @@
     .vgl-hot-posts .vgl-content-wrapper {
         display: flex;
         flex-direction: row;
+        margin: 30px 0px;
     }
 
     .vgl-hot-posts .vgl-hot-post {
         margin-top: 30px;
         margin-bottom: 30px;
         padding-top: 20px;
+        padding-left: 0px;
         padding-bottom: 0px;
         border-bottom: 8px solid;
         border-color: transparent;
@@ -66,16 +68,24 @@
             padding-bottom: 20px;
             border-color: #f8b195;
         }
+
+        &:first-child {
+            margin-left: 0px;
+        }
+
+        &:last-child {
+            margin-right: 0px;
+        }
     }
 
     .vgl-hot-posts .vgl-hot-post img {
-        width: 40%;
-        padding-right: 25px;
+        width: 50%;
+        padding-right: 15px;
         float: left;
     }
 
     .vgl-hot-posts .vgl-hot-post > div {
-        width: 60%;
+        width: 50%;
         float: left;
 
         @media screen and (max-width: 1023px) {

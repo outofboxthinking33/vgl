@@ -6,7 +6,7 @@
                 <a :href="post.permalink"><div class="featured_image" :style="{ 'background-image': 'url(' + post.featured_url + ')' }"></div></a>
                 <div class="post-info">
                     <a :href="post.permalink"><p class="title">{{ post.title }}</p></a>
-                    <span class="name_category"><b>by </b><span class="author">{{ post.authorName }}</span> | <span class="category">{{ post.category }}</span></span>
+                    <span class="name_category"><b>by </b><span class="author" v-html="post.authorName"></span> | <span class="category">{{ post.category }}</span></span>
                     <a class="read_more btn" :href="post.permalink">Read More</a>
                 </div>
             </div>
@@ -153,8 +153,11 @@
             .post-info {
                 margin-top: 15px;
 
-                a {
-                    text-decoration: none;
+                .author {
+                    a {
+                        color: #fff;
+                        text-decoration: none;
+                    }
                 }
 
                 .title {
